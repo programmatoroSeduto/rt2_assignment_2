@@ -1,0 +1,15 @@
+## file 'RandomPosition.srv'
+
+# bounds for the 'x' coordinate
+float32 x_min
+float32 x_max
+# bounds for the 'y' coordinate
+float32 y_min
+float32 y_max
+
+---
+
+# randomly generated planar posture
+float32 x
+float32 y
+float32 theta

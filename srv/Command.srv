@@ -1,0 +1,10 @@
+## fine 'command.srv'
+
+# send "start" to enable the working cycle
+# case-sensitive command
+string command
+
+---
+
+# success or not
+bool ok
