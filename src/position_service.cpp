@@ -36,7 +36,7 @@
  ***********************************************/
 
 #include "ros/ros.h"
-#include "rt2_assignment1/RandomPosition.h"
+#include "rt2_assignment_2/RandomPosition.h"
 
 #include <cmath>
 
@@ -69,7 +69,7 @@ double randMToN(double M, double N)
  * @see RandomPosition.srv
  * 
  ***********************************************/
-bool myrandom (rt2_assignment1::RandomPosition::Request &req, rt2_assignment1::RandomPosition::Response &res)
+bool myrandom (rt2_assignment_2::RandomPosition::Request &req, rt2_assignment_2::RandomPosition::Response &res)
 {
     res.x = randMToN(req.x_min, req.x_max);
     res.y = randMToN(req.y_min, req.y_max);

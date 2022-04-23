@@ -69,11 +69,11 @@
 #include "actionlib/client/simple_action_client.h"
 #include "actionlib/client/terminal_state.h"
 
-#include "rt2_assignment1/Command.h"
-#include "rt2_assignment1/Position.h"
-#include "rt2_assignment1/RandomPosition.h"
-#include "rt2_assignment1/GoToPointAction.h"
-#include "rt2_assignment1/JupyterTargetInfo.h"
+#include "rt2_assignment_2/Command.h"
+#include "rt2_assignment_2/Position.h"
+#include "rt2_assignment_2/RandomPosition.h"
+#include "rt2_assignment_2/GoToPointAction.h"
+#include "rt2_assignment_2/JupyterTargetInfo.h"
 
 #include <string>
 
@@ -95,7 +95,7 @@ bool start = false;
 
 
 /// Shared pointer to the movement action handler
-actionlib::SimpleActionClient<rt2_assignment1::GoToPointAction>* acglobal;
+actionlib::SimpleActionClient<rt2_assignment_2::GoToPointAction>* acglobal;
 
 
 /// shared pointer to the info topic towards Jupyter
@@ -114,7 +114,7 @@ ros::Publisher* global_jupy;
  * @see Command.srv
  * 
  ***********************************************/
-bool user_interface(rt2_assignment1::Command::Request &req, rt2_assignment1::Command::Response &res)
+bool user_interface(rt2_assignment_2::Command::Request &req, rt2_assignment_2::Command::Response &res)
 {
     if (req.command == "start")
     {
@@ -146,7 +146,7 @@ bool user_interface(rt2_assignment1::Command::Request &req, rt2_assignment1::Com
 // general function for publishing a info msg to Jupyter
 void jupyter_pub( bool working, bool failure, bool goal_cancelled, float x, float y, float th, bool success, float time )
 {
-    rt2_assignment1::JupyterTargetInfo msg;
+    rt2_assignment_2::JupyterTargetInfo msg;
     
     msg.working = working;
     msg.failure = failure;
@@ -167,7 +167,7 @@ void jupyter_publish_status( bool status )
 }
 
 // mission update (the robot is trying to reach the target)
-void jupyter_update_mission( rt2_assignment1::GoToPointGoal& goal, float time )
+void jupyter_update_mission( rt2_assignment_2::GoToPointGoal& goal, float time )
 {
     jupyter_pub( true, false, false, goal.x, goal.y, goal.theta, false, time );
 }
@@ -185,7 +185,7 @@ void jupyter_target_unreached( )
 }
 
 // success of the mission
-void jupyter_target_reached( rt2_assignment1::GoToPointGoal& goal, float time )
+void jupyter_target_reached( rt2_assignment_2::GoToPointGoal& goal, float time )
 {
     jupyter_pub( true, false, false, goal.x, goal.y, goal.theta, true, time );
 }
@@ -207,27 +207,27 @@ int main(int argc, char **argv)
    ros::ServiceServer service = n.advertiseService("/user_interface", user_interface);
    
    // client
-   ros::ServiceClient client_rp = n.serviceClient<rt2_assignment1::RandomPosition>("/position_server");
+   ros::ServiceClient client_rp = n.serviceClient<rt2_assignment_2::RandomPosition>("/position_server");
    
    // action
-   actionlib::SimpleActionClient<rt2_assignment1::GoToPointAction> ac( "go_to_point", true );
+   actionlib::SimpleActionClient<rt2_assignment_2::GoToPointAction> ac( "go_to_point", true );
    acglobal = &ac; // share the access to the action
    ac.waitForServer( );
     
     // infos for Jupyter interface
-    ros::Publisher jupy = n.advertise<rt2_assignment1::JupyterTargetInfo>( "/jupyter_mission_info", 1000 );
+    ros::Publisher jupy = n.advertise<rt2_assignment_2::JupyterTargetInfo>( "/jupyter_mission_info", 1000 );
     global_jupy = &jupy;
    
    // bounds for the random target
-   rt2_assignment1::RandomPosition rp;
+   rt2_assignment_2::RandomPosition rp;
    rp.request.x_max = 5.0;
    rp.request.x_min = -5.0;
    rp.request.y_max = 5.0;
    rp.request.y_min = -5.0;
-   rt2_assignment1::Position p;
+   rt2_assignment_2::Position p;
     
     // useful
-    rt2_assignment1::GoToPointGoal empty_goal;
+    rt2_assignment_2::GoToPointGoal empty_goal;
     
     // init the state of the GUI
     jupyter_publish_status( false );
@@ -245,7 +245,7 @@ int main(int argc, char **argv)
         client_rp.call(rp);
         
         // prepare the request to the movement action
-        rt2_assignment1::GoToPointGoal goal;
+        rt2_assignment_2::GoToPointGoal goal;
         goal.x = rp.response.x;
         goal.y = rp.response.y;
         goal.theta = rp.response.theta;
