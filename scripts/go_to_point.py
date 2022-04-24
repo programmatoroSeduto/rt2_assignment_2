@@ -53,10 +53,10 @@ import rospy
 from geometry_msgs.msg import Twist, Point
 from nav_msgs.msg import Odometry
 from tf import transformations
-from rt2_assignment1.srv import Position
+from rt2_assignment_2.srv import Position
 import math
 import actionlib
-from rt2_assignment1.msg import GoToPointAction, GoToPointGoal, GoToPointResult, GoToPointFeedback
+from rt2_assignment_2.msg import GoToPointAction, GoToPointGoal, GoToPointResult, GoToPointFeedback
 
 # robot state variables
 position_ = Point( )

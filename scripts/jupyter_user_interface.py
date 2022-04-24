@@ -24,7 +24,7 @@ Here are the functionalities of the node:<br>
 
 import rospy
 from std_srvs.srv import SetBool, SetBoolRequest, SetBoolResponse
-from rt2_assignment1.srv import Command, CommandRequest, CommandResponse
+from rt2_assignment_2.srv import Command, CommandRequest, CommandResponse
 
 ### Name for this node
 node_name = "jupyter_user_interface"
