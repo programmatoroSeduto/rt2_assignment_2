@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROScpp node - state_machine &mdash; RT2 Assignment 2 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Index of ROSpy nodes" href="../rospy-nodes/rospy-nodes-index.html" />
+    <link rel="prev" title="ROScpp node - position_service" href="position_service.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> RT2 Assignment 2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Index</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="roscpp-nodes-index.html">Index of ROScpp nodes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="position_service.html">ROScpp node - position_service</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ROScpp node - state_machine</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../rospy-nodes/rospy-nodes-index.html">Index of ROSpy nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">RT2 Assignment 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#how-to-setup-and-run-the-project">How to setup and run the project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#documentation">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#author-and-contacts">Author and Contacts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#see-also">See also</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">RT2 Assignment 2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="roscpp-nodes-index.html">Index of ROScpp nodes</a> &raquo;</li>
+      <li>ROScpp node - state_machine</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/sphinx/roscpp-nodes/state_machine.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="roscpp-node-state-machine">
+<h1>ROScpp node - state_machine<a class="headerlink" href="#roscpp-node-state-machine" title="Permalink to this headline"></a></h1>
+<p>Send a command to the robot and manage the movement action. </p>
+<p><strong>ROS Node Name</strong> <ul class="simple">
+<li><p>state_machine</p></li>
+</ul>
+<strong>Description:</strong> <dl class="simple">
+<dt><strong>Authors</strong></dt><dd><p>Carmine Tommaso Recchiuto, Francesco Ganci (S4143910) </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>v1.0</p>
+</dd>
+</dl>
+</p>
+<p><p>Despite of the name, this node is not a state machine: it receives a command, then calls the action providing a random target. After a destination is provided to the movement action, the node waits until the destination is reached.</p>
+<p>The node allows also cancel the action: see the description of the service /user_interface.</p>
+
+ In general the node, when enabled, works in this way. First of all, if a new target is obtained from the service /user_interface; then, the node sends the request to the movement action. After sent the request, the node executes a check upon the status of the movement action every <em>at least</em> 0.1 seconds (see <a class="reference internal" href="#state__machine_8cpp_1adc0448f0088dbcf29bdacc5c1f307c35"><span class="std std-ref">WAITING_DELAY</span></a>) for maximum 30 seconds (see <a class="reference internal" href="#state__machine_8cpp_1ac27aeffe17e56fbc252329cad07ef5a0"><span class="std std-ref">MAX_WAITING_TIME</span></a><p>). If the action requires too much time, the request is cancelled.</p>
+<p>Note that the bounds of the target are provided once in the main function: x in [-5.0, 5.0], y in [-5.0, 5.0].</p>
+</p>
+<p>Communication with Jupyter is implemented through a dedicated topic of type JupyterTargetInfo. </p>
+<p><strong>Publishers:</strong> <ul class="simple">
+<li><p><em>/jupyter_mission_info</em><p>: JupyterTargetInfo.msg</p>
+<p>Updates about the running mission for Jupyter.</p>
+</p></li>
+</ul>
+</p>
+<p><strong>Services:</strong> <ul class="simple">
+<li><p><em>/user_interface</em><p>: Command.srv</p>
+<p>The service can enable or disable the node, and also cancel any request sent to the movement action. Send</p>
+<code class="docutils literal notranslate"><span class="pre">start</span></code> to start the movement. Send any other strings to stop the working cycle and possibly cancel any active movement action.  </p></li>
+</ul>
+</p>
+<p><strong>Clients:</strong> <ul class="simple">
+<li><p><em>/position_server</em><p>: RandomPosition.srv</p>
+<p>See</p>
+position_service.cpp</p></li>
+</ul>
+</p>
+<p><strong>Using actions</strong> <ul class="simple">
+<li><p><em>go_to_point</em><p>: GoToPoint.action</p>
+<p>See the py node</p>
+go_to_point.py</p></li>
+</ul>
+</p>
+<p><strong>TODOs</strong><dl>
+<dt class="sig sig-object cpp">
+<em><span class="pre">Todo:</span></em></dt>
+<dd><p>the command should be case-insensitive </p>
+<p>review the output to the screen</p>
+</dd></dl>
+
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-defines">Defines</p>
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.WAITING_DELAY">
+<span class="target" id="state__machine_8cpp_1adc0448f0088dbcf29bdacc5c1f307c35"></span><span class="sig-name descname"><span class="n"><span class="pre">WAITING_DELAY</span></span></span><a class="headerlink" href="#c.WAITING_DELAY" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The minimom delay between one cycle and the next one. </p>
+</dd></dl>
+
+<dl class="cpp macro">
+<dt class="sig sig-object cpp" id="c.MAX_WAITING_TIME">
+<span class="target" id="state__machine_8cpp_1ac27aeffe17e56fbc252329cad07ef5a0"></span><span class="sig-name descname"><span class="n"><span class="pre">MAX_WAITING_TIME</span></span></span><a class="headerlink" href="#c.MAX_WAITING_TIME" title="Permalink to this definition"></a><br /></dt>
+<dd><p>The maximum waiting time before the forced break of the cycle. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414user_interfaceRN16rt2_assignment_27Command7RequestERN16rt2_assignment_27Command8ResponseE">
+<span id="_CPPv314user_interfaceRN16rt2_assignment_27Command7RequestERN16rt2_assignment_27Command8ResponseE"></span><span id="_CPPv214user_interfaceRN16rt2_assignment_27Command7RequestERN16rt2_assignment_27Command8ResponseE"></span><span id="user_interface__rt2_assignment_2::Command::RequestR.rt2_assignment_2::Command::ResponseR"></span><span class="target" id="state__machine_8cpp_1a18763d145f891433de4ba5567f83668e"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">user_interface</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">rt2_assignment_2</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Command</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Request</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">req</span></span>, <span class="n"><span class="pre">rt2_assignment_2</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Command</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Response</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">res</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414user_interfaceRN16rt2_assignment_27Command7RequestERN16rt2_assignment_27Command8ResponseE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>implementation of service <strong>/user_interface</strong> </p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Command.srv </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>req</strong> – The command to execute. If the command is the string “start” then the node is enabled. Any other request will turn off the node. </p></li>
+<li><p><strong>res</strong> – success or not.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv411jupyter_pubbbbfffbf">
+<span id="_CPPv311jupyter_pubbbbfffbf"></span><span id="_CPPv211jupyter_pubbbbfffbf"></span><span id="jupyter_pub__b.b.b.float.float.float.b.float"></span><span class="target" id="state__machine_8cpp_1af53536f3b09d0e4a3d28e5a0d8034c77"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">jupyter_pub</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">working</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">failure</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">goal_cancelled</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">x</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">y</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">th</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">success</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">time</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411jupyter_pubbbbfffbf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>general function for publishing a info msg to Jupyter </p>
+<p>This function allows to make the update message and publish it to Jupyter quickly, just passing the fields of the message as parameters.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>don’t use this function directly, because here there’s no way to ensure the coherence of the fields each other. Use the wrappers. </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>working</strong> – if the random behaviour is active or not </p></li>
+<li><p><strong>failure</strong> – if the mission failed or not </p></li>
+<li><p><strong>goal_cancelled</strong> – if the goan has been cancelled or not </p></li>
+<li><p><strong>x</strong> – the ‘x’ target component </p></li>
+<li><p><strong>y</strong> – the ‘y’ target component </p></li>
+<li><p><strong>th</strong> – the head angle in the target </p></li>
+<li><p><strong>success</strong> – if the mission succeeded or not </p></li>
+<li><p><strong>time</strong> – how much time the mission did last until now</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv422jupyter_publish_statusb">
+<span id="_CPPv322jupyter_publish_statusb"></span><span id="_CPPv222jupyter_publish_statusb"></span><span id="jupyter_publish_status__b"></span><span class="target" id="state__machine_8cpp_1a4e552d7c04baf9df9a06dbb55392674c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">jupyter_publish_status</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">status</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422jupyter_publish_statusb" title="Permalink to this definition"></a><br /></dt>
+<dd><p>publish the state of the node (working or not working?) </p>
+<p>Function called when the random behaviour is turned on/off.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>status</strong> – the new status of the node (workin or not?) </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv422jupyter_update_missionRN16rt2_assignment_213GoToPointGoalEf">
+<span id="_CPPv322jupyter_update_missionRN16rt2_assignment_213GoToPointGoalEf"></span><span id="_CPPv222jupyter_update_missionRN16rt2_assignment_213GoToPointGoalEf"></span><span id="jupyter_update_mission__rt2_assignment_2::GoToPointGoalR.float"></span><span class="target" id="state__machine_8cpp_1a9728ea15b42798a7ca520ba1e65787c8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">jupyter_update_mission</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">rt2_assignment_2</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">GoToPointGoal</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">goal</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">time</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422jupyter_update_missionRN16rt2_assignment_213GoToPointGoalEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>mission update (the robot is trying to reach the target) </p>
+<p>while the robot is moving towards the goal nder the random behaviour, the node regularly sends a notification to the GUI to make it aware about how the mission is going on.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal</strong> – the objective </p></li>
+<li><p><strong>time</strong> – how much time elapsed from the beginning of the mission </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424jupyter_target_cancelledv">
+<span id="_CPPv324jupyter_target_cancelledv"></span><span id="_CPPv224jupyter_target_cancelledv"></span><span id="jupyter_target_cancelled"></span><span class="target" id="state__machine_8cpp_1add2a56c1c59a719a7a38019df8fa1ba1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">jupyter_target_cancelled</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424jupyter_target_cancelledv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>cancellation of the target </p>
+<p>called when the target is cancelled through an external request. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424jupyter_target_unreachedv">
+<span id="_CPPv324jupyter_target_unreachedv"></span><span id="_CPPv224jupyter_target_unreachedv"></span><span id="jupyter_target_unreached"></span><span class="target" id="state__machine_8cpp_1a848a1182f60d0d6554eccf2ef3c9bcbc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">jupyter_target_unreached</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424jupyter_target_unreachedv" title="Permalink to this definition"></a><br /></dt>
+<dd><p>failure of the mission (other reason) </p>
+<p>the objective can’t be reached due to some other reason. Typically, the node <em>state_machine</em> interrupts the mission when the maximum time expired. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv422jupyter_target_reachedRN16rt2_assignment_213GoToPointGoalEf">
+<span id="_CPPv322jupyter_target_reachedRN16rt2_assignment_213GoToPointGoalEf"></span><span id="_CPPv222jupyter_target_reachedRN16rt2_assignment_213GoToPointGoalEf"></span><span id="jupyter_target_reached__rt2_assignment_2::GoToPointGoalR.float"></span><span class="target" id="state__machine_8cpp_1aa470ad68a78e97461f6c7babfeddff83"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">jupyter_target_reached</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">rt2_assignment_2</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">GoToPointGoal</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">goal</span></span>, <span class="kt"><span class="pre">float</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">time</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422jupyter_target_reachedRN16rt2_assignment_213GoToPointGoalEf" title="Permalink to this definition"></a><br /></dt>
+<dd><p>success of the mission </p>
+<p>A message is sent to Jupyter when the mission ends with success, containing the goal and the time elapsed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>goal</strong> – the objective </p></li>
+<li><p><strong>time</strong> – how much time elapsed from the beginning of the mission </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44mainiPPc">
+<span id="_CPPv34mainiPPc"></span><span id="_CPPv24mainiPPc"></span><span id="main__i.cPP"></span><span class="target" id="state__machine_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">main</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">argc</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">argv</span></span><span class="sig-paren">)</span><br /></dt>
+<dd><p>ROS node main - state_machine. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-variables">Variables</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv45start">
+<span id="_CPPv35start"></span><span id="_CPPv25start"></span><span id="start__b"></span><span class="target" id="state__machine_8cpp_1ab376b87f96a574a793c03c53e75afec8"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">start</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><a class="headerlink" href="#_CPPv45start" title="Permalink to this definition"></a><br /></dt>
+<dd><p>when true, the node is enabled. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv48acglobal">
+<span id="_CPPv38acglobal"></span><span id="_CPPv28acglobal"></span><span id="acglobal__actionlib::SimpleActionClient:rt2_assignment_2::GoToPointAction:P"></span><span class="target" id="state__machine_8cpp_1a919a789ea3e7c9abad5d53bc16040f07"></span><span class="n"><span class="pre">actionlib</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SimpleActionClient</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">rt2_assignment_2</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">GoToPointAction</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">acglobal</span></span></span><a class="headerlink" href="#_CPPv48acglobal" title="Permalink to this definition"></a><br /></dt>
+<dd><p>Shared pointer to the movement action handler. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv411global_jupy">
+<span id="_CPPv311global_jupy"></span><span id="_CPPv211global_jupy"></span><span id="global_jupy__ros::PublisherP"></span><span class="target" id="state__machine_8cpp_1a49c8ff412b83bd1970a6f8bf5d59fdee"></span><span class="n"><span class="pre">ros</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Publisher</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">global_jupy</span></span></span><a class="headerlink" href="#_CPPv411global_jupy" title="Permalink to this definition"></a><br /></dt>
+<dd><p>shared pointer to the info topic towards Jupyter </p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="position_service.html" class="btn btn-neutral float-left" title="ROScpp node - position_service" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../rospy-nodes/rospy-nodes-index.html" class="btn btn-neutral float-right" title="Index of ROSpy nodes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Francesco Ganci (S4143910).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

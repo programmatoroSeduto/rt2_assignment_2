@@ -1,0 +1,761 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="state__machine_8cpp" kind="file" language="C++">
+    <compoundname>state_machine.cpp</compoundname>
+    <includes local="yes">ros/ros.h</includes>
+    <includes local="yes">actionlib/client/simple_action_client.h</includes>
+    <includes local="yes">actionlib/client/terminal_state.h</includes>
+    <includes local="yes">rt2_assignment_2/Command.h</includes>
+    <includes local="yes">rt2_assignment_2/Position.h</includes>
+    <includes local="yes">rt2_assignment_2/RandomPosition.h</includes>
+    <includes local="yes">rt2_assignment_2/GoToPointAction.h</includes>
+    <includes local="yes">rt2_assignment_2/JupyterTargetInfo.h</includes>
+    <includes local="no">string</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>actionlib/client/terminal_state.h</label>
+      </node>
+      <node id="7">
+        <label>rt2_assignment_2/RandomPosition.h</label>
+      </node>
+      <node id="1">
+        <label>/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp</label>
+        <link refid="state__machine_8cpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>rt2_assignment_2/GoToPointAction.h</label>
+      </node>
+      <node id="10">
+        <label>string</label>
+      </node>
+      <node id="9">
+        <label>rt2_assignment_2/JupyterTargetInfo.h</label>
+      </node>
+      <node id="3">
+        <label>actionlib/client/simple_action_client.h</label>
+      </node>
+      <node id="2">
+        <label>ros/ros.h</label>
+      </node>
+      <node id="6">
+        <label>rt2_assignment_2/Position.h</label>
+      </node>
+      <node id="5">
+        <label>rt2_assignment_2/Command.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="state__machine_8cpp_1adc0448f0088dbcf29bdacc5c1f307c35" prot="public" static="no">
+        <name>WAITING_DELAY</name>
+        <initializer>0.1</initializer>
+        <briefdescription>
+<para>The minimom delay between one cycle and the next one. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" line="89" column="9" bodyfile="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="state__machine_8cpp_1ac27aeffe17e56fbc252329cad07ef5a0" prot="public" static="no">
+        <name>MAX_WAITING_TIME</name>
+        <initializer>30</initializer>
+        <briefdescription>
+<para>The maximum waiting time before the forced break of the cycle. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" line="94" column="9" bodyfile="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="state__machine_8cpp_1ab376b87f96a574a793c03c53e75afec8" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool start</definition>
+        <argsstring></argsstring>
+        <name>start</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+<para>when true, the node is enabled. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" line="99" column="6" bodyfile="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="state__machine_8cpp_1a919a789ea3e7c9abad5d53bc16040f07" prot="public" static="no" mutable="no">
+        <type>actionlib::SimpleActionClient&lt; rt2_assignment_2::GoToPointAction &gt; *</type>
+        <definition>actionlib::SimpleActionClient&lt;rt2_assignment_2::GoToPointAction&gt;* acglobal</definition>
+        <argsstring></argsstring>
+        <name>acglobal</name>
+        <briefdescription>
+<para>Shared pointer to the movement action handler. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" line="104" column="31" bodyfile="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="state__machine_8cpp_1a49c8ff412b83bd1970a6f8bf5d59fdee" prot="public" static="no" mutable="no">
+        <type>ros::Publisher *</type>
+        <definition>ros::Publisher* global_jupy</definition>
+        <argsstring></argsstring>
+        <name>global_jupy</name>
+        <briefdescription>
+<para>shared pointer to the info topic towards Jupyter </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" line="108" column="16" bodyfile="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="state__machine_8cpp_1a18763d145f891433de4ba5567f83668e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool user_interface</definition>
+        <argsstring>(rt2_assignment_2::Command::Request &amp;req, rt2_assignment_2::Command::Response &amp;res)</argsstring>
+        <name>user_interface</name>
+        <param>
+          <type>rt2_assignment_2::Command::Request &amp;</type>
+          <declname>req</declname>
+        </param>
+        <param>
+          <type>rt2_assignment_2::Command::Response &amp;</type>
+          <declname>res</declname>
+        </param>
+        <briefdescription>
+<para>implementation of service <bold>/user_interface</bold> </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>req</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The command to execute. If the command is the string &quot;start&quot; then the node is enabled. Any other request will turn off the node. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>res</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>success or not.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="see"><para>Command.srv </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" line="123" column="6" bodyfile="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" bodystart="123" bodyend="150"/>
+      </memberdef>
+      <memberdef kind="function" id="state__machine_8cpp_1af53536f3b09d0e4a3d28e5a0d8034c77" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void jupyter_pub</definition>
+        <argsstring>(bool working, bool failure, bool goal_cancelled, float x, float y, float th, bool success, float time)</argsstring>
+        <name>jupyter_pub</name>
+        <param>
+          <type>bool</type>
+          <declname>working</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>failure</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>goal_cancelled</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>th</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>success</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>general function for publishing a info msg to Jupyter </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function allows to make the update message and publish it to Jupyter quickly, just passing the fields of the message as parameters.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>working</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the random behaviour is active or not </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>failure</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the mission failed or not </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>goal_cancelled</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the goan has been cancelled or not </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the &apos;x&apos; target component </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the &apos;y&apos; target component </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>th</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the head angle in the target </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>success</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if the mission succeeded or not </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>how much time the mission did last until now</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="note"><para>don&apos;t use this function directly, because here there&apos;s no way to ensure the coherence of the fields each other. Use the wrappers. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" line="175" column="6" bodyfile="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" bodystart="175" bodyend="189"/>
+      </memberdef>
+      <memberdef kind="function" id="state__machine_8cpp_1a4e552d7c04baf9df9a06dbb55392674c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void jupyter_publish_status</definition>
+        <argsstring>(bool status)</argsstring>
+        <name>jupyter_publish_status</name>
+        <param>
+          <type>bool</type>
+          <declname>status</declname>
+        </param>
+        <briefdescription>
+<para>publish the state of the node (working or not working?) </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Function called when the random behaviour is turned on/off.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>status</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the new status of the node (workin or not?) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" line="202" column="6" bodyfile="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" bodystart="202" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="state__machine_8cpp_1a9728ea15b42798a7ca520ba1e65787c8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void jupyter_update_mission</definition>
+        <argsstring>(rt2_assignment_2::GoToPointGoal &amp;goal, float time)</argsstring>
+        <name>jupyter_update_mission</name>
+        <param>
+          <type>rt2_assignment_2::GoToPointGoal &amp;</type>
+          <declname>goal</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>mission update (the robot is trying to reach the target) </para>
+        </briefdescription>
+        <detaileddescription>
+<para>while the robot is moving towards the goal nder the random behaviour, the node regularly sends a notification to the GUI to make it aware about how the mission is going on.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>goal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the objective </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>how much time elapsed from the beginning of the mission </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" line="221" column="6" bodyfile="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" bodystart="221" bodyend="224"/>
+      </memberdef>
+      <memberdef kind="function" id="state__machine_8cpp_1add2a56c1c59a719a7a38019df8fa1ba1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void jupyter_target_cancelled</definition>
+        <argsstring>()</argsstring>
+        <name>jupyter_target_cancelled</name>
+        <briefdescription>
+<para>cancellation of the target </para>
+        </briefdescription>
+        <detaileddescription>
+<para>called when the target is cancelled through an external request. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" line="236" column="6" bodyfile="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" bodystart="236" bodyend="239"/>
+      </memberdef>
+      <memberdef kind="function" id="state__machine_8cpp_1a848a1182f60d0d6554eccf2ef3c9bcbc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void jupyter_target_unreached</definition>
+        <argsstring>()</argsstring>
+        <name>jupyter_target_unreached</name>
+        <briefdescription>
+<para>failure of the mission (other reason) </para>
+        </briefdescription>
+        <detaileddescription>
+<para>the objective can&apos;t be reached due to some other reason. Typically, the node <emphasis>state_machine</emphasis> interrupts the mission when the maximum time expired. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" line="252" column="6" bodyfile="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" bodystart="252" bodyend="255"/>
+      </memberdef>
+      <memberdef kind="function" id="state__machine_8cpp_1aa470ad68a78e97461f6c7babfeddff83" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void jupyter_target_reached</definition>
+        <argsstring>(rt2_assignment_2::GoToPointGoal &amp;goal, float time)</argsstring>
+        <name>jupyter_target_reached</name>
+        <param>
+          <type>rt2_assignment_2::GoToPointGoal &amp;</type>
+          <declname>goal</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+<para>success of the mission </para>
+        </briefdescription>
+        <detaileddescription>
+<para>A message is sent to Jupyter when the mission ends with success, containing the goal and the time elapsed.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>goal</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the objective </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>time</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>how much time elapsed from the beginning of the mission </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" line="270" column="6" bodyfile="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" bodystart="270" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="function" id="state__machine_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char **argv)</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <briefdescription>
+<para>ROS node main - state_machine. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" line="282" column="5" bodyfile="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp" bodystart="282" bodyend="391"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Send a command to the robot and manage the movement action. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><bold>ROS Node Name</bold> <itemizedlist>
+<listitem>
+<para>state_machine</para>
+</listitem>
+</itemizedlist>
+ <simplesect kind="authors"><para>Carmine Tommaso Recchiuto, Francesco Ganci (S4143910) </para>
+</simplesect>
+<simplesect kind="version"><para>v1.0</para>
+</simplesect>
+<bold>Description:</bold> <linebreak/>
+ </para>
+<para>Despite of the name, this node is not a state machine: it receives a command, then calls the action providing a random target. After a destination is provided to the movement action, the node waits until the destination is reached. <linebreak/>
+<linebreak/>
+ The node allows also cancel the action: see the description of the service /user_interface. <linebreak/>
+<linebreak/>
+ In general the node, when enabled, works in this way. First of all, if a new target is obtained from the service /user_interface; then, the node sends the request to the movement action. After sent the request, the node executes a check upon the status of the movement action every <emphasis>at least</emphasis> 0.1 seconds (see <ref refid="state__machine_8cpp_1adc0448f0088dbcf29bdacc5c1f307c35" kindref="member">WAITING_DELAY</ref>) for maximum 30 seconds (see <ref refid="state__machine_8cpp_1ac27aeffe17e56fbc252329cad07ef5a0" kindref="member">MAX_WAITING_TIME</ref>). If the action requires too much time, the request is cancelled. <linebreak/>
+<linebreak/>
+ Note that the bounds of the target are provided once in the main function: x in [-5.0, 5.0], y in [-5.0, 5.0]. <linebreak/>
+<linebreak/>
+</para>
+<para>Communication with Jupyter is implemented through a dedicated topic of type JupyterTargetInfo. </para>
+<para><bold>Publishers:</bold> <linebreak/>
+ <itemizedlist>
+<listitem>
+<para><emphasis>/jupyter_mission_info</emphasis> : JupyterTargetInfo.msg <linebreak/>
+ Updates about the running mission for Jupyter.  </para>
+</listitem>
+</itemizedlist>
+</para>
+<para><bold>Services:</bold> <linebreak/>
+ <itemizedlist>
+<listitem>
+<para><emphasis>/user_interface</emphasis> : Command.srv <linebreak/>
+ The service can enable or disable the node, and also cancel any request sent to the movement action. Send <computeroutput>start</computeroutput> to start the movement. Send any other strings to stop the working cycle and possibly cancel any active movement action.  </para>
+</listitem>
+</itemizedlist>
+</para>
+<para><bold>Clients:</bold> <linebreak/>
+ <itemizedlist>
+<listitem>
+<para><emphasis>/position_server</emphasis> : RandomPosition.srv <linebreak/>
+ See <ref refid="position__service_8cpp" kindref="compound">position_service.cpp</ref>  </para>
+</listitem>
+</itemizedlist>
+</para>
+<para><bold>Using actions</bold> <linebreak/>
+ <itemizedlist>
+<listitem>
+<para><emphasis><ref refid="namespacego__to__point" kindref="compound">go_to_point</ref></emphasis> : GoToPoint.action <linebreak/>
+ See the py node <ref refid="go__to__point_8py" kindref="compound">go_to_point.py</ref>  </para>
+</listitem>
+</itemizedlist>
+</para>
+<para><bold>TODOs</bold><linebreak/>
+ <xrefsect id="todo_1_todo000002"><xreftitle>Todo</xreftitle><xrefdescription><para>the command should be case-insensitive </para>
+<para>review the output to the screen</para>
+</xrefdescription></xrefsect></para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">/********************************************/</highlight></codeline>
+<codeline lineno="74"><highlight class="preprocessor">#include<sp/>&quot;ros/ros.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;actionlib/client/simple_action_client.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;actionlib/client/terminal_state.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;rt2_assignment_2/Command.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;rt2_assignment_2/Position.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;rt2_assignment_2/RandomPosition.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;rt2_assignment_2/GoToPointAction.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;rt2_assignment_2/JupyterTargetInfo.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;string&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="state__machine_8cpp_1adc0448f0088dbcf29bdacc5c1f307c35" refkind="member"><highlight class="preprocessor">#define<sp/>WAITING_DELAY<sp/>0.1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="state__machine_8cpp_1ac27aeffe17e56fbc252329cad07ef5a0" refkind="member"><highlight class="preprocessor">#define<sp/>MAX_WAITING_TIME<sp/>30</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99" refid="state__machine_8cpp_1ab376b87f96a574a793c03c53e75afec8" refkind="member"><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1ab376b87f96a574a793c03c53e75afec8" kindref="member">start</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104" refid="state__machine_8cpp_1a919a789ea3e7c9abad5d53bc16040f07" refkind="member"><highlight class="normal">actionlib::SimpleActionClient&lt;rt2_assignment_2::GoToPointAction&gt;*<sp/><ref refid="state__machine_8cpp_1a919a789ea3e7c9abad5d53bc16040f07" kindref="member">acglobal</ref>;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="state__machine_8cpp_1a49c8ff412b83bd1970a6f8bf5d59fdee" refkind="member"><highlight class="normal">ros::Publisher*<sp/><ref refid="state__machine_8cpp_1a49c8ff412b83bd1970a6f8bf5d59fdee" kindref="member">global_jupy</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight><highlight class="comment">/********************************************/</highlight></codeline>
+<codeline lineno="123" refid="state__machine_8cpp_1a18763d145f891433de4ba5567f83668e" refkind="member"><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1a18763d145f891433de4ba5567f83668e" kindref="member">user_interface</ref>(rt2_assignment_2::Command::Request<sp/>&amp;req,<sp/>rt2_assignment_2::Command::Response<sp/>&amp;res)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(req.command<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;start&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1ab376b87f96a574a793c03c53e75afec8" kindref="member">start</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[state_machine]<sp/>START<sp/>command<sp/>received.<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>res.ok<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/><ref refid="state__machine_8cpp_1ab376b87f96a574a793c03c53e75afec8" kindref="member">start</ref><sp/>)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[state_machine]<sp/>STOP<sp/>command<sp/>received,<sp/>preempting<sp/>the<sp/>goal.<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>cancel<sp/>the<sp/>running<sp/>goal</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a919a789ea3e7c9abad5d53bc16040f07" kindref="member">acglobal</ref>-&gt;cancelAllGoals(<sp/>);<sp/></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>res.ok<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;[state_machine]<sp/>state<sp/>machine<sp/>already<sp/>stopped.<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>res.ok<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1ab376b87f96a574a793c03c53e75afec8" kindref="member">start</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight><highlight class="comment">/********************************************/</highlight></codeline>
+<codeline lineno="175" refid="state__machine_8cpp_1af53536f3b09d0e4a3d28e5a0d8034c77" refkind="member"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1af53536f3b09d0e4a3d28e5a0d8034c77" kindref="member">jupyter_pub</ref>(<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>working,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>failure,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>goal_cancelled,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>y,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>th,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>success,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>time<sp/>)</highlight></codeline>
+<codeline lineno="176"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>rt2_assignment_2::JupyterTargetInfo<sp/>msg;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.working<sp/>=<sp/>working;</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.failure<sp/>=<sp/>failure;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.goal_cancelled<sp/>=<sp/>goal_cancelled;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.x<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.y<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.th<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.success<sp/>=<sp/>success;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>msg.time<sp/>=<sp/>time;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a49c8ff412b83bd1970a6f8bf5d59fdee" kindref="member">global_jupy</ref>-&gt;publish(<sp/>msg<sp/>);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"></highlight><highlight class="comment">/********************************************/</highlight></codeline>
+<codeline lineno="202" refid="state__machine_8cpp_1a4e552d7c04baf9df9a06dbb55392674c" refkind="member"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1a4e552d7c04baf9df9a06dbb55392674c" kindref="member">jupyter_publish_status</ref>(<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>status<sp/>)</highlight></codeline>
+<codeline lineno="203"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1af53536f3b09d0e4a3d28e5a0d8034c77" kindref="member">jupyter_pub</ref>(<sp/>status,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>0,<sp/>0,<sp/>0,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>-1<sp/>);</highlight></codeline>
+<codeline lineno="205"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight><highlight class="comment">/********************************************/</highlight></codeline>
+<codeline lineno="221" refid="state__machine_8cpp_1a9728ea15b42798a7ca520ba1e65787c8" refkind="member"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1a9728ea15b42798a7ca520ba1e65787c8" kindref="member">jupyter_update_mission</ref>(<sp/>rt2_assignment_2::GoToPointGoal&amp;<sp/>goal,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>time<sp/>)</highlight></codeline>
+<codeline lineno="222"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1af53536f3b09d0e4a3d28e5a0d8034c77" kindref="member">jupyter_pub</ref>(<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>goal.x,<sp/>goal.y,<sp/>goal.theta,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>time<sp/>);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"></highlight><highlight class="comment">//<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight><highlight class="comment">/********************************************/</highlight></codeline>
+<codeline lineno="236" refid="state__machine_8cpp_1add2a56c1c59a719a7a38019df8fa1ba1" refkind="member"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1add2a56c1c59a719a7a38019df8fa1ba1" kindref="member">jupyter_target_cancelled</ref>(<sp/>)</highlight></codeline>
+<codeline lineno="237"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1af53536f3b09d0e4a3d28e5a0d8034c77" kindref="member">jupyter_pub</ref>(<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,<sp/>0,<sp/>0,<sp/>0,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>-1<sp/>);</highlight></codeline>
+<codeline lineno="239"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight><highlight class="comment">/********************************************/</highlight></codeline>
+<codeline lineno="252" refid="state__machine_8cpp_1a848a1182f60d0d6554eccf2ef3c9bcbc" refkind="member"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1a848a1182f60d0d6554eccf2ef3c9bcbc" kindref="member">jupyter_target_unreached</ref>(<sp/>)</highlight></codeline>
+<codeline lineno="253"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1af53536f3b09d0e4a3d28e5a0d8034c77" kindref="member">jupyter_pub</ref>(<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>0,<sp/>0,<sp/>0,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>-1<sp/>);</highlight></codeline>
+<codeline lineno="255"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight></codeline>
+<codeline lineno="259"><highlight class="normal"></highlight><highlight class="comment">/********************************************/</highlight></codeline>
+<codeline lineno="270" refid="state__machine_8cpp_1aa470ad68a78e97461f6c7babfeddff83" refkind="member"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1aa470ad68a78e97461f6c7babfeddff83" kindref="member">jupyter_target_reached</ref>(<sp/>rt2_assignment_2::GoToPointGoal&amp;<sp/>goal,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>time<sp/>)</highlight></codeline>
+<codeline lineno="271"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1af53536f3b09d0e4a3d28e5a0d8034c77" kindref="member">jupyter_pub</ref>(<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/>goal.x,<sp/>goal.y,<sp/>goal.theta,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">,<sp/>time<sp/>);</highlight></codeline>
+<codeline lineno="273"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"></highlight><highlight class="comment">/********************************************/</highlight></codeline>
+<codeline lineno="282" refid="state__machine_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" refkind="member"><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="state__machine_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>**argv)</highlight></codeline>
+<codeline lineno="283"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/>ros::init(argc,<sp/>argv,<sp/></highlight><highlight class="stringliteral">&quot;state_machine&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/>ros::NodeHandle<sp/>n;</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>provided<sp/>services</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/>ros::ServiceServer<sp/>service<sp/>=<sp/>n.advertiseService(</highlight><highlight class="stringliteral">&quot;/user_interface&quot;</highlight><highlight class="normal">,<sp/><ref refid="namespaceuser__interface" kindref="compound">user_interface</ref>);</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>client</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/>ros::ServiceClient<sp/>client_rp<sp/>=<sp/>n.serviceClient&lt;rt2_assignment_2::RandomPosition&gt;(</highlight><highlight class="stringliteral">&quot;/position_server&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>action</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/>actionlib::SimpleActionClient&lt;rt2_assignment_2::GoToPointAction&gt;<sp/>ac(<sp/></highlight><highlight class="stringliteral">&quot;go_to_point&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a919a789ea3e7c9abad5d53bc16040f07" kindref="member">acglobal</ref><sp/>=<sp/>&amp;ac;<sp/></highlight><highlight class="comment">//<sp/>share<sp/>the<sp/>access<sp/>to<sp/>the<sp/>action</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/>ac.waitForServer(<sp/>);</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>infos<sp/>for<sp/>Jupyter<sp/>interface</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::Publisher<sp/>jupy<sp/>=<sp/>n.advertise&lt;rt2_assignment_2::JupyterTargetInfo&gt;(<sp/></highlight><highlight class="stringliteral">&quot;/jupyter_mission_info&quot;</highlight><highlight class="normal">,<sp/>1000<sp/>);</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a49c8ff412b83bd1970a6f8bf5d59fdee" kindref="member">global_jupy</ref><sp/>=<sp/>&amp;jupy;</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>bounds<sp/>for<sp/>the<sp/>random<sp/>target</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/>rt2_assignment_2::RandomPosition<sp/>rp;</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/>rp.request.x_max<sp/>=<sp/>5.0;</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/>rp.request.x_min<sp/>=<sp/>-5.0;</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/>rp.request.y_max<sp/>=<sp/>5.0;</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/>rp.request.y_min<sp/>=<sp/>-5.0;</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/>rt2_assignment_2::Position<sp/>p;</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>useful</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/>rt2_assignment_2::GoToPointGoal<sp/>empty_goal;</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>init<sp/>the<sp/>state<sp/>of<sp/>the<sp/>GUI</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a4e552d7c04baf9df9a06dbb55392674c" kindref="member">jupyter_publish_status</ref>(<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(<sp/>ros::ok()<sp/>)</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/>ros::spinOnce();</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>execute<sp/>this<sp/>only<sp/>if<sp/>the<sp/>node<sp/>is<sp/>enabled</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="state__machine_8cpp_1ab376b87f96a574a793c03c53e75afec8" kindref="member">start</ref>)</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a4e552d7c04baf9df9a06dbb55392674c" kindref="member">jupyter_publish_status</ref>(<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ask<sp/>for<sp/>a<sp/>random<sp/>target</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>client_rp.call(rp);</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>prepare<sp/>the<sp/>request<sp/>to<sp/>the<sp/>movement<sp/>action</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rt2_assignment_2::GoToPointGoal<sp/>goal;</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>goal.x<sp/>=<sp/>rp.response.x;</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>goal.y<sp/>=<sp/>rp.response.y;</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>goal.theta<sp/>=<sp/>rp.response.theta;</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;NEXT<sp/>TARGET<sp/>(&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>goal.x<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>goal.y<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>goal.theta<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;)&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>target<sp/>is<sp/>requested<sp/>to<sp/>the<sp/>movemet<sp/>action:<sp/>the<sp/>robot<sp/>starts<sp/>to<sp/>move</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ac.sendGoal(<sp/>goal<sp/>);</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>waiting<sp/>for<sp/>the<sp/>robot<sp/>to<sp/>reach<sp/>the<sp/>goal<sp/>unless<sp/>any<sp/>preemption<sp/>request</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>success<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>timeFromStart<sp/>=<sp/>0.f;</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::string<sp/>state<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;ACTIVE&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(<sp/>state<sp/>!=<sp/></highlight><highlight class="stringliteral">&quot;SUCCEEDED&quot;</highlight><highlight class="normal"><sp/>)</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>wait<sp/>the<sp/>minimum<sp/>time</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(ros::Duration(<ref refid="state__machine_8cpp_1adc0448f0088dbcf29bdacc5c1f307c35" kindref="member">WAITING_DELAY</ref>)).sleep();</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>update<sp/>the<sp/>status<sp/>of<sp/>the<sp/>node</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ros::spinOnce();</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>timeFromStart<sp/>+=<sp/><ref refid="state__machine_8cpp_1adc0448f0088dbcf29bdacc5c1f307c35" kindref="member">WAITING_DELAY</ref>;</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>state<sp/>=<sp/>ac.getState(<sp/>).toString(<sp/>);</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>evaluate<sp/>the<sp/>new<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>state<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;PREEMPTED&quot;</highlight><highlight class="normal"><sp/>)</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;The<sp/>goal<sp/>has<sp/>been<sp/>cancelled.<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1add2a56c1c59a719a7a38019df8fa1ba1" kindref="member">jupyter_target_cancelled</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>timeFromStart<sp/>&gt;<sp/><ref refid="state__machine_8cpp_1ac27aeffe17e56fbc252329cad07ef5a0" kindref="member">MAX_WAITING_TIME</ref><sp/>)</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Unable<sp/>to<sp/>reach<sp/>the<sp/>final<sp/>position<sp/>within<sp/>the<sp/>deadline.<sp/>&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a848a1182f60d0d6554eccf2ef3c9bcbc" kindref="member">jupyter_target_unreached</ref>(<sp/>);</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>send<sp/>the<sp/>status<sp/>to<sp/>Jupyter<sp/>GUI</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a9728ea15b42798a7ca520ba1e65787c8" kindref="member">jupyter_update_mission</ref>(<sp/>goal,<sp/>timeFromStart<sp/>);</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>success<sp/>=<sp/>(<sp/>state<sp/>==<sp/></highlight><highlight class="stringliteral">&quot;SUCCEEDED&quot;</highlight><highlight class="normal"><sp/>);</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<sp/>success<sp/>)</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Position<sp/>reached&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1aa470ad68a78e97461f6c7babfeddff83" kindref="member">jupyter_target_reached</ref>(<sp/>goal,<sp/>timeFromStart<sp/>);</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>std::cout<sp/>&lt;&lt;<sp/></highlight><highlight class="stringliteral">&quot;Final<sp/>goal<sp/>not<sp/>reached&quot;</highlight><highlight class="normal"><sp/>&lt;&lt;<sp/>std::endl;</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><ref refid="state__machine_8cpp_1a4e552d7c04baf9df9a06dbb55392674c" kindref="member">jupyter_publish_status</ref>(<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal"><sp/>);<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"></highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="389"><highlight class="normal"><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="391"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/root/test_ws/src/rt2_assignment_2/src/state_machine.cpp"/>
+  </compounddef>
+</doxygen>

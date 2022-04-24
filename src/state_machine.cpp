@@ -15,9 +15,9 @@
  * destination is provided to the movement action, the node waits until 
  * the destination is reached. <br><br>
  * The node allows also cancel the action: see the description of the 
- * service <i>/user_interface</i>. <br><br>
+ * service /user_interface. <br><br>
  * In general the node, when enabled, works in this way. First of all, if
- * a new target is obtained from the service <i>/user_interface</i>; 
+ * a new target is obtained from the service /user_interface; 
  * then, the node sends the request to the movement action. 
  * After sent the request, the node executes a check upon the status
  * of the movement action every <i>at least</i> 0.1 seconds (see 
@@ -113,9 +113,9 @@ ros::Publisher* global_jupy;
  *  
  * @brief implementation of service <b>/user_interface</b>
  * 
- * @param request The command to execute. If the command is the string "start"
+ * @param req The command to execute. If the command is the string "start"
  *          then the node is enabled. Any other request will turn off the node. 
- * @param response success or not. 
+ * @param res success or not. 
  * 
  * @see Command.srv
  * 

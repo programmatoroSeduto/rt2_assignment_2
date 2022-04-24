@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jupyter_user_interface &mdash; RT2 Assignment 2 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> RT2 Assignment 2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Index</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/roscpp-nodes/roscpp-nodes-index.html">Index of ROScpp nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sphinx/rospy-nodes/rospy-nodes-index.html">Index of ROSpy nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">RT2 Assignment 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html#how-to-setup-and-run-the-project">How to setup and run the project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html#documentation">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html#author-and-contacts">Author and Contacts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../readme.html#see-also">See also</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RT2 Assignment 2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Module code</a> &raquo;</li>
+      <li>jupyter_user_interface</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for jupyter_user_interface</h1><div class="highlight"><pre>
+<span></span><span class="ch">#! /user/bin/env python</span>
+
+<span class="sd">&quot;&quot;&quot;functionalities to support Jupyter in driving the robot</span>
+
+<span class="sd">This node implements a support for a user interface built in Jupyter.</span>
+<span class="sd">Here are the functionalities of the node:</span>
+
+<span class="sd">- The node can switch between authomatic mode and manual mode through a service called &#39;/ui_trigger&#39;</span>
+<span class="sd">- When the authomatic mode is enabled, the random target service is immediately activated</span>
+<span class="sd">- When the manual mode is required through the service, the authomatic behaviour is turned off</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">rospy</span>
+<span class="kn">from</span> <span class="nn">std_srvs.srv</span> <span class="kn">import</span> <span class="n">SetBool</span><span class="p">,</span> <span class="n">SetBoolRequest</span><span class="p">,</span> <span class="n">SetBoolResponse</span>
+<span class="kn">from</span> <span class="nn">rt2_assignment_2.srv</span> <span class="kn">import</span> <span class="n">Command</span><span class="p">,</span> <span class="n">CommandRequest</span><span class="p">,</span> <span class="n">CommandResponse</span>
+
+
+<span class="n">node_name</span> <span class="o">=</span> <span class="s2">&quot;jupyter_user_interface&quot;</span>
+<span class="sd">&quot;&quot;&quot;String: Name for this node &quot;&quot;&quot;</span>
+
+<span class="n">name_ui_trigger</span> <span class="o">=</span> <span class="s2">&quot;/ui_trigger&quot;</span>
+<span class="sd">&quot;&quot;&quot;String: Name of the trigger service (being used to set/unset manual mode) &quot;&quot;&quot;</span>
+
+<span class="n">srv_ui_trigger</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="sd">&quot;&quot;&quot; ROS_service_handle: service handler (ui_trigger)&quot;&quot;&quot;</span>
+
+<span class="n">cli_ui_client</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="sd">&quot;&quot;&quot; ROS_client_handle: client handle (ui_client) &quot;&quot;&quot;</span>
+
+<span class="n">use_manual_mode</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="sd">&quot;&quot;&quot;Bool: Switch for the manual mode (the init value is also the first mode) &quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="cbk_ui_trigger"><a class="viewcode-back" href="../sphinx/rospy-nodes/jupyter_user_interface.html#jupyter_user_interface.cbk_ui_trigger">[docs]</a><span class="k">def</span> <span class="nf">cbk_ui_trigger</span><span class="p">(</span> <span class="n">trig</span> <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;implementation of the trigger service</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        trig (std_srv.srv.SetBoolRequest) if set or not the manual mode</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        std_srv.SetBoolResponse: useless</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">use_manual_mode</span>
+    
+    <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;received request from Jupyter : { data:</span><span class="si">%s</span><span class="s2"> }&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span> <span class="n">trig</span><span class="o">.</span><span class="n">data</span> <span class="p">)</span> <span class="p">)</span>
+    <span class="k">if</span> <span class="n">use_manual_mode</span> <span class="ow">and</span> <span class="p">(</span><span class="ow">not</span> <span class="n">trig</span><span class="o">.</span><span class="n">data</span><span class="p">):</span>
+        <span class="c1"># turn on the authomatic behaviour</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;starting authomatic behaviour ...&quot;</span> <span class="p">)</span>
+        <span class="n">cli_ui_client</span><span class="p">(</span> <span class="n">CommandRequest</span><span class="p">(</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;start&quot;</span> <span class="p">)</span> <span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;starting authomatic behaviour ... OK!&quot;</span> <span class="p">)</span>
+        <span class="n">use_manual_mode</span> <span class="o">=</span> <span class="bp">False</span>
+        
+    <span class="k">elif</span> <span class="p">(</span><span class="ow">not</span> <span class="n">use_manual_mode</span><span class="p">)</span> <span class="ow">and</span> <span class="n">trig</span><span class="o">.</span><span class="n">data</span><span class="p">:</span>
+        <span class="c1"># turn off the authomatic behaviour</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;stopping authomatic behaviour ...&quot;</span> <span class="p">)</span>
+        <span class="n">cli_ui_client</span><span class="p">(</span> <span class="n">CommandRequest</span><span class="p">(</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;stop&quot;</span> <span class="p">)</span> <span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;stopping authomatic behaviour ... OK!&quot;</span> <span class="p">)</span>
+        <span class="n">use_manual_mode</span> <span class="o">=</span> <span class="bp">True</span>
+    
+    <span class="k">return</span> <span class="n">SetBoolResponse</span><span class="p">(</span> <span class="p">)</span></div>
+
+<span class="c1">### main function</span>
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../sphinx/rospy-nodes/jupyter_user_interface.html#jupyter_user_interface.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">(</span> <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;main function of for the node jupyter_user_interface</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">rospy</span><span class="o">.</span><span class="n">spin</span><span class="p">(</span> <span class="p">)</span></div>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># init</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">init_node</span><span class="p">(</span> <span class="n">node_name</span> <span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;init node &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">node_name</span> <span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">on_shutdown</span><span class="p">(</span> <span class="k">lambda</span> <span class="p">:</span> <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;shutdown node &#39;</span><span class="si">%s</span><span class="s2">&#39;&quot;</span><span class="p">,</span> <span class="n">node_name</span> <span class="p">)</span> <span class="p">)</span>
+        
+        <span class="c1"># services and topics</span>
+        <span class="c1"># --- SERVICE --- /ui_trigger</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;Service &#39;</span><span class="si">%s</span><span class="s2">&#39; ...&quot;</span><span class="p">,</span> <span class="n">name_ui_trigger</span> <span class="p">)</span>
+        <span class="n">srv_ui_trigger</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">Service</span><span class="p">(</span> <span class="n">name_ui_trigger</span><span class="p">,</span> <span class="n">SetBool</span><span class="p">,</span> <span class="n">cbk_ui_trigger</span> <span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;Service &#39;</span><span class="si">%s</span><span class="s2">&#39; ... OK!&quot;</span><span class="p">,</span> <span class="n">name_ui_trigger</span> <span class="p">)</span>
+        <span class="c1"># --- CLIENT --- /user_interface</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;Client &#39;</span><span class="si">%s</span><span class="s2">&#39; ...&quot;</span><span class="p">,</span> <span class="s1">&#39;/user_interface&#39;</span> <span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">wait_for_service</span><span class="p">(</span> <span class="s1">&#39;/user_interface&#39;</span> <span class="p">)</span>
+        <span class="n">cli_ui_client</span> <span class="o">=</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ServiceProxy</span><span class="p">(</span> <span class="s1">&#39;/user_interface&#39;</span><span class="p">,</span> <span class="n">Command</span> <span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;Client &#39;</span><span class="si">%s</span><span class="s2">&#39; ... OK!&quot;</span><span class="p">,</span> <span class="s1">&#39;/user_interface&#39;</span> <span class="p">)</span>
+        
+        <span class="c1"># set the first behaviour</span>
+        <span class="k">if</span> <span class="n">use_manual_mode</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;init behaviour: manual mode&quot;</span> <span class="p">)</span>
+            <span class="n">cli_ui_client</span><span class="p">(</span> <span class="n">CommandRequest</span><span class="p">(</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;stop&quot;</span> <span class="p">)</span> <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;init behaviour: authomatic mode&quot;</span> <span class="p">)</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;starting authomatic behaviour ...&quot;</span> <span class="p">)</span>
+            <span class="n">cli_ui_client</span><span class="p">(</span> <span class="n">CommandRequest</span><span class="p">(</span> <span class="n">command</span><span class="o">=</span><span class="s2">&quot;stop&quot;</span> <span class="p">)</span> <span class="p">)</span>
+            <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;starting authomatic behaviour ... OK!&quot;</span> <span class="p">)</span>
+        
+        <span class="c1"># launch the node</span>
+        <span class="n">main</span><span class="p">(</span> <span class="p">)</span>
+        
+    <span class="k">except</span> <span class="n">rospy</span><span class="o">.</span><span class="n">ROSException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="s2">&quot;ROS exception occurrend&quot;</span> <span class="p">)</span>
+        <span class="n">rospy</span><span class="o">.</span><span class="n">loginfo</span><span class="p">(</span> <span class="n">e</span><span class="o">.</span><span class="n">message</span> <span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Francesco Ganci (S4143910).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

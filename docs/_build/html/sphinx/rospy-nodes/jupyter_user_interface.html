@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROSPY node - jupyter_user_interface.py &mdash; RT2 Assignment 2 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="RT2 Assignment 2" href="../../readme.html" />
+    <link rel="prev" title="ROSPY node - go_to_point.py" href="go_to_point.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> RT2 Assignment 2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Index</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../roscpp-nodes/roscpp-nodes-index.html">Index of ROScpp nodes</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="rospy-nodes-index.html">Index of ROSpy nodes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="go_to_point.html">ROSPY node - go_to_point.py</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ROSPY node - jupyter_user_interface.py</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">RT2 Assignment 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#how-to-setup-and-run-the-project">How to setup and run the project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#documentation">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#author-and-contacts">Author and Contacts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#see-also">See also</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">RT2 Assignment 2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="rospy-nodes-index.html">Index of ROSpy nodes</a> &raquo;</li>
+      <li>ROSPY node - jupyter_user_interface.py</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/sphinx/rospy-nodes/jupyter_user_interface.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="rospy-node-jupyter-user-interface-py">
+<h1>ROSPY node - jupyter_user_interface.py<a class="headerlink" href="#rospy-node-jupyter-user-interface-py" title="Permalink to this headline"></a></h1>
+<p>functionalities to support Jupyter in driving the robot</p>
+<p>This node implements a support for a user interface built in Jupyter.
+Here are the functionalities of the node:</p>
+<ul class="simple">
+<li><p>The node can switch between authomatic mode and manual mode through a service called ‘/ui_trigger’</p></li>
+<li><p>When the authomatic mode is enabled, the random target service is immediately activated</p></li>
+<li><p>When the manual mode is required through the service, the authomatic behaviour is turned off</p></li>
+</ul>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">jupyter_user_interface.</span></span><span class="sig-name descname"><span class="pre">cbk_ui_trigger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">trig</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/jupyter_user_interface.html#cbk_ui_trigger"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>implementation of the trigger service</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>trig</strong> (<em>std_srv.srv.SetBoolRequest</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>useless</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>std_srv.SetBoolResponse</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">jupyter_user_interface.</span></span><span class="sig-name descname"><span class="pre">cli_ui_client</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em></dt>
+<dd><p>client handle (ui_client)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>ROS_client_handle</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">jupyter_user_interface.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/jupyter_user_interface.html#main"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>main function of for the node jupyter_user_interface</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">jupyter_user_interface.</span></span><span class="sig-name descname"><span class="pre">name_ui_trigger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'/ui_trigger'</span></em></dt>
+<dd><p>Name of the trigger service (being used to set/unset manual mode)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>String</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">jupyter_user_interface.</span></span><span class="sig-name descname"><span class="pre">node_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'jupyter_user_interface'</span></em></dt>
+<dd><p>Name for this node</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>String</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">jupyter_user_interface.</span></span><span class="sig-name descname"><span class="pre">srv_ui_trigger</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em></dt>
+<dd><p>service handler (ui_trigger)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>ROS_service_handle</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">jupyter_user_interface.</span></span><span class="sig-name descname"><span class="pre">use_manual_mode</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em></dt>
+<dd><p>Switch for the manual mode (the init value is also the first mode)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="go_to_point.html" class="btn btn-neutral float-left" title="ROSPY node - go_to_point.py" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../readme.html" class="btn btn-neutral float-right" title="RT2 Assignment 2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Francesco Ganci (S4143910).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

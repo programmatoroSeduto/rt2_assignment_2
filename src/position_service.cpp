@@ -56,8 +56,8 @@ double randMToN(double M, double N)
  *  
  * \brief implementation of service "/position_server"
  * 
- * @param request the bounds for the planar coordinates
- * @param response a pose {x, y, th_z}
+ * @param req the bounds for the planar coordinates
+ * @param res a pose {x, y, th_z}
  * 
  * @see RandomPosition.srv
  * 

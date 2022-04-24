@@ -21,10 +21,6 @@ any other key different from '1'. <br><br>
 There's no error handling. Just a simple implementation. 
 </p>
 
-<b>UML component</b><br>
-(See ... the overal architecture, for further informations)<br>
-<img src="" alt="TODO uml"/><br>
-
 <b>Clients:</b> <br>
 <ul>
     <li>

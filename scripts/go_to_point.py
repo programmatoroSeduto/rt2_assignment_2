@@ -119,7 +119,7 @@ def clbk_odom( msg ):
     
     The function, called when a new Odometry message is published
     from the "simulator", takes the message and stores its fields
-    in the variables position_ and yaw_ .
+    in the variables position\_ and yaw\_ .
     
     Args:
         msg (geometry_msgs/Odometry): the odometry from the simulation
@@ -142,11 +142,11 @@ def clbk_odom( msg ):
 
 
 
-def change_state(state):
+def change_state( state ):
     """Update the current status of the state machine.
     
     The function (actually) doesn't do nothing more than the name
-    says: simply it sets the state_ variable as the one passed as
+    says: simply it sets the state\_ variable as the one passed as
     argument. 
     
     Args:
@@ -181,7 +181,7 @@ def fix_yaw( des_pos ):
     The function is called once when the state machine is performing
     the initial alignment towards the target to reach. This turns the 
     robor of one step at time. If the current angle is under a certain
-    threshold (here the yaw_precision_2_ is employed) the function 
+    threshold (here the yaw_precision_2\_ is employed) the function 
     sends the stop twist, and then changes the status of the machine
     calling the funtion change_state. 
     
@@ -273,7 +273,7 @@ def fix_final_yaw( des_yaw ):
     
     If the (normalized) difference between the desired orientation
     and the current one is greater than a certain threshold (here
-    yaw_precision_2_ has been applied) the function sends a command
+    yaw_precision_2\_ has been applied) the function sends a command
     that turns the robot toeards the goal.
     Otherwise (the difference is under the threshold) the state of 
     the machine is changed. 

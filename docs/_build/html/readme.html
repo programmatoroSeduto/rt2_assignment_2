@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RT2 Assignment 2 &mdash; RT2 Assignment 2 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="ROSPY node - jupyter_user_interface.py" href="sphinx/rospy-nodes/jupyter_user_interface.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> RT2 Assignment 2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Index</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="sphinx/roscpp-nodes/roscpp-nodes-index.html">Index of ROScpp nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx/rospy-nodes/rospy-nodes-index.html">Index of ROSpy nodes</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">RT2 Assignment 2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-this">What is this?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#differences-from-the-previous-version">Differences from the previous version</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structure-of-the-repository">Structure of the repository</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#how-to-setup-and-run-the-project">How to setup and run the project</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites-and-dependencies">Prerequisites and Dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dept-urdf-robot-description">DEPT – URDF robot description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dept-jupyter-notebook-and-extensions">DEPT – Jupyter Notebook and extensions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-the-project">Run the project</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#first-way-quick-run">First way - quick run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#second-way-node-by-node">Second way - node by node</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#documentation">Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#before-starting">Before starting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dept-doxygen">DEPT – Doxygen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dept-sphinx">DEPT – Sphinx</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-generate-the-doxygen-documentation">How to generate the Doxygen Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-generate-the-sphinx-documentation">How to generate the Sphinx documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#how-i-set-up-sphinx-for-the-project">How I set up Sphinx for the project</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#docker-update-upgrade-ros">Docker - Update/Upgrade ROS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jupyter-notebook-installation-errors-during-the-installation-of-pyyaml">Jupyter Notebook Installation - errors during the installation of <em>pyyaml</em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#catkin-make-unable-to-find-either-executable-empy-or-python-module-em">catkin_make - Unable to find either executable ‘empy’ or Python module ‘em’</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jupyter-notebook-installation-strange-errors-from-pip3">Jupyter Notebook installation - strange errors from pip3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#jupyter-notebook-installation-jinja2">Jupyter notebook installation - jinja2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#roscd-roscd-not-working-package-not-found">roscd - ROSCD NOT WORKING (package not found)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#no-module-named-rospy">No module named ROSpy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx-installation-cannot-import-contextfunction-from-jinja2">Sphinx installation - cannot import ‘contextfunction’ from jinja2</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#author-and-contacts">Author and Contacts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#see-also">See also</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">RT2 Assignment 2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>RT2 Assignment 2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/readme.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="rt2-assignment-2">
+<h1>RT2 Assignment 2<a class="headerlink" href="#rt2-assignment-2" title="Permalink to this headline"></a></h1>
+<p><em>Francesco Ganci</em> - 4143910 - 2021/2022</p>
+<blockquote>
+<div><p>Compatible With:</p>
+<ul class="simple">
+<li><p>ROS1 noetic</p></li>
+</ul>
+</div></blockquote>
+<p><img alt="cover" src="docs/img/cover-jup.png" /></p>
+<div class="section" id="what-is-this">
+<h2>What is this?<a class="headerlink" href="#what-is-this" title="Permalink to this headline"></a></h2>
+<p>This is another update of the project in this repository:  <a class="reference external" href="https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action">programmatoroSeduto/rt2_assignment1 on GitHub</a>, branch <em>action</em>. The main drawback of the previous version of the project lies in the complete lack of a <em>user interface</em> allowing to make the user aware of the status of the robot, as well as to drive the robot.</p>
+<p>Here a user interface is provided using Jupyter and MatPlotLib. Compared to the original project, the code has been some little updates: the most of the work has been done on the Jupyter notebooks.</p>
+<div class="section" id="differences-from-the-previous-version">
+<h3>Differences from the previous version<a class="headerlink" href="#differences-from-the-previous-version" title="Permalink to this headline"></a></h3>
+<p>In order to support the implementation on Jupyter, some things have been changed. See the Jupyter Notebook for further details.</p>
+<ul class="simple">
+<li><p>no changes in <code class="docutils literal notranslate"><span class="pre">position_service.cpp</span></code></p></li>
+<li><p>created a new message type, <code class="docutils literal notranslate"><span class="pre">JupyterTargetInfo.msg</span></code>, containing a large set of informations about the status of the node <code class="docutils literal notranslate"><span class="pre">state_machine.cpp</span></code></p></li>
+<li><p>the node <code class="docutils literal notranslate"><span class="pre">state_machine.cpp</span></code> now publishes a message of type <code class="docutils literal notranslate"><span class="pre">JupyterTargetInfo</span></code> almost regularly, properly setting the fields depending on the state of the node. The message is employed by the graphical interface for the visuals.</p></li>
+<li><p>the node <code class="docutils literal notranslate"><span class="pre">go_to_point.py</span></code> now publishes the command twist on two topics: <code class="docutils literal notranslate"><span class="pre">/cmd_vel</span></code> as before, and <code class="docutils literal notranslate"><span class="pre">/current_cmd_vel</span></code> read by the Jupyter notebook. This topic is needed for visualizing the commanc currently given to the robot in a graph.</p></li>
+<li><p>the old node <code class="docutils literal notranslate"><span class="pre">user_interface.py</span></code> were replaced by the new implementation <code class="docutils literal notranslate"><span class="pre">jupyter_user_interface.py</span></code> providing a service for switching on/off the random behaviour.</p></li>
+</ul>
+</div>
+<div class="section" id="structure-of-the-repository">
+<h3>Structure of the repository<a class="headerlink" href="#structure-of-the-repository" title="Permalink to this headline"></a></h3>
+<p>This repository contains a package to install in a ROS1 workspace. Here is the main elements in the package:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nv">rt2_assignment_2</span>
+├── <span class="nv">JupyterNotebooks</span>
+│   └── <span class="nv">jupyter_interface_V2</span>.<span class="nv">ipynb</span>	<span class="o">&lt;&gt;</span> <span class="nv">the</span> <span class="nv">user</span> <span class="nv">interface</span>
+│
+├── <span class="nv">launch</span>
+│   └── <span class="nv">sim_jupyter</span>.<span class="nv">launch</span>	<span class="o">&lt;&gt;</span> <span class="nv">launcher</span> <span class="k">for</span> <span class="nv">Jupyter</span> <span class="nv">notebooks</span>
+│
+├── <span class="nv">msg</span>
+│   └── <span class="nv">JupyterTargetInfo</span>.<span class="nv">msg</span>	<span class="o">&lt;&gt;</span> <span class="nv">infos</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">graphical</span> <span class="nv">interface</span>
+│
+├── <span class="nv">scripts</span>
+│   ├── <span class="nv">go_to_point</span>.<span class="nv">py</span>	<span class="o">&lt;&gt;</span> <span class="nv">motion</span> <span class="nv">planning</span> <span class="nv">algorithm</span> <span class="ss">(</span><span class="nv">modified</span><span class="ss">)</span>
+│   ├── <span class="nv">jupyter_user_interface</span>.<span class="nv">py</span>	<span class="o">&lt;&gt;</span> <span class="nv">an</span> <span class="nv">updated</span> <span class="nv">version</span> <span class="nv">able</span> <span class="nv">to</span> <span class="nv">communicate</span> <span class="nv">with</span> <span class="nv">Jupyter</span>
+│   └── <span class="nv">user_interface</span>.<span class="nv">py</span>	<span class="o">&lt;&gt;</span> <span class="nv">the</span> <span class="nv">old</span> <span class="nv">version</span>
+│
+├── <span class="nv">src</span>
+│   ├── <span class="nv">position_service</span>.<span class="nv">cpp</span>	<span class="o">&lt;&gt;</span> <span class="k">random</span> <span class="nv">position</span> <span class="nv">generator</span>
+│   └── <span class="nv">state_machine</span>.<span class="nv">cpp</span>	<span class="o">&lt;&gt;</span> <span class="nv">implementation</span> <span class="nv">of</span> <span class="nv">the</span> <span class="k">random</span> <span class="nv">behaviour</span>
+│
+└── <span class="nv">urdf</span>
+    └── <span class="nv">my_robot</span>.<span class="nv">urdf</span>	<span class="o">&lt;&gt;</span> <span class="nv">Gazebo</span> <span class="nv">robot</span> <span class="nv">description</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-setup-and-run-the-project">
+<h1>How to setup and run the project<a class="headerlink" href="#how-to-setup-and-run-the-project" title="Permalink to this headline"></a></h1>
+<p>Here are the instructions for installing and running the project in your ROS1 environment.</p>
+<div class="section" id="prerequisites-and-dependencies">
+<h2>Prerequisites and Dependencies<a class="headerlink" href="#prerequisites-and-dependencies" title="Permalink to this headline"></a></h2>
+<p>Before installing the project, make sure your system satisfies these requirements:</p>
+<ul>
+<li><p>a working installation of ROS1 (the project is compatible with <strong>ROS1 Noetic</strong>).</p>
+<p>I suggest to use the Docker image here: <a class="reference external" href="https://hub.docker.com/r/carms84/noetic_ros2">carms84/noetic_ros2 Docker image</a> forwarding also the port 8888 in order to have Juyter on Windows.</p>
+</li>
+<li><p>A workspace is needed for the installation of the package.</p>
+<p>Here’s a script for quickly creating a workspace:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#! /bin/bash</span>
+
+<span class="nb">cd</span> /root
+mkdir test_ws
+<span class="nb">cd</span> test_ws
+mkdir src
+catkin_make
+<span class="nb">cd</span> src
+</pre></div>
+</div>
+</li>
+</ul>
+<p>No external dependencies are required to run the project.</p>
+<div class="section" id="dept-urdf-robot-description">
+<h3>DEPT – URDF robot description<a class="headerlink" href="#dept-urdf-robot-description" title="Permalink to this headline"></a></h3>
+<p>The simulation uses Gazebo and the URDF model here: <a class="reference external" href="https://github.com/CarmineD8/pioneer_ctrl">CarmineD8/pioneer_ctrl on GitHub</a>. Downloading the model is not necessary to run the project: the model is already integrated with this package.</p>
+</div>
+<div class="section" id="dept-jupyter-notebook-and-extensions">
+<h3>DEPT – Jupyter Notebook and extensions<a class="headerlink" href="#dept-jupyter-notebook-and-extensions" title="Permalink to this headline"></a></h3>
+<p>Installing Jupyter Notebook is needed for running the user interface along with the ROS1 package. Here are the script to install it. <strong>Don’t ignore the errors</strong>: I did put here some notes about the most common errors; in case you ignore the errors during the installation, the program won’t work.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># before starting, make sure everything is updated/upgraded</span>
+<span class="c1"># see troubleshooting if you&#39;re using the Docker image</span>
+
+<span class="c1"># you need pip!</span>
+<span class="c1"># sudo apt-get install pip</span>
+pip3 --help
+
+<span class="c1"># Jupyter is a web app, so a browser is needed</span>
+<span class="c1"># sudo apt-get install firefox </span>
+firefox --help
+
+<span class="c1"># Install Jupyter py modules</span>
+pip3 install traitlets
+<span class="c1"># chec traitlets version &gt;= 5.1.1</span>
+pip3 install <span class="nv">pygments</span><span class="o">==</span><span class="m">2</span>.4.1
+pip3 install pyyaml
+pip3 install bqplot
+pip3 install ipywidgets
+
+<span class="c1"># install Jupyter Notebook</span>
+pip3 install jupyter
+</pre></div>
+</div>
+<p>The project also requires some extensions, so Jupyter should be enabled for using them. What you need now is <code class="docutils literal notranslate"><span class="pre">nbextensions</span></code>, a … extension that enables to install other extensions (wooooooooooooooooooooooooow…):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 install jupyter_contrib_nbextensions
+pip3 install jupyter_nbextensions_configurator
+
+jupyter contrib nbextension install
+<span class="c1"># the output from this command should be very long, but with no errors or warnings</span>
+</pre></div>
+</div>
+<p>Here are some extensions you should enable for running the project. Mainly two extensions. The frist one is <code class="docutils literal notranslate"><span class="pre">widgetsnbextension</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter nbextension <span class="nb">enable</span> --py widgetsnbextension
+
+<span class="c1"># the expected output is:</span>
+<span class="c1"># $$ jupyter nbextension enable --py widgetsnbextension</span>
+<span class="c1">#   Enabling notebook extension jupyter-js-widgets/extension...</span>
+<span class="c1">#     - Validating: OK</span>
+</pre></div>
+</div>
+<p>Another required extension for this project is <code class="docutils literal notranslate"><span class="pre">jupyros</span></code> which contains many functionalities useful for making Jupyter able to interact with ROS. Here’s the installation script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> /opt/ros/noetic/setup.bash
+
+<span class="c1"># install jupyros</span>
+pip3 install jupyros
+
+<span class="c1"># add Jupyros to Jupyter Notebook</span>
+jupyter nbextension <span class="nb">enable</span> --py --sys-prefix jupyros
+
+<span class="c1"># expected output from the last command:</span>
+<span class="c1"># $$ jupyter nbextension enable --py --sys-prefix jupyros</span>
+<span class="c1">#    Enabling notebook extension jupyter-ros/extension...</span>
+<span class="c1">#      - Validating: OK</span>
+</pre></div>
+</div>
+<p>Below is a script for launching Jupyter. It is dentical to the one in the repository (root folder of the pacakge.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#! /bin/bash</span>
+
+<span class="nb">cd</span> /
+<span class="c1"># see https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator/issues/72</span>
+jupyter nbextensions_configurator <span class="nb">enable</span> --user
+jupyter nbextension <span class="nb">enable</span> --py --sys-prefix jupyros
+jupyter notebook --allow-root --ip <span class="m">0</span>.0.0.0
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h2>
+<p>Here are the instructions to install the project.
+Let’s suppose the workspace you’re using to install the project is <code class="docutils literal notranslate"><span class="pre">test_ws</span></code>; here you don’t need a specific path: the workspace can be everywhere you want.</p>
+<p>Follow these steps:</p>
+<ol class="arabic">
+<li><p>go inside the <code class="docutils literal notranslate"><span class="pre">/src</span></code> folder of your workspace</p></li>
+<li><p>clone the repo:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/programmatoroSeduto/rt2_assignment_2.git -b main ./rt2_assignment_2
+</pre></div>
+</div>
+</li>
+<li><p>build the workspace with <code class="docutils literal notranslate"><span class="pre">catkin_make</span></code>.</p></li>
+</ol>
+</div>
+<div class="section" id="run-the-project">
+<h2>Run the project<a class="headerlink" href="#run-the-project" title="Permalink to this headline"></a></h2>
+<p>As usual, two ways for running this architecture: the quick one, and the other one node by node.</p>
+<div class="section" id="first-way-quick-run">
+<h3>First way - quick run<a class="headerlink" href="#first-way-quick-run" title="Permalink to this headline"></a></h3>
+<p>Let’s start both the simulation and the Jupyter Notebook containing the interface. Follow the steps below:</p>
+<ol class="arabic">
+<li><p>open a bash and run the ROS1 master: <code class="docutils literal notranslate"><span class="pre">roscore</span> <span class="pre">&amp;</span></code>. <em>Remember to source your workspace!</em></p></li>
+<li><p>go inside the folder of the package and run Jupyter:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roscd rt2_assignment_2
+./run_jupyter.sh
+</pre></div>
+</div>
+<p>Note that the script must be run from inside the script folder, and the <code class="docutils literal notranslate"><span class="pre">src</span></code> folder of the workspace nust be not nested. Otherwise, consider to run manually Jupyter.</p>
+<p>If you’re opening Jupyter for the first time, the best is to set a password, so the next time it will be easier to use it.</p>
+</li>
+<li><p>in another console (even directly in Jupyter Notebook) launch the project with the launch file <code class="docutils literal notranslate"><span class="pre">sim_jupyter.launch</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch rt2_assignment_2 sim_jupyter.launch
+</pre></div>
+</div>
+</li>
+<li><p>Now everything should be running. Open the notebook you find inside the package, named <code class="docutils literal notranslate"><span class="pre">jupyter_interface_V2.ipynb</span></code> (see the folder JupyterNotebooks).</p>
+<p>I always use <em>Kernel -&gt; Restart &amp; Run All</em> to start all the blocks of the notebook.</p>
+</li>
+</ol>
+<p>Please refer to the infos inside the notebook. Have fun!</p>
+</div>
+<div class="section" id="second-way-node-by-node">
+<h3>Second way - node by node<a class="headerlink" href="#second-way-node-by-node" title="Permalink to this headline"></a></h3>
+<p>The way to launch the project is quite similar to the one shown in the readme of the previous verson of the project (link here: <a class="reference external" href="https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action">programmatoroSeduto/rt2_assignment1 on GitHub</a>) but launching the node <code class="docutils literal notranslate"><span class="pre">jupyter_user_interface.py</span></code> instead of <code class="docutils literal notranslate"><span class="pre">user_interface.py</span></code>.</p>
+</div>
+</div>
+</div>
+<div class="section" id="documentation">
+<h1>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline"></a></h1>
+<p>The project also wants to test two documentation systems:</p>
+<ul class="simple">
+<li><p><strong>Doxygen</strong> easy to use, stable, quick to use, with a handy GUI, but quite unflexible and generating a too much old style HTML documentation (welcome back to 90s!)</p></li>
+<li><p><strong>Sphinx</strong> enables to produce a nice documentation, flexible and extendable with not so much effort, but really painful to use, not stable, it has not a GUI, and uses the horrible reStructured format.</p></li>
+</ul>
+<div class="section" id="before-starting">
+<h2>Before starting<a class="headerlink" href="#before-starting" title="Permalink to this headline"></a></h2>
+<p>As always, in particular if you’re using the Docker image <a class="reference external" href="https://hub.docker.com/r/carms84/noetic_ros2">carms84/noetic_ros2</a>, enther Docker or Sphinx are installed. So, we have to install them. Luckily, both the frameworksa are quite easy to install: just copy andpaste some commands to the console.</p>
+<div class="section" id="dept-doxygen">
+<h3>DEPT – Doxygen<a class="headerlink" href="#dept-doxygen" title="Permalink to this headline"></a></h3>
+<p>Open a console and paste this command: (the command <code class="docutils literal notranslate"><span class="pre">-y</span></code> says to cautomatically confirm the installation)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># the engine</span>
+sudo apt-get install -y doxygen
+<span class="c1"># check your installation with the command </span>
+doxygen -v
+
+<span class="c1"># and the GUI</span>
+sudo apt-get install -y doxygen-gui
+<span class="c1"># install check: this should make an alert window appear</span>
+doxywizard --help
+</pre></div>
+</div>
+<p>That’s all for the Doxygen setup. You can run the GUI using typing the command <code class="docutils literal notranslate"><span class="pre">doxywizard</span></code> in the shell.</p>
+</div>
+<div class="section" id="dept-sphinx">
+<h3>DEPT – Sphinx<a class="headerlink" href="#dept-sphinx" title="Permalink to this headline"></a></h3>
+<p><em>THE EXTENSION ‘BREATHE’ OF SPHINX REQUIRES DOXYGEN: install it before proceed.</em></p>
+<p>Installing Sphinx s quite easy (<em>don’t trust it!</em>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># the engine</span>
+sudo apt-get install -y python3-sphinx
+
+<span class="c1"># check the installation (see troubleshooting in case of problems)</span>
+sphinx-quickstart --version
+</pre></div>
+</div>
+<p>Let’s install also some useful extensions for Sphinx:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># breathe allows Sphinx to read the Doxygen XML documentation</span>
+pip3 install breathe
+
+<span class="c1"># this is a nice theme which recalls ReadTheDocs (a little bit worse than the orininal one)</span>
+pip3 install sphinx-rtd-theme
+
+<span class="c1"># this extension lets Sphinx to read the MD format</span>
+pip3 install myst-parser
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="how-to-generate-the-doxygen-documentation">
+<h2>How to generate the Doxygen Documentation<a class="headerlink" href="#how-to-generate-the-doxygen-documentation" title="Permalink to this headline"></a></h2>
+<p>Very simple, because the configuration file is already in the package and ready to use. Follow these steps:</p>
+<ol class="arabic">
+<li><p>go inside the package, folder <code class="docutils literal notranslate"><span class="pre">/docs</span></code>. Here’s a file labeled <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code> that is the configuration file. It is set to generate both the HTML documentation and the XML documentation inside the folder of the package <code class="docutils literal notranslate"><span class="pre">/docs/build/html</span></code>.</p></li>
+<li><p>I suggest to use <code class="docutils literal notranslate"><span class="pre">doxywizard</span></code>, open from there the configuration file and generate the documentation. Otherwise, you can simply call this from the shell:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>doxygen Doxyfile
+</pre></div>
+</div>
+</li>
+</ol>
+<p>To see the documentation, go inside the package, sub folder <code class="docutils literal notranslate"><span class="pre">/docs/build/html</span></code>, and open <code class="docutils literal notranslate"><span class="pre">index.html</span></code> in a browser.</p>
+</div>
+<div class="section" id="how-to-generate-the-sphinx-documentation">
+<h2>How to generate the Sphinx documentation<a class="headerlink" href="#how-to-generate-the-sphinx-documentation" title="Permalink to this headline"></a></h2>
+<p>As before, the package contains everything you need in order to build the documentation with Sphinx. Here is the steps for generating the docs:</p>
+<ol class="arabic">
+<li><p>go inside the folder <code class="docutils literal notranslate"><span class="pre">/docs</span></code> of the package</p></li>
+<li><p>launch this command in a shell:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./build_sphinx.sh
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The command makes the documentation; ignore the warnings there. Note that the command also builds the Doxygen documentation.</p>
+<div class="section" id="how-i-set-up-sphinx-for-the-project">
+<h3>How I set up Sphinx for the project<a class="headerlink" href="#how-i-set-up-sphinx-for-the-project" title="Permalink to this headline"></a></h3>
+<ol class="arabic">
+<li><p>in the folder <code class="docutils literal notranslate"><span class="pre">/docs</span></code> of the package I launched <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code> Here’s the output:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="nv">sphinx</span><span class="o">-</span><span class="nv">quickstart</span>
+<span class="nv">Welcome</span> <span class="nv">to</span> <span class="nv">the</span> <span class="nv">Sphinx</span> <span class="mi">4</span>.<span class="mi">5</span>.<span class="mi">0</span> <span class="nv">quickstart</span> <span class="nv">utility</span>.
+
+<span class="nv">Please</span> <span class="nv">enter</span> <span class="nv">values</span> <span class="k">for</span> <span class="nv">the</span> <span class="nv">following</span> <span class="nv">settings</span> <span class="ss">(</span><span class="nv">just</span> <span class="nv">press</span> <span class="nv">Enter</span> <span class="nv">to</span>
+<span class="nv">accept</span> <span class="nv">a</span> <span class="nv">default</span> <span class="nv">value</span>, <span class="k">if</span> <span class="nv">one</span> <span class="nv">is</span> <span class="nv">given</span> <span class="nv">in</span> <span class="nv">brackets</span><span class="ss">)</span>.
+
+<span class="nv">Selected</span> <span class="nv">root</span> <span class="nv">path</span>: .
+
+<span class="nv">You</span> <span class="nv">have</span> <span class="nv">two</span> <span class="nv">options</span> <span class="k">for</span> <span class="nv">placing</span> <span class="nv">the</span> <span class="nv">build</span> <span class="nv">directory</span> <span class="k">for</span> <span class="nv">Sphinx</span> <span class="nv">output</span>.
+<span class="nv">Either</span>, <span class="nv">you</span> <span class="nv">use</span> <span class="nv">a</span> <span class="nv">directory</span> <span class="s2">&quot;</span><span class="s">_build</span><span class="s2">&quot;</span> <span class="nv">within</span> <span class="nv">the</span> <span class="nv">root</span> <span class="nv">path</span>, <span class="nv">or</span> <span class="nv">you</span> <span class="nv">separate</span>
+<span class="s2">&quot;</span><span class="s">source</span><span class="s2">&quot;</span> <span class="nv">and</span> <span class="s2">&quot;</span><span class="s">build</span><span class="s2">&quot;</span> <span class="nv">directories</span> <span class="nv">within</span> <span class="nv">the</span> <span class="nv">root</span> <span class="nv">path</span>.
+<span class="o">&gt;</span> <span class="nv">Separate</span> <span class="nv">source</span> <span class="nv">and</span> <span class="nv">build</span> <span class="nv">directories</span> <span class="ss">(</span><span class="nv">y</span><span class="o">/</span><span class="nv">n</span><span class="ss">)</span> [<span class="nv">n</span>]: <span class="nv">n</span>
+
+<span class="nv">The</span> <span class="nv">project</span> <span class="nv">name</span> <span class="nv">will</span> <span class="nv">occur</span> <span class="nv">in</span> <span class="nv">several</span> <span class="nv">places</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">built</span> <span class="nv">documentation</span>.
+<span class="o">&gt;</span> <span class="nv">Project</span> <span class="nv">name</span>: <span class="nv">RT2</span> <span class="nv">Assignment</span> <span class="mi">2</span>
+<span class="o">&gt;</span> <span class="nv">Author</span> <span class="nv">name</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>: <span class="nv">Francesco</span> <span class="nv">Ganci</span> <span class="ss">(</span><span class="nv">S4143910</span><span class="ss">)</span>
+<span class="o">&gt;</span> <span class="nv">Project</span> <span class="nv">release</span> []: <span class="mi">1</span>.<span class="mi">0</span>.<span class="mi">0</span>
+
+<span class="k">If</span> <span class="nv">the</span> <span class="nv">documents</span> <span class="nv">are</span> <span class="nv">to</span> <span class="nv">be</span> <span class="nv">written</span> <span class="nv">in</span> <span class="nv">a</span> <span class="nv">language</span> <span class="nv">other</span> <span class="nv">than</span> <span class="nv">English</span>,
+<span class="nv">you</span> <span class="nv">can</span> <span class="nv">select</span> <span class="nv">a</span> <span class="nv">language</span> <span class="nv">here</span> <span class="nv">by</span> <span class="nv">its</span> <span class="nv">language</span> <span class="nv">code</span>. <span class="nv">Sphinx</span> <span class="nv">will</span> <span class="k">then</span>
+<span class="nv">translate</span> <span class="nv">text</span> <span class="nv">that</span> <span class="nv">it</span> <span class="nv">generates</span> <span class="nv">into</span> <span class="nv">that</span> <span class="nv">language</span>.
+
+<span class="k">For</span> <span class="nv">a</span> <span class="nv">list</span> <span class="nv">of</span> <span class="nv">supported</span> <span class="nv">codes</span>, <span class="nv">see</span>
+<span class="nv">https</span>:<span class="o">//</span><span class="nv">www</span>.<span class="nv">sphinx</span><span class="o">-</span><span class="nv">doc</span>.<span class="nv">org</span><span class="o">/</span><span class="nv">en</span><span class="o">/</span><span class="nv">master</span><span class="o">/</span><span class="nv">usage</span><span class="o">/</span><span class="nv">configuration</span>.<span class="nv">html</span>#<span class="nv">confval</span><span class="o">-</span><span class="nv">language</span>.
+<span class="o">&gt;</span> <span class="nv">Project</span> <span class="nv">language</span> [<span class="nv">en</span>]: <span class="nv">en</span>
+
+<span class="nv">Creating</span> <span class="nv">file</span> <span class="o">/</span><span class="nv">root</span><span class="o">/</span><span class="nv">test_ws</span><span class="o">/</span><span class="nv">src</span><span class="o">/</span><span class="nv">rt2_assignment_2</span><span class="o">/</span><span class="nv">docs</span><span class="o">/</span><span class="nv">conf</span>.<span class="nv">py</span>.
+<span class="nv">Creating</span> <span class="nv">file</span> <span class="o">/</span><span class="nv">root</span><span class="o">/</span><span class="nv">test_ws</span><span class="o">/</span><span class="nv">src</span><span class="o">/</span><span class="nv">rt2_assignment_2</span><span class="o">/</span><span class="nv">docs</span><span class="o">/</span><span class="nv">index</span>.<span class="nv">rst</span>.
+<span class="nv">Creating</span> <span class="nv">file</span> <span class="o">/</span><span class="nv">root</span><span class="o">/</span><span class="nv">test_ws</span><span class="o">/</span><span class="nv">src</span><span class="o">/</span><span class="nv">rt2_assignment_2</span><span class="o">/</span><span class="nv">docs</span><span class="o">/</span><span class="nv">Makefile</span>.
+<span class="nv">Creating</span> <span class="nv">file</span> <span class="o">/</span><span class="nv">root</span><span class="o">/</span><span class="nv">test_ws</span><span class="o">/</span><span class="nv">src</span><span class="o">/</span><span class="nv">rt2_assignment_2</span><span class="o">/</span><span class="nv">docs</span><span class="o">/</span><span class="nv">make</span>.<span class="nv">bat</span>.
+
+<span class="nv">Finished</span>: <span class="nv">An</span> <span class="nv">initial</span> <span class="nv">directory</span> <span class="nv">structure</span> <span class="nv">has</span> <span class="nv">been</span> <span class="nv">created</span>.
+
+<span class="nv">You</span> <span class="nv">should</span> <span class="nv">now</span> <span class="nv">populate</span> <span class="nv">your</span> <span class="nv">master</span> <span class="nv">file</span> <span class="o">/</span><span class="nv">root</span><span class="o">/</span><span class="nv">test_ws</span><span class="o">/</span><span class="nv">src</span><span class="o">/</span><span class="nv">rt2_assignment_2</span><span class="o">/</span><span class="nv">docs</span><span class="o">/</span><span class="nv">index</span>.<span class="nv">rst</span> <span class="nv">and</span> <span class="nv">create</span> <span class="nv">other</span> <span class="nv">documentation</span>
+<span class="nv">source</span> <span class="nv">files</span>. <span class="nv">Use</span> <span class="nv">the</span> <span class="nv">Makefile</span> <span class="nv">to</span> <span class="nv">build</span> <span class="nv">the</span> <span class="nv">docs</span>, <span class="nv">like</span> <span class="nv">so</span>:
+   <span class="nv">make</span> <span class="nv">builder</span>
+<span class="nv">where</span> <span class="s2">&quot;</span><span class="s">builder</span><span class="s2">&quot;</span> <span class="nv">is</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">supported</span> <span class="nv">builders</span>, <span class="nv">e</span>.<span class="nv">g</span>. <span class="nv">html</span>, <span class="nv">latex</span> <span class="nv">or</span> <span class="nv">linkcheck</span>.
+</pre></div>
+</div>
+<p>Please note that now there are <code class="docutils literal notranslate"><span class="pre">build</span></code> and <code class="docutils literal notranslate"><span class="pre">_build</span></code> inside the <code class="docutils literal notranslate"><span class="pre">docs</span></code> folder. The first one will contain the Doxygen XML documentation, whereras <code class="docutils literal notranslate"><span class="pre">_build</span></code> is going to host the Sphinx verison of the documentation.</p>
+</li>
+<li><p>Before starting to add the pages, I configured the builder through the config file <code class="docutils literal notranslate"><span class="pre">config.py</span></code>.</p></li>
+<li><p>created a folder <code class="docutils literal notranslate"><span class="pre">/docs/sphinx</span></code> which is going to collect the reST pages.</p></li>
+<li><p>Time to write some documentation! I started from the index page, which includes the README inside.</p></li>
+<li><p>As you can see in the folder <code class="docutils literal notranslate"><span class="pre">/docs/sphinx</span></code>, the documentation is divided into two main parts: the one referred to ROScpp nodes, and the other one referring to the Python scripts inside the project. Each of them have its index. The first step is to make clear the structure of the documentation, creating the reST pages.</p></li>
+<li><p>documentation of PY nodes with simple reST and autodoc</p></li>
+<li><p>documentation of C++ nodes with simple reST and breathe</p></li>
+<li><p><strong>build the documentation</strong> with a script.</p></li>
+</ol>
+</div>
+</div>
+</div>
+<div class="section" id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline"></a></h1>
+<p>Here are some well-known problems that can occur trying to run the project.</p>
+<div class="section" id="docker-update-upgrade-ros">
+<h2>Docker - Update/Upgrade ROS<a class="headerlink" href="#docker-update-upgrade-ros" title="Permalink to this headline"></a></h2>
+<p>Especially when you use the Docker image <a class="reference external" href="https://hub.docker.com/r/carms84/noetic_ros2">carms84/noetic_ros2</a>, the first time you launch the command <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">update</span></code>, an error message is print; the output is similar to this one:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>$$ sudo apt-get update
+sudo: setrlimit(RLIMIT_CORE): Operation not permitted
+Get:1 http://dl.google.com/linux/chrome/deb stable InRelease [1,811 B]
+Get:2 http://mirrors.ubuntu.com/mirrors.txt Mirrorlist [142 B]                                                                                 
+Get:3 http://giano.com.dist.unige.it/ubuntu focal InRelease [265 kB]                                                                 
+Get:6 http://dl.google.com/linux/chrome/deb stable/main amd64 Packages [1,090 B]                                                                                     
+Get:5 http://ubuntu.mirror.garr.it/ubuntu focal-backports InRelease [108 kB]                                                                                         
+Get:7 http://security.ubuntu.com/ubuntu focal-security InRelease [114 kB]                                                                        
+Get:4 http://giano.com.dist.unige.it/ubuntu focal-updates InRelease [114 kB]                                              
+Get:9 http://ubuntu.mirror.garr.it/ubuntu focal-updates/main amd64 Packages [2,185 kB]                                               
+Ign:8 http://ubuntu.connesi.it/ubuntu focal-updates/restricted amd64 Packages                                                             
+Ign:8 http://giano.com.dist.unige.it/ubuntu focal-updates/restricted amd64 Packages                                                                            
+Ign:11 http://ubuntu.connesi.it/ubuntu focal-updates/multiverse amd64 Packages                                                                                 
+Ign:12 http://giano.com.dist.unige.it/ubuntu focal-backports/universe amd64 Packages                                                     
+Get:13 http://ubuntu.mirror.garr.it/ubuntu focal-backports/main amd64 Packages [51.2 kB]                                                 
+Get:14 http://packages.ros.org/ros/ubuntu focal InRelease [4,676 B]                                                                
+Get:11 http://ubuntu.mirror.garr.it/ubuntu focal-updates/multiverse amd64 Packages [30.3 kB]                           
+Err:14 http://packages.ros.org/ros/ubuntu focal InRelease                                              
+  The following signatures were invalid: EXPKEYSIG F42ED6FBAB17C654 Open Robotics &lt;info@osrfoundation.org&gt;
+Get:10 http://archive.ubuntu.com/ubuntu focal-updates/universe amd64 Packages [1,153 kB]
+Get:15 http://packages.ros.org/ros2/ubuntu focal InRelease [4,679 B]            
+Get:16 http://security.ubuntu.com/ubuntu focal-security/restricted amd64 Packages [1,139 kB]  
+Err:15 http://packages.ros.org/ros2/ubuntu focal InRelease            
+  The following signatures were invalid: EXPKEYSIG F42ED6FBAB17C654 Open Robotics &lt;info@osrfoundation.org&gt;
+Get:17 http://security.ubuntu.com/ubuntu focal-security/multiverse amd64 Packages [25.8 kB]
+Get:18 http://security.ubuntu.com/ubuntu focal-security/main amd64 Packages [1,771 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal-updates/restricted amd64 Packages [1,214 kB]       
+Get:12 http://archive.ubuntu.com/ubuntu focal-backports/universe amd64 Packages [26.0 kB]
+Get:19 http://security.ubuntu.com/ubuntu focal-security/universe amd64 Packages [870 kB]      
+Fetched 9,079 kB in 7s (1,331 kB/s)                                                                                                                                                                               
+Reading package lists... Done
+W: An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: http://packages.ros.org/ros/ubuntu focal InRelease: The following signatures were invalid: EXPKEYSIG F42ED6FBAB17C654 Open Robotics &lt;info@osrfoundation.org&gt;
+W: An error occurred during the signature verification. The repository is not updated and the previous index files will be used. GPG error: http://packages.ros.org/ros2/ubuntu focal InRelease: The following signatures were invalid: EXPKEYSIG F42ED6FBAB17C654 Open Robotics &lt;info@osrfoundation.org&gt;
+W: Failed to fetch http://packages.ros.org/ros/ubuntu/dists/focal/InRelease  The following signatures were invalid: EXPKEYSIG F42ED6FBAB17C654 Open Robotics &lt;info@osrfoundation.org&gt;
+W: Failed to fetch http://packages.ros.org/ros2/ubuntu/dists/focal/InRelease  The following signatures were invalid: EXPKEYSIG F42ED6FBAB17C654 Open Robotics &lt;info@osrfoundation.org&gt;
+W: Some index files failed to download. They have been ignored, or old ones used instead.
+</pre></div>
+</div>
+<p>This happens because there are still some old addresses in the list of the repositories. To solve this, here are the commands:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc <span class="p">|</span> sudo apt-key add -
+sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+
+<span class="c1"># now, update/upgrade</span>
+sudo apt-get update
+sudo apt-get upgrade
+</pre></div>
+</div>
+<p>If you’re interested, here is the official post explaining this fact: <a class="reference external" href="https://discourse.ros.org/t/ros-gpg-key-expiration-incident/20669">ROS GPG Key Expiration Incident on ROS Discourse</a>. Another useful post: <a class="reference external" href="https://answers.ros.org/question/379190/apt-update-signatures-were-invalid-f42ed6fbab17c654/">apt update: signatures were invalid: F42ED6FBAB17C654 - ROS Answers: Open Source Q&amp;A Forum</a></p>
+</div>
+<div class="section" id="jupyter-notebook-installation-errors-during-the-installation-of-pyyaml">
+<h2>Jupyter Notebook Installation - errors during the installation of <em>pyyaml</em><a class="headerlink" href="#jupyter-notebook-installation-errors-during-the-installation-of-pyyaml" title="Permalink to this headline"></a></h2>
+<p>The command generating the error:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 install pyyaml
+</pre></div>
+</div>
+<p>it could happen that this kind of error is print:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="o">:</span> <span class="n">pandas</span> <span class="mf">1.4</span><span class="o">.</span><span class="mi">2</span> <span class="n">has</span> <span class="n">requirement</span> <span class="n">numpy</span><span class="o">&gt;=</span><span class="mf">1.18</span><span class="o">.</span><span class="mi">5</span><span class="o">;</span> <span class="n">platform_machine</span> <span class="o">!=</span> <span class="s2">&quot;aarch64&quot;</span> <span class="n">and</span> <span class="n">platform_machine</span> <span class="o">!=</span> <span class="s2">&quot;arm64&quot;</span> <span class="n">and</span> <span class="n">python_version</span> <span class="o">&lt;</span> <span class="s2">&quot;3.10&quot;</span><span class="o">,</span> <span class="n">but</span> <span class="n">you</span><span class="s1">&#39;ll have numpy 1.17.4 which is incompatible.</span>
+<span class="s1">ERROR: nbconvert 6.5.0 has requirement jinja2&gt;=3.0, but you&#39;</span><span class="n">ll</span> <span class="n">have</span> <span class="n">jinja2</span> <span class="mf">2.10</span><span class="o">.</span><span class="mi">3</span> <span class="n">which</span> <span class="k">is</span> <span class="n">incompatible</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>This should solve the problem:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 install numpy --upgrade
+<span class="c1"># check that the version is &gt;=1.22.3</span>
+
+pip3 uninstall jinja2
+pip3 install jinja2
+<span class="c1"># check that the version is &gt;=3.1.1</span>
+
+<span class="c1"># try again</span>
+pip3 install pyyaml
+</pre></div>
+</div>
+</div>
+<div class="section" id="catkin-make-unable-to-find-either-executable-empy-or-python-module-em">
+<h2>catkin_make - Unable to find either executable ‘empy’ or Python module ‘em’<a class="headerlink" href="#catkin-make-unable-to-find-either-executable-empy-or-python-module-em" title="Permalink to this headline"></a></h2>
+<p>There could be an error when also Anaconda is installed in the same system. The error procudes this output on the screen:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">--</span> <span class="nv">Found</span> <span class="nv">PythonInterp</span>: <span class="o">/</span><span class="nv">root</span><span class="o">/</span><span class="nv">anaconda3</span><span class="o">/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">python3</span> <span class="ss">(</span><span class="nv">found</span> <span class="nv">suitable</span> <span class="nv">version</span> <span class="s2">&quot;</span><span class="s">3.9.7</span><span class="s2">&quot;</span>, <span class="nv">minimum</span> <span class="nv">required</span> <span class="nv">is</span> <span class="s2">&quot;</span><span class="s">3</span><span class="s2">&quot;</span><span class="ss">)</span> 
+<span class="o">--</span> <span class="nv">Using</span> <span class="nv">PYTHON_EXECUTABLE</span>: <span class="o">/</span><span class="nv">root</span><span class="o">/</span><span class="nv">anaconda3</span><span class="o">/</span><span class="nv">bin</span><span class="o">/</span><span class="nv">python3</span>
+<span class="o">--</span> <span class="nv">Using</span> <span class="nv">Debian</span> <span class="nv">Python</span> <span class="nv">package</span> <span class="nv">layout</span>
+<span class="o">--</span> <span class="nv">Could</span> <span class="nv">NOT</span> <span class="nv">find</span> <span class="nv">PY_em</span> <span class="ss">(</span><span class="nv">missing</span>: <span class="nv">PY_EM</span><span class="ss">)</span> 
+<span class="nv">CMake</span> <span class="nv">Error</span> <span class="nv">at</span> <span class="o">/</span><span class="nv">opt</span><span class="o">/</span><span class="nv">ros</span><span class="o">/</span><span class="nv">noetic</span><span class="o">/</span><span class="nv">share</span><span class="o">/</span><span class="nv">catkin</span><span class="o">/</span><span class="nv">cmake</span><span class="o">/</span><span class="nv">empy</span>.<span class="nv">cmake</span>:<span class="mi">30</span> <span class="ss">(</span><span class="nv">message</span><span class="ss">)</span>:
+  <span class="nv">Unable</span> <span class="nv">to</span> <span class="nv">find</span> <span class="nv">either</span> <span class="nv">executable</span> <span class="s1">&#39;</span><span class="s">empy</span><span class="s1">&#39;</span> <span class="nv">or</span> <span class="nv">Python</span> <span class="nv">module</span> <span class="s1">&#39;</span><span class="s">em</span><span class="s1">&#39;</span>...  <span class="nv">try</span>
+  <span class="nv">installing</span> <span class="nv">the</span> <span class="nv">package</span> <span class="s1">&#39;</span><span class="s">python3-empy</span><span class="s1">&#39;</span>
+<span class="k">Call</span> <span class="nl">Stack</span> <span class="ss">(</span><span class="nv">most</span> <span class="nv">recent</span> <span class="k">call</span> <span class="nl">first</span><span class="ss">)</span>:
+  <span class="o">/</span><span class="nv">opt</span><span class="o">/</span><span class="nv">ros</span><span class="o">/</span><span class="nv">noetic</span><span class="o">/</span><span class="nv">share</span><span class="o">/</span><span class="nv">catkin</span><span class="o">/</span><span class="nv">cmake</span><span class="o">/</span><span class="nv">all</span>.<span class="nv">cmake</span>:<span class="mi">164</span> <span class="ss">(</span><span class="k">include</span><span class="ss">)</span>
+  <span class="o">/</span><span class="nv">opt</span><span class="o">/</span><span class="nv">ros</span><span class="o">/</span><span class="nv">noetic</span><span class="o">/</span><span class="nv">share</span><span class="o">/</span><span class="nv">catkin</span><span class="o">/</span><span class="nv">cmake</span><span class="o">/</span><span class="nv">catkinConfig</span>.<span class="nv">cmake</span>:<span class="mi">20</span> <span class="ss">(</span><span class="k">include</span><span class="ss">)</span>
+  <span class="nv">CMakeLists</span>.<span class="nv">txt</span>:<span class="mi">58</span> <span class="ss">(</span><span class="nv">find_package</span><span class="ss">)</span>
+
+
+<span class="o">--</span> <span class="nv">Configuring</span> <span class="nv">incomplete</span>, <span class="nv">errors</span> <span class="nv">occurred</span><span class="o">!</span>
+<span class="nv">See</span> <span class="nv">also</span> <span class="s2">&quot;</span><span class="s">/root/test_ws/build/CMakeFiles/CMakeOutput.log</span><span class="s2">&quot;</span>.
+<span class="nv">Invoking</span> <span class="s2">&quot;</span><span class="s">cmake</span><span class="s2">&quot;</span> <span class="nv">failed</span>
+</pre></div>
+</div>
+<p>As workaround, you can call <code class="docutils literal notranslate"><span class="pre">catkin_make</span></code> as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>catkin_make -DPYTHON_EXECUTABLE<span class="o">=</span>/usr/bin/python3
+</pre></div>
+</div>
+<p>See <a class="reference external" href="https://answers.ros.org/question/353111/following-installation-instructions-catkin_make-generates-a-cmake-error/">this post</a>.</p>
+</div>
+<div class="section" id="jupyter-notebook-installation-strange-errors-from-pip3">
+<h2>Jupyter Notebook installation - strange errors from pip3<a class="headerlink" href="#jupyter-notebook-installation-strange-errors-from-pip3" title="Permalink to this headline"></a></h2>
+<p>Sometimes there are some errors with <code class="docutils literal notranslate"><span class="pre">pip3</span></code> during the installation of the packages for Jupyter Notebook. The error could be this for example:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="o">:</span> <span class="n">ipython</span> <span class="mf">8.2</span><span class="o">.</span><span class="mi">0</span> <span class="n">has</span> <span class="n">requirement</span> <span class="n">pygments</span><span class="o">&gt;=</span><span class="mf">2.4</span><span class="o">.</span><span class="mi">0</span><span class="o">,</span> <span class="n">but</span> <span class="n">you</span><span class="s1">&#39;ll have pygments 2.3.1 which is incompatible.</span>
+<span class="s1">ERROR: nbconvert 6.5.0 has requirement jinja2&gt;=3.0, but you&#39;</span><span class="n">ll</span> <span class="n">have</span> <span class="n">jinja2</span> <span class="mf">2.10</span><span class="o">.</span><span class="mi">3</span> <span class="n">which</span> <span class="k">is</span> <span class="n">incompatible</span><span class="o">.</span>
+<span class="n">ERROR</span><span class="o">:</span> <span class="n">nbconvert</span> <span class="mf">6.5</span><span class="o">.</span><span class="mi">0</span> <span class="n">has</span> <span class="n">requirement</span> <span class="n">pygments</span><span class="o">&gt;=</span><span class="mf">2.4</span><span class="o">.</span><span class="mi">1</span><span class="o">,</span> <span class="n">but</span> <span class="n">you</span><span class="s1">&#39;ll have pygments 2.3.1 which is incompatible.</span>
+<span class="s1">ERROR: pandas 1.4.2 has requirement numpy&gt;=1.18.5; platform_machine != &quot;aarch64&quot; and platform_machine != &quot;arm64&quot; and python_version &lt; &quot;3.10&quot;, but you&#39;</span><span class="n">ll</span> <span class="n">have</span> <span class="n">numpy</span> <span class="mf">1.17</span><span class="o">.</span><span class="mi">4</span> <span class="n">which</span> <span class="k">is</span> <span class="n">incompatible</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>The error is solved in this post on <a class="reference external" href="https://stackoverflow.com/questions/69809832/ipykernel-jupyter-notebook-labs-cannot-import-name-filefind-from-traitlets">StackOverflow</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># try this</span>
+pip3 install jupyter bqplot pyyaml ipywidgets
+
+<span class="c1"># if something goes wrong, </span>
+pip3 install <span class="nv">traitlets</span><span class="o">==</span><span class="m">5</span>.1.1
+pip3 install <span class="nv">pygments</span><span class="o">==</span><span class="m">2</span>.4.1
+pip3 install jupyter bqplot pyyaml ipywidgets
+
+<span class="c1"># the error should disappear.</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="jupyter-notebook-installation-jinja2">
+<h2>Jupyter notebook installation - jinja2<a class="headerlink" href="#jupyter-notebook-installation-jinja2" title="Permalink to this headline"></a></h2>
+<p>The packahe Jinja typically gives some problem; unfortunately it is required during the installation og Jupyter notebook, otherwise, as you try to run <code class="docutils literal notranslate"><span class="pre">jupyter</span> <span class="pre">contrib</span> <span class="pre">nbextension</span> <span class="pre">install</span></code>, it wll appear a very unintellegible Python error.</p>
+<p>In order to avoid this boring error, uninstall and install again this component:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 uninstall Jinja2
+pip3 install Jinja2
+</pre></div>
+</div>
+<p>See this post, not directly related with this situation: <a class="reference external" href="https://github.com/zero-os-no-longer-used/0-robot/issues/139">ContextualVersionConflict when starting 0-robot #139
+on HitHub</a></p>
+</div>
+<div class="section" id="roscd-roscd-not-working-package-not-found">
+<h2>roscd - ROSCD NOT WORKING (package not found)<a class="headerlink" href="#roscd-roscd-not-working-package-not-found" title="Permalink to this headline"></a></h2>
+<p>That’s because you forgot to source the workspace, or maybe you didn’t run <code class="docutils literal notranslate"><span class="pre">catkin_make</span></code> on it. So, <code class="docutils literal notranslate"><span class="pre">catkin_make</span></code> and <code class="docutils literal notranslate"><span class="pre">source</span></code> it before using <code class="docutils literal notranslate"><span class="pre">roscd</span></code>.</p>
+</div>
+<div class="section" id="no-module-named-rospy">
+<h2>No module named ROSpy<a class="headerlink" href="#no-module-named-rospy" title="Permalink to this headline"></a></h2>
+<p>The message appears in the Jupyter Notebook, and resembles this:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>The rospy package is not found in your $PYTHONPATH. Subscribe and publish are not going to work.
+Do you need to activate your ROS environment?
+---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+Input In [2], in &lt;cell line: 16&gt;()
+     13 import numpy as np
+     15 # ROS libraries
+---&gt; 16 import rospy
+     17 from std_srvs.srv import SetBool, SetBoolRequest, SetBoolResponse
+     18 from geometry_msgs.msg import Twist, Pose, Vector3
+
+ModuleNotFoundError: No module named &#39;rospy&#39;
+</pre></div>
+</div>
+<p>Remember to source your ROS1 environment and to launch te ROS1 master before executing the Jupyter notebook!</p>
+</div>
+<div class="section" id="sphinx-installation-cannot-import-contextfunction-from-jinja2">
+<h2>Sphinx installation - cannot import ‘contextfunction’ from jinja2<a class="headerlink" href="#sphinx-installation-cannot-import-contextfunction-from-jinja2" title="Permalink to this headline"></a></h2>
+<p>Unfortunately, this error could happen when you try to launch the command <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code>, whereas <code class="docutils literal notranslate"><span class="pre">pshinx-build</span> <span class="pre">--help</span></code> works fine. Here’s the “arabic” error:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>$$ sphinx-quickstart
+Traceback (most recent call last):
+  File &quot;/usr/bin/sphinx-quickstart&quot;, line 11, in &lt;module&gt;
+    load_entry_point(&#39;Sphinx==1.8.5&#39;, &#39;console_scripts&#39;, &#39;sphinx-quickstart&#39;)()
+  File &quot;/usr/lib/python3/dist-packages/pkg_resources/__init__.py&quot;, line 490, in load_entry_point
+    return get_distribution(dist).load_entry_point(group, name)
+  File &quot;/usr/lib/python3/dist-packages/pkg_resources/__init__.py&quot;, line 2854, in load_entry_point
+    return ep.load()
+  File &quot;/usr/lib/python3/dist-packages/pkg_resources/__init__.py&quot;, line 2445, in load
+    return self.resolve()
+  File &quot;/usr/lib/python3/dist-packages/pkg_resources/__init__.py&quot;, line 2451, in resolve
+    module = __import__(self.module_name, fromlist=[&#39;__name__&#39;], level=0)
+  File &quot;/usr/lib/python3/dist-packages/sphinx/cmd/quickstart.py&quot;, line 49, in &lt;module&gt;
+    from sphinx.util.template import SphinxRenderer
+  File &quot;/usr/lib/python3/dist-packages/sphinx/util/template.py&quot;, line 17, in &lt;module&gt;
+    from sphinx.jinja2glue import SphinxFileSystemLoader
+  File &quot;/usr/lib/python3/dist-packages/sphinx/jinja2glue.py&quot;, line 16, in &lt;module&gt;
+    from jinja2 import FileSystemLoader, BaseLoader, TemplateNotFound, \
+ImportError: cannot import name &#39;contextfunction&#39; from &#39;jinja2&#39; (/usr/local/lib/python3.8/dist-packages/jinja2/__init__.py)
+</pre></div>
+</div>
+<p>As said <a class="reference external" href="https://github.com/readthedocs/readthedocs.org/issues/9037">in this post</a> sometimes happens that <code class="docutils literal notranslate"><span class="pre">pat-get</span></code> catches a old version of Sphinx, uncompatible with the current version of <em>Jinja2</em> (currently we’re at the release 3.1.1, see <a class="reference external" href="https://github.com/pallets/jinja/releases">the official page of Jinja2</a>).</p>
+<p>To solve the problem, you can easily upgrade Sphinx through <code class="docutils literal notranslate"><span class="pre">pip</span></code> as follows: (see <a class="reference external" href="https://linuxtut.com/en/304bf660468ea4a0e90e/">this page</a>)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 install --upgrade sphinx
+</pre></div>
+</div>
+<p>It should fix that. After that, check the installation: it should appear on the screen the version when you try to run <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code>. This:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>$$ sphinx-quickstart --version
+sphinx-quickstart 1.8.5
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="author-and-contacts">
+<h1>Author and Contacts<a class="headerlink" href="#author-and-contacts" title="Permalink to this headline"></a></h1>
+<p>A project by <em>Francesco Ganci</em>, S4143910, upon a code by <a class="reference external" href="https://github.com/CarmineD8">CarmineD8</a>.</p>
+<ul class="simple">
+<li><p><strong>Email</strong> : <em>s4143910&#64;studenti.unige.it</em></p></li>
+</ul>
+</div>
+<div class="section" id="see-also">
+<h1>See also<a class="headerlink" href="#see-also" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action">programmatoroSeduto/rt2_assignment1 on GitHub</a></p></li>
+<li><p><a class="reference external" href="https://github.com/CarmineD8/rt2_assignment1">CarmsD8/rt2_assignment1 on GitHub</a></p></li>
+<li><p><a class="reference external" href="https://github.com/CarmineD8/pioneer_ctrl">CarmineD8/pioneer_ctrl on GitHub</a></p></li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sphinx/rospy-nodes/jupyter_user_interface.html" class="btn btn-neutral float-left" title="ROSPY node - jupyter_user_interface.py" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Francesco Ganci (S4143910).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

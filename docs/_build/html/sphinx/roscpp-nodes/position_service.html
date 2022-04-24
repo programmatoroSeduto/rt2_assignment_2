@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROScpp node - position_service &mdash; RT2 Assignment 2 1.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ROScpp node - state_machine" href="state_machine.html" />
+    <link rel="prev" title="Index of ROScpp nodes" href="roscpp-nodes-index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> RT2 Assignment 2
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Index</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="roscpp-nodes-index.html">Index of ROScpp nodes</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ROScpp node - position_service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state_machine.html">ROScpp node - state_machine</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../rospy-nodes/rospy-nodes-index.html">Index of ROSpy nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html">RT2 Assignment 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#how-to-setup-and-run-the-project">How to setup and run the project</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#documentation">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#troubleshooting">Troubleshooting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#author-and-contacts">Author and Contacts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../readme.html#see-also">See also</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">RT2 Assignment 2</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="roscpp-nodes-index.html">Index of ROScpp nodes</a> &raquo;</li>
+      <li>ROScpp node - position_service</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/sphinx/roscpp-nodes/position_service.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="roscpp-node-position-service">
+<h1>ROScpp node - position_service<a class="headerlink" href="#roscpp-node-position-service" title="Permalink to this headline"></a></h1>
+<p>Service for Random Pose. </p>
+<p><strong>ROS Node Name</strong> <ul class="simple">
+<li><p>random_position_server</p></li>
+</ul>
+<strong>Description:</strong> <dl class="simple">
+<dt><strong>Authors</strong></dt><dd><p>Carmine Tommaso Recchiuto, Francesco Ganci (S4143910) </p>
+</dd>
+<dt><strong>Version</strong></dt><dd><p>v1.0</p>
+</dd>
+</dl>
+</p>
+<p>The service can return a (x, y) position randomly generated using bounds specified in the request. </p>
+<p>The service can generate also an angle around Z axis, already noramlized in <em>[-pi, pi]</em>. </p>
+<p><strong>Services:</strong> <ul class="simple">
+<li><p><em>/position_server</em><p>: RandomPosition.srv</p>
+<p>Ask for a new random plane position (with bounds) and orientation about Z axis (no bounds, normalized).</p>
+</p></li>
+</ul>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-functions">Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv48randMToNdd">
+<span id="_CPPv38randMToNdd"></span><span id="_CPPv28randMToNdd"></span><span id="randMToN__double.double"></span><span class="target" id="position__service_8cpp_1a10f83119b77a8fbd085a5550955f85ff"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">randMToN</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">M</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">N</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv48randMToNdd" title="Permalink to this definition"></a><br /></dt>
+<dd><p>generate a random number between a minimum and a maximum. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>M</strong> – the minimum value, included </p></li>
+<li><p><strong>N</strong> – the maximum value, included</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>uniform random number in [M, N] </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv48myrandomRN16rt2_assignment_214RandomPosition7RequestERN16rt2_assignment_214RandomPosition8ResponseE">
+<span id="_CPPv38myrandomRN16rt2_assignment_214RandomPosition7RequestERN16rt2_assignment_214RandomPosition8ResponseE"></span><span id="_CPPv28myrandomRN16rt2_assignment_214RandomPosition7RequestERN16rt2_assignment_214RandomPosition8ResponseE"></span><span id="myrandom__rt2_assignment_2::RandomPosition::RequestR.rt2_assignment_2::RandomPosition::ResponseR"></span><span class="target" id="position__service_8cpp_1a2bda4ba2c5b2ce8fc8fcadb3a4caa791"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">myrandom</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">rt2_assignment_2</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">RandomPosition</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Request</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">req</span></span>, <span class="n"><span class="pre">rt2_assignment_2</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">RandomPosition</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Response</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">res</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv48myrandomRN16rt2_assignment_214RandomPosition7RequestERN16rt2_assignment_214RandomPosition8ResponseE" title="Permalink to this definition"></a><br /></dt>
+<dd><p>implementation of service “/position_server” </p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>RandomPosition.srv </p>
+</div>
+</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>req</strong> – the bounds for the planar coordinates </p></li>
+<li><p><strong>res</strong> – a pose {x, y, th_z}</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44mainiPPc">
+<span id="_CPPv34mainiPPc"></span><span id="_CPPv24mainiPPc"></span><span id="main__i.cPP"></span><span class="target" id="position__service_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">main</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">argc</span></span>, <span class="kt"><span class="pre">char</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">argv</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44mainiPPc" title="Permalink to this definition"></a><br /></dt>
+<dd><p>ROS node main - position_service.cpp. </p>
+<p>A trivial main function: init the node, advertise the service, then spin. NO OUTPUT on the screen is provided. </p>
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="roscpp-nodes-index.html" class="btn btn-neutral float-left" title="Index of ROScpp nodes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="state_machine.html" class="btn btn-neutral float-right" title="ROScpp node - state_machine" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Francesco Ganci (S4143910).</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
