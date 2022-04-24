@@ -15,7 +15,7 @@ Here a user interface is provided using Jupyter and MatPlotLib. Compared to the 
 
 ### Differences from the previous version
 
-In order to support the implementation on Jupyter, some things have been changed:
+In order to support the implementation on Jupyter, some things have been changed. See the Jupyter Notebook for further details. 
 
 - no changes in `position_service.cpp`
 
@@ -200,6 +200,8 @@ Let's start both the simulation and the Jupyter Notebook containing the interfac
 	./run_jupyter.sh
 	```
 	
+	Note that the script must be run from inside the script folder, and the `src` folder of the workspace nust be not nested. Otherwise, consider to run manually Jupyter. 
+	
 	If you're opening Jupyter for the first time, the best is to set a password, so the next time it will be easier to use it. 
 	
 3. in another console (even directly in Jupyter Notebook) launch the project with the launch file `sim_jupyter.launch`.	
@@ -207,7 +209,7 @@ Let's start both the simulation and the Jupyter Notebook containing the interfac
 	```bash
 	roslaunch rt2_assignment_2 sim_jupyter.launch
 	```
-
+	
 4. Now everything should be running. Open the notebook you find inside the package, named `jupyter_interface_V2.ipynb` (see the folder JupyterNotebooks). 
 	
 	I always use *Kernel -> Restart & Run All* to start all the blocks of the notebook.
@@ -381,6 +383,27 @@ See this post, not directly related with this situation: [ContextualVersionConfl
 ## roscd - ROSCD NOT WORKING (package not found)
 
 That's because you forgot to source the workspace, or maybe you didn't run `catkin_make` on it. So, `catkin_make` and `source` it before using `roscd`. 
+
+## No module named ROSpy
+
+The message appears in the Jupyter Notebook, and resembles this:
+
+```
+The rospy package is not found in your $PYTHONPATH. Subscribe and publish are not going to work.
+Do you need to activate your ROS environment?
+---------------------------------------------------------------------------
+ModuleNotFoundError                       Traceback (most recent call last)
+Input In [2], in <cell line: 16>()
+     13 import numpy as np
+     15 # ROS libraries
+---> 16 import rospy
+     17 from std_srvs.srv import SetBool, SetBoolRequest, SetBoolResponse
+     18 from geometry_msgs.msg import Twist, Pose, Vector3
+
+ModuleNotFoundError: No module named 'rospy'
+```
+
+Remember to source your ROS1 environment and to launch te ROS1 master before executing the Jupyter notebook!
 
 # Author and Contacts
 
