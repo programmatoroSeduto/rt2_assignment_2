@@ -5,20 +5,17 @@
  *      <ul><li>random_position_server</li></ul></div>
  * \brief Service for Random Pose
  * 
- * \authors Carmine Tommaso Recchiuto
+ * \authors Carmine Tommaso Recchiuto, Francesco Ganci (S4143910)
  * \version v1.0
  * 
  * <b>Description:</b> <br>
  * <p>
- * The service provided by this service is simple: it can return a (x, y)
- * position randomly generated using bounds specified in the request. <br>
+ * The service can return a (x, y) position randomly
+ * generated using bounds specified in the request. <br>
+ * 
  * The service can generate also an angle around Z axis, already
  * noramlized in <i>[-pi, pi]</i>. 
  * </p>
- * 
- * <b>UML component</b><br>
- * (See -- the overal architecture, for further informations)<br>
- * <img src="#" alt="TODO UML components of position_service.cpp"/><br>
  * 
  * <b>Services:</b> <br>
  * <ul>
@@ -28,10 +25,6 @@
  * 			orientation about Z axis (no bounds, normalized).
  * 		</li>
  * </ul>
- * 
- * <b>TODOs</b><br>
- * \todo UML components of position_service
- * \todo document the functions in the file position_service.cpp
  * 
  ***********************************************/
 
@@ -49,7 +42,7 @@
  * @param M the minimum value, included
  * @param N the maximum value, included
  * 
- * @returns random number in [M, N]
+ * @returns uniform random number in [M, N]
  * 
  ***********************************************/
 double randMToN(double M, double N)
@@ -63,7 +56,7 @@ double randMToN(double M, double N)
  *  
  * \brief implementation of service "/position_server"
  * 
- * @param request  the bounds for the planar coordinates
+ * @param request the bounds for the planar coordinates
  * @param response a pose {x, y, th_z}
  * 
  * @see RandomPosition.srv

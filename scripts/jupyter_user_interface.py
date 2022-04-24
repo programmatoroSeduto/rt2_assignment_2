@@ -1,24 +1,13 @@
 #! /user/bin/env python
 
-"""! @file jupyter_user_interface.py
-<div><b>ROS Node Name</b> 
-     <ul><li>jupyter_user_interface</li></ul></div>
-@brief This node provides functionalities to support Jupyter in driving the robot. 
+"""functionalities to support Jupyter in driving the robot
 
-@authors Francesco Ganci (S4143910)
-@version v1.0
+This node implements a support for a user interface built in Jupyter.
+Here are the functionalities of the node:
 
-This node implements a support for a user interface built in Jupyter.<br>
-Here are the functionalities of the node:<br>
-<ul>
-<li>The node can switch between authomatic mode and manual mode through a service called '/ui_trigger'</li>
-<li>When the authomatic mode is enabled, the random target service is immediately activated</li>
-<li>When the manual mode is required through the service, the authomatic behaviour is turned off</li>
-</ul>
-
-@see qualcosa
-
-<b>TODOs</b><br>
+- The node can switch between authomatic mode and manual mode through a service called '/ui_trigger'
+- When the authomatic mode is enabled, the random target service is immediately activated
+- When the manual mode is required through the service, the authomatic behaviour is turned off
 
 """
 
@@ -26,28 +15,31 @@ import rospy
 from std_srvs.srv import SetBool, SetBoolRequest, SetBoolResponse
 from rt2_assignment_2.srv import Command, CommandRequest, CommandResponse
 
-### Name for this node
+
 node_name = "jupyter_user_interface"
+"""String: Name for this node """
 
-### Name of the trigger service (being used to set/unset manual mode)
-name_ui_trigger = "/ui_trigger"
+name_ui_trigger = "/ui_trigger
+"""String: Name of the trigger service (being used to set/unset manual mode) """
 
-### service handler (ui_trigger)
 srv_ui_trigger = None
+""" ROS_service_handle: service handler (ui_trigger)"""
 
-### client handle (ui_client)
 cli_ui_client = None
+""" ROS_client_handle: client handle (ui_client) """
 
-### Switch for the manual mode (the init value is also the first mode)
 use_manual_mode = True
+"""Bool: Switch for the manual mode (the init value is also the first mode) """
 
-### service callback for the trigger
+
 def cbk_ui_trigger( trig ):
-    """!
-    @brief implementation of the trigger service
+    """implementation of the trigger service
     
-    @param trig (std_srv.srv.SetBoolRequest) if set or not the manual mode
-    @returns (std_srv.SetBoolResponse) useless
+    Args:
+        trig (std_srv.srv.SetBoolRequest) if set or not the manual mode
+    
+    Returns:
+        std_srv.SetBoolResponse: useless
     """
     global use_manual_mode
     
@@ -70,8 +62,8 @@ def cbk_ui_trigger( trig ):
 
 ### main function
 def main( ):
-    """!
-    @brief main function of for the node jupyter_user_interface
+    """main function of for the node jupyter_user_interface
+    
     """
     rospy.spin( )
 
