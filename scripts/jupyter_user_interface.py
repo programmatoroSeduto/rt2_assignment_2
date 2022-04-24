@@ -19,7 +19,7 @@ from rt2_assignment_2.srv import Command, CommandRequest, CommandResponse
 node_name = "jupyter_user_interface"
 """String: Name for this node """
 
-name_ui_trigger = "/ui_trigger
+name_ui_trigger = "/ui_trigger"
 """String: Name of the trigger service (being used to set/unset manual mode) """
 
 srv_ui_trigger = None
