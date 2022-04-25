@@ -4,18 +4,22 @@
 
 > Compatible With:
 > - ROS1 noetic
+> 
+> Previous version of this project:
+> - [programmatoroSeduto/rt2_assignment1 on GitHub](https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action) branch *action*
+> - [CarmineD8/rt2_assignment1 on GitHub](https://github.com/CarmineD8/rt2_assignment1) the very first version
 
 ![cover](/docs/img/cover-jup.png)
 
 ## What is this?
 
-This is another update of the project in this repository:  [programmatoroSeduto/rt2_assignment1 on GitHub](https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action), branch *action*. The main drawback of the previous version of the project lies in the complete lack of a *user interface* allowing to make the user aware of the status of the robot, as well as to drive the robot. 
+Yet another "upgrade" of the project from:  [programmatoroSeduto/rt2_assignment1 on GitHub](https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action); see the branch *action*. The main drawback of that lies in the complete lack of a *user interface* allowing to make the user aware of the status of the robot, as well as to drive the robot. 
 
-Here a user interface is provided using Jupyter and MatPlotLib. Compared to the original project, the code has been some little updates: the most of the work has been done on the Jupyter notebooks. 
+This is exactly the purpose of this update: here a user interface is provided, using Jupyter and MatPlotLib. The most of the work has been done on the Jupyter notebooks, with some small changes on the nodes of the original architecture. See the Jupyter Notebook [jupyter_interface_V2](https://github.com/programmatoroSeduto/rt2_assignment_2/blob/main/JupyterNotebooks/jupyter_interface_V2.ipynb) for further informations. 
 
 ### Differences from the previous version
 
-In order to support the implementation on Jupyter, some things have been changed. See the Jupyter Notebook for further details. 
+In order to support the implementation on Jupyter, some things have been changed. Here is a brief summary of this work:
 
 - no changes in `position_service.cpp`
 
@@ -25,11 +29,11 @@ In order to support the implementation on Jupyter, some things have been changed
 
 - the node `go_to_point.py` now publishes the command twist on two topics: `/cmd_vel` as before, and `/current_cmd_vel` read by the Jupyter notebook. This topic is needed for visualizing the commanc currently given to the robot in a graph. 
 
-- the old node `user_interface.py` were replaced by the new implementation `jupyter_user_interface.py` providing a service for switching on/off the random behaviour. 
+- the old node `user_interface.py` has been replaced by the new implementation `jupyter_user_interface.py` providing a service for switching on/off the random behaviour. 
 
 ### Structure of the repository
 
-This repository contains a package to install in a ROS1 workspace. Here is the main elements in the package:
+This repository contains a package that can be installed directly in whatever ROS1 workspace you like. Here is the main elements in the package:
 
 ```
 /rt2_assignment_2
@@ -94,23 +98,45 @@ Installing Jupyter Notebook is needed for running the user interface along with 
 
 ```bash
 # before starting, make sure everything is updated/upgraded
-# see troubleshooting if you're using the Docker image
+#     see troubleshooting if you're using the Docker image
+# sudo apt update -y
+# sudo apt upgrade -y
 
 # you need pip!
 # sudo apt-get install pip
 pip3 --help
+pip3 --version
+# pip 20.0.2 from /usr/lib/python3/dist-packages/pip (python 3.8)
 
 # Jupyter is a web app, so a browser is needed
 # sudo apt-get install firefox 
-firefox --help
+firefox --version
+# Mozilla Firefox 99.0
+
+# suggested (not necessary)
+pip3 install jinja2==3.1.1
+# Successfully installed MarkupSafe-2.1.1 jinja2-3.1.1
+pip3 install numpy --upgrade
+# Successfully installed numpy-1.22.3
 
 # Install Jupyter py modules
 pip3 install traitlets
-# chec traitlets version >= 5.1.1
+# check traitlets version >= 5.1.1
+# OUTPUT: Successfully installed traitlets-5.1.1
+
 pip3 install pygments==2.4.1
+# the Docker image contains the version 2.3.1, which is lower than the one required by Jupyter
+# to successfully install the latest pygments, you have to specify the version
+# otherwise Pip will find a older version (why?)
+
 pip3 install pyyaml
+# check version 5.3.1
+
 pip3 install bqplot
-pip3 install ipywidgets
+# bqplot-0.12.33 (latest, see https://github.com/bqplot/bqplot/releases/)
+
+pip3 install ipywidgets==8.0.0rc0
+# latest is 8.0.0rc0, see https://ipywidgets.readthedocs.io/en/latest/
 
 # install Jupyter Notebook
 pip3 install jupyter
@@ -120,17 +146,19 @@ The project also requires some extensions, so Jupyter should be enabled for usin
 
 ```bash
 pip3 install jupyter_contrib_nbextensions
+# jupyter-contrib-nbextensions-0.5.1
+
 pip3 install jupyter_nbextensions_configurator
+# version 0.4.1
 
 jupyter contrib nbextension install
-# the output from this command should be very long, but with no errors or warnings
+# the output from this command should be very long and "colorful", but with no errors or warnings
 ```
 
 Here are some extensions you should enable for running the project. Mainly two extensions. The frist one is `widgetsnbextension`:
 
 ```bash
 jupyter nbextension enable --py widgetsnbextension
-
 # the expected output is:
 # $$ jupyter nbextension enable --py widgetsnbextension
 #   Enabling notebook extension jupyter-js-widgets/extension...
@@ -144,20 +172,26 @@ source /opt/ros/noetic/setup.bash
 
 # install jupyros
 pip3 install jupyros
+# Successfully installed jupyros-0.3.0
 
 # add Jupyros to Jupyter Notebook
 jupyter nbextension enable --py --sys-prefix jupyros
-
 # expected output from the last command:
 # $$ jupyter nbextension enable --py --sys-prefix jupyros
 #    Enabling notebook extension jupyter-ros/extension...
 #      - Validating: OK
 ```
 
-Below is a script for launching Jupyter. It is dentical to the one in the repository (root folder of the pacakge. 
+Below is a script for launching Jupyter, to run from inside the root folder of the package. It is dentical to the one in the repository (root folder of the pacakge). Notice that the script als launches the ROS1 master before launching Jupyter. 
 
 ```bash
 #! /bin/bash
+
+set -e
+
+source /opt/ros/noetic/setup.bash
+source ../../devel/setup.bash
+roscore &
 
 cd /
 # see https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator/issues/72
@@ -191,28 +225,32 @@ As usual, two ways for running this architecture: the quick one, and the other o
 
 Let's start both the simulation and the Jupyter Notebook containing the interface. Follow the steps below:
 
-1. open a bash and run the ROS1 master: `roscore &`. *Remember to source your workspace!*
+1. open a bash and run the ROS1 master: `roscore &`. *Remember to source your workspace!*. 
+	
+	*Notice that, if you use the script for running Jupyter inside the package, running the ROS master is not needed because the script itself launches the ROS1 master before starting Jupyter.*
 	
 2. go inside the folder of the package and run Jupyter:
 	
 	```bash
 	roscd rt2_assignment_2
+	# chmod +x ./run_jupyter.sh
 	./run_jupyter.sh
 	```
 	
-	Note that the script must be run from inside the script folder, and the `src` folder of the workspace nust be not nested. Otherwise, consider to run manually Jupyter. 
+	The script shall run from inside the script folder; *avoid nested folders in your `src` folder*. 
 	
-	If you're opening Jupyter for the first time, the best is to set a password, so the next time it will be easier to use it. 
+	If you're opening Jupyter for the first time, the best is to set an acces method with password, so the next time it will be easier to log in. 
 	
 3. in another console (even directly in Jupyter Notebook) launch the project with the launch file `sim_jupyter.launch`.	
 	
 	```bash
+	# SOURCE YOUR WORKSPACE BEFORE!
 	roslaunch rt2_assignment_2 sim_jupyter.launch
 	```
 	
 4. Now everything should be running. Open the notebook you find inside the package, named `jupyter_interface_V2.ipynb` (see the folder JupyterNotebooks). 
 	
-	I always use *Kernel -> Restart & Run All* to start all the blocks of the notebook.
+	I often use to start all the blocks of the notebook with *Kernel -> Restart & Run All*.
 	
 Please refer to the infos inside the notebook. Have fun!
 
@@ -225,11 +263,11 @@ The way to launch the project is quite similar to the one shown in the readme of
 The project also wants to test two documentation systems:
 
 - **Doxygen** easy to use, stable, quick to use, with a handy GUI, but quite unflexible and generating a too much old style HTML documentation (welcome back to 90s!)
-- **Sphinx** enables to produce a nice documentation, flexible and extendable with not so much effort, but really painful to use, not stable, it has not a GUI, and uses the horrible reStructured format. 
+- **Sphinx** enables to produce a nice documentation, flexible and extendable with not so much effort, but really painful to use, not stable, it has not a GUI, and uses the horrible reStructured format. [Here](https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/) is an interesting article about Sphinx. 
 
 ## Before starting
 
-As always, in particular if you're using the Docker image [carms84/noetic_ros2](https://hub.docker.com/r/carms84/noetic_ros2), enther Docker or Sphinx are installed. So, we have to install them. Luckily, both the frameworksa are quite easy to install: just copy andpaste some commands to the console. 
+As always, in particular if you're using the Docker image [carms84/noetic_ros2](https://hub.docker.com/r/carms84/noetic_ros2), either Docker or Sphinx aren't installed. Luckily, both the frameworks are quite easy to install: just copy and paste some commands to the console. 
 
 ### DEPT -- Doxygen
 
@@ -240,6 +278,7 @@ Open a console and paste this command: (the command `-y` says to cautomatically 
 sudo apt-get install -y doxygen
 # check your installation with the command 
 doxygen -v
+# 1.8.17
 
 # and the GUI
 sudo apt-get install -y doxygen-gui
@@ -256,22 +295,32 @@ Installing Sphinx s quite easy (*don't trust it!*):
 
 ```bash
 # the engine
-sudo apt-get install -y python3-sphinx
+# the following gives an issue (the repo is not up to date...)
+#    sudo apt-get install -y python3-sphinx
+# use this instead:
+pip3 install sphinx==4.5.0
 
-# check the installation (see troubleshooting in case of problems)
+# check the installation
 sphinx-quickstart --version
+# if it appears a Python exception like this:
+# ImportError: cannot import name 'contextfunction' from 'jinja2' (/usr/local/lib/python3.8/dist-packages/jinja2/__init__.py)
+# SEE THE TROUBLESHOOTING section
 ```
 Let's install also some useful extensions for Sphinx:
 
 ```bash
 # breathe allows Sphinx to read the Doxygen XML documentation
 pip3 install breathe
+# see https://github.com/michaeljones/breathe/releases
+# latest is 4.33.1
 
 # this is a nice theme which recalls ReadTheDocs (a little bit worse than the orininal one)
 pip3 install sphinx-rtd-theme
 
 # this extension lets Sphinx to read the MD format
 pip3 install myst-parser
+# see https://myst-parser.readthedocs.io/en/latest/
+# latest is 0.17.2
 ```
 
 ## How to generate the Doxygen Documentation
@@ -284,6 +333,7 @@ Very simple, because the configuration file is already in the package and ready 
     
     ```bash
     doxygen Doxyfile
+    # firefox ./build/html/index.html &
     ```
 
 To see the documentation, go inside the package, sub folder `/docs/build/html`, and open `index.html` in a browser. 
@@ -298,6 +348,7 @@ As before, the package contains everything you need in order to build the docume
     
     ```bash
     ./build_sphinx.sh
+    # firefox ./_build/html/index.html &
     ```
 
 The command makes the documentation; ignore the warnings there. Note that the command also builds the Doxygen documentation. 
@@ -349,7 +400,7 @@ The command makes the documentation; ignore the warnings there. Note that the co
     Please note that now there are `build` and `_build` inside the `docs` folder. The first one will contain the Doxygen XML documentation, whereras `_build` is going to host the Sphinx verison of the documentation. 
     
 2. Before starting to add the pages, I configured the builder through the config file `config.py`. 
-    
+	    
 3. created a folder `/docs/sphinx` which is going to collect the reST pages. 
     
 4. Time to write some documentation! I started from the index page, which includes the README inside. 
@@ -357,10 +408,31 @@ The command makes the documentation; ignore the warnings there. Note that the co
 5. As you can see in the folder `/docs/sphinx`, the documentation is divided into two main parts: the one referred to ROScpp nodes, and the other one referring to the Python scripts inside the project. Each of them have its index. The first step is to make clear the structure of the documentation, creating the reST pages. 
 
 6. documentation of PY nodes with simple reST and autodoc
-
+	
+	See the pages inside `.../rts_2assignment_2/docs/sphinx/rospy-nodes`. Here the directive `.. automodule ::` imports and generates the documentation from the Python scripts. Notice the instruction `sys.path.insert( 0, os.path.abspath('./../scripts') )` inside the file `conf.py`: the extension **Autodoc** wouldn't find the py files withut that. 
+	
 7. documentation of C++ nodes with simple reST and breathe
-
+	
+	See the pages inside `.../rts_2assignment_2/docs/sphinx/roscpp-nodes`. The pages have a very simple structure: the directive `.. doxyfile ::` reads the documentation attached to the C++ code through the XML documentation from Doxygen. 
+	
 8. **build the documentation** with a script. 
+	
+	Notice that, since Sphinx runs from `.../rt2_assignment_2/docs` and not in the root folder of the package, due to a bug or something similar *Sphinx can't see the README.md file there*. The scripts applies a workaround: the readme is copied inside the folder `/docs`, included in the documentation, and then deleted. Unfortunately Sphinx has some problems in catching the relative locations right now: this is a well known issue, with so many posts everywhere on the web, but no satisfying solution. 
+	
+	Here's the code inside the script for building the documentation with Sphinx:
+	
+	```bash
+	#! /bin/bash
+	
+	source ../../../devel/setup.bash
+
+	cp ../README.md ./readme.md
+	make clean
+	make html
+	rm readme.md
+	
+	# firefox ./_build/html/index.html &
+	```
 
 # Troubleshooting
 
@@ -416,8 +488,8 @@ curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo ap
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 
 # now, update/upgrade
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get update -y
+sudo apt-get upgrade -y
 ```
 
 If you're interested, here is the official post explaining this fact: [ROS GPG Key Expiration Incident on ROS Discourse](https://discourse.ros.org/t/ros-gpg-key-expiration-incident/20669). Another useful post: [apt update: signatures were invalid: F42ED6FBAB17C654 - ROS Answers: Open Source Q&A Forum](https://answers.ros.org/question/379190/apt-update-signatures-were-invalid-f42ed6fbab17c654/)
@@ -573,15 +645,15 @@ Traceback (most recent call last):
 ImportError: cannot import name 'contextfunction' from 'jinja2' (/usr/local/lib/python3.8/dist-packages/jinja2/__init__.py)
 ```
 
-As said [in this post](https://github.com/readthedocs/readthedocs.org/issues/9037) sometimes happens that `pat-get` catches a old version of Sphinx, uncompatible with the current version of *Jinja2* (currently we're at the release 3.1.1, see [the official page of Jinja2](https://github.com/pallets/jinja/releases)). 
+As said [in this post](https://github.com/readthedocs/readthedocs.org/issues/9037) sometimes happens that `pat-get` catches a old version of Sphinx build, uncompatible with the latest version of *Jinja2* (currently the latest release is 3.1.1, see [the official page of Jinja2](https://github.com/pallets/jinja/releases)). 
 
-To solve the problem, you can easily upgrade Sphinx through `pip` as follows: (see [this page](https://linuxtut.com/en/304bf660468ea4a0e90e/))
+To solve the problem, you can easily upgrade Sphinx through `pip3` as follows: (see [this page](https://linuxtut.com/en/304bf660468ea4a0e90e/))
 
 ```bash
 pip3 install --upgrade sphinx
 ````
 
-It should fix that. After that, check the installation: it should appear on the screen the version when you try to run `sphinx-quickstart`. This:
+It should fix that. After, check the installation: it should appear on the screen the version when you try to run `sphinx-quickstart`. This:
 
 ```
 $$ sphinx-quickstart --version
@@ -597,5 +669,7 @@ A project by *Francesco Ganci*, S4143910, upon a code by [CarmineD8](https://git
 # See also
 
 - [programmatoroSeduto/rt2_assignment1 on GitHub](https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action)
-- [CarmsD8/rt2_assignment1 on GitHub](https://github.com/CarmineD8/rt2_assignment1)
+- [CarmineD8/rt2_assignment1 on GitHub](https://github.com/CarmineD8/rt2_assignment1)
 - [CarmineD8/pioneer_ctrl on GitHub](https://github.com/CarmineD8/pioneer_ctrl)
+- [carms84/noetic_ros2 Docker image](https://hub.docker.com/r/carms84/noetic_ros2)
+- [Clear, Functional C++ Documentation with Sphinx + Breathe + Doxygen + CMake](https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/)

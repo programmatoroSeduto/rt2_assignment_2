@@ -121,26 +121,31 @@
 <ul class="simple">
 <li><p>ROS1 noetic</p></li>
 </ul>
+<p>Previous version of this project:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action">programmatoroSeduto/rt2_assignment1 on GitHub</a> branch <em>action</em></p></li>
+<li><p><a class="reference external" href="https://github.com/CarmineD8/rt2_assignment1">CarmineD8/rt2_assignment1 on GitHub</a> the very first version</p></li>
+</ul>
 </div></blockquote>
 <p><img alt="cover" src="docs/img/cover-jup.png" /></p>
 <div class="section" id="what-is-this">
 <h2>What is this?<a class="headerlink" href="#what-is-this" title="Permalink to this headline"></a></h2>
-<p>This is another update of the project in this repository:  <a class="reference external" href="https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action">programmatoroSeduto/rt2_assignment1 on GitHub</a>, branch <em>action</em>. The main drawback of the previous version of the project lies in the complete lack of a <em>user interface</em> allowing to make the user aware of the status of the robot, as well as to drive the robot.</p>
-<p>Here a user interface is provided using Jupyter and MatPlotLib. Compared to the original project, the code has been some little updates: the most of the work has been done on the Jupyter notebooks.</p>
+<p>Yet another “upgrade” of the project from:  <a class="reference external" href="https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action">programmatoroSeduto/rt2_assignment1 on GitHub</a>; see the branch <em>action</em>. The main drawback of that lies in the complete lack of a <em>user interface</em> allowing to make the user aware of the status of the robot, as well as to drive the robot.</p>
+<p>This is exactly the purpose of this update: here a user interface is provided, using Jupyter and MatPlotLib. The most of the work has been done on the Jupyter notebooks, with some small changes on the nodes of the original architecture. See the Jupyter Notebook <a class="reference external" href="https://github.com/programmatoroSeduto/rt2_assignment_2/blob/main/JupyterNotebooks/jupyter_interface_V2.ipynb">jupyter_interface_V2</a> for further informations.</p>
 <div class="section" id="differences-from-the-previous-version">
 <h3>Differences from the previous version<a class="headerlink" href="#differences-from-the-previous-version" title="Permalink to this headline"></a></h3>
-<p>In order to support the implementation on Jupyter, some things have been changed. See the Jupyter Notebook for further details.</p>
+<p>In order to support the implementation on Jupyter, some things have been changed. Here is a brief summary of this work:</p>
 <ul class="simple">
 <li><p>no changes in <code class="docutils literal notranslate"><span class="pre">position_service.cpp</span></code></p></li>
 <li><p>created a new message type, <code class="docutils literal notranslate"><span class="pre">JupyterTargetInfo.msg</span></code>, containing a large set of informations about the status of the node <code class="docutils literal notranslate"><span class="pre">state_machine.cpp</span></code></p></li>
 <li><p>the node <code class="docutils literal notranslate"><span class="pre">state_machine.cpp</span></code> now publishes a message of type <code class="docutils literal notranslate"><span class="pre">JupyterTargetInfo</span></code> almost regularly, properly setting the fields depending on the state of the node. The message is employed by the graphical interface for the visuals.</p></li>
 <li><p>the node <code class="docutils literal notranslate"><span class="pre">go_to_point.py</span></code> now publishes the command twist on two topics: <code class="docutils literal notranslate"><span class="pre">/cmd_vel</span></code> as before, and <code class="docutils literal notranslate"><span class="pre">/current_cmd_vel</span></code> read by the Jupyter notebook. This topic is needed for visualizing the commanc currently given to the robot in a graph.</p></li>
-<li><p>the old node <code class="docutils literal notranslate"><span class="pre">user_interface.py</span></code> were replaced by the new implementation <code class="docutils literal notranslate"><span class="pre">jupyter_user_interface.py</span></code> providing a service for switching on/off the random behaviour.</p></li>
+<li><p>the old node <code class="docutils literal notranslate"><span class="pre">user_interface.py</span></code> has been replaced by the new implementation <code class="docutils literal notranslate"><span class="pre">jupyter_user_interface.py</span></code> providing a service for switching on/off the random behaviour.</p></li>
 </ul>
 </div>
 <div class="section" id="structure-of-the-repository">
 <h3>Structure of the repository<a class="headerlink" href="#structure-of-the-repository" title="Permalink to this headline"></a></h3>
-<p>This repository contains a package to install in a ROS1 workspace. Here is the main elements in the package:</p>
+<p>This repository contains a package that can be installed directly in whatever ROS1 workspace you like. Here is the main elements in the package:</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nv">rt2_assignment_2</span>
 ├── <span class="nv">JupyterNotebooks</span>
 │   └── <span class="nv">jupyter_interface_V2</span>.<span class="nv">ipynb</span>	<span class="o">&lt;&gt;</span> <span class="nv">the</span> <span class="nv">user</span> <span class="nv">interface</span>
@@ -200,23 +205,45 @@ catkin_make
 <h3>DEPT – Jupyter Notebook and extensions<a class="headerlink" href="#dept-jupyter-notebook-and-extensions" title="Permalink to this headline"></a></h3>
 <p>Installing Jupyter Notebook is needed for running the user interface along with the ROS1 package. Here are the script to install it. <strong>Don’t ignore the errors</strong>: I did put here some notes about the most common errors; in case you ignore the errors during the installation, the program won’t work.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># before starting, make sure everything is updated/upgraded</span>
-<span class="c1"># see troubleshooting if you&#39;re using the Docker image</span>
+<span class="c1">#     see troubleshooting if you&#39;re using the Docker image</span>
+<span class="c1"># sudo apt update -y</span>
+<span class="c1"># sudo apt upgrade -y</span>
 
 <span class="c1"># you need pip!</span>
 <span class="c1"># sudo apt-get install pip</span>
 pip3 --help
+pip3 --version
+<span class="c1"># pip 20.0.2 from /usr/lib/python3/dist-packages/pip (python 3.8)</span>
 
 <span class="c1"># Jupyter is a web app, so a browser is needed</span>
 <span class="c1"># sudo apt-get install firefox </span>
-firefox --help
+firefox --version
+<span class="c1"># Mozilla Firefox 99.0</span>
+
+<span class="c1"># suggested (not necessary)</span>
+pip3 install <span class="nv">jinja2</span><span class="o">==</span><span class="m">3</span>.1.1
+<span class="c1"># Successfully installed MarkupSafe-2.1.1 jinja2-3.1.1</span>
+pip3 install numpy --upgrade
+<span class="c1"># Successfully installed numpy-1.22.3</span>
 
 <span class="c1"># Install Jupyter py modules</span>
 pip3 install traitlets
-<span class="c1"># chec traitlets version &gt;= 5.1.1</span>
+<span class="c1"># check traitlets version &gt;= 5.1.1</span>
+<span class="c1"># OUTPUT: Successfully installed traitlets-5.1.1</span>
+
 pip3 install <span class="nv">pygments</span><span class="o">==</span><span class="m">2</span>.4.1
+<span class="c1"># the Docker image contains the version 2.3.1, which is lower than the one required by Jupyter</span>
+<span class="c1"># to successfully install the latest pygments, you have to specify the version</span>
+<span class="c1"># otherwise Pip will find a older version (why?)</span>
+
 pip3 install pyyaml
+<span class="c1"># check version 5.3.1</span>
+
 pip3 install bqplot
-pip3 install ipywidgets
+<span class="c1"># bqplot-0.12.33 (latest, see https://github.com/bqplot/bqplot/releases/)</span>
+
+pip3 install <span class="nv">ipywidgets</span><span class="o">==</span><span class="m">8</span>.0.0rc0
+<span class="c1"># latest is 8.0.0rc0, see https://ipywidgets.readthedocs.io/en/latest/</span>
 
 <span class="c1"># install Jupyter Notebook</span>
 pip3 install jupyter
@@ -224,15 +251,17 @@ pip3 install jupyter
 </div>
 <p>The project also requires some extensions, so Jupyter should be enabled for using them. What you need now is <code class="docutils literal notranslate"><span class="pre">nbextensions</span></code>, a … extension that enables to install other extensions (wooooooooooooooooooooooooow…):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 install jupyter_contrib_nbextensions
+<span class="c1"># jupyter-contrib-nbextensions-0.5.1</span>
+
 pip3 install jupyter_nbextensions_configurator
+<span class="c1"># version 0.4.1</span>
 
 jupyter contrib nbextension install
-<span class="c1"># the output from this command should be very long, but with no errors or warnings</span>
+<span class="c1"># the output from this command should be very long and &quot;colorful&quot;, but with no errors or warnings</span>
 </pre></div>
 </div>
 <p>Here are some extensions you should enable for running the project. Mainly two extensions. The frist one is <code class="docutils literal notranslate"><span class="pre">widgetsnbextension</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter nbextension <span class="nb">enable</span> --py widgetsnbextension
-
 <span class="c1"># the expected output is:</span>
 <span class="c1"># $$ jupyter nbextension enable --py widgetsnbextension</span>
 <span class="c1">#   Enabling notebook extension jupyter-js-widgets/extension...</span>
@@ -244,18 +273,24 @@ jupyter contrib nbextension install
 
 <span class="c1"># install jupyros</span>
 pip3 install jupyros
+<span class="c1"># Successfully installed jupyros-0.3.0</span>
 
 <span class="c1"># add Jupyros to Jupyter Notebook</span>
 jupyter nbextension <span class="nb">enable</span> --py --sys-prefix jupyros
-
 <span class="c1"># expected output from the last command:</span>
 <span class="c1"># $$ jupyter nbextension enable --py --sys-prefix jupyros</span>
 <span class="c1">#    Enabling notebook extension jupyter-ros/extension...</span>
 <span class="c1">#      - Validating: OK</span>
 </pre></div>
 </div>
-<p>Below is a script for launching Jupyter. It is dentical to the one in the repository (root folder of the pacakge.</p>
+<p>Below is a script for launching Jupyter, to run from inside the root folder of the package. It is dentical to the one in the repository (root folder of the pacakge). Notice that the script als launches the ROS1 master before launching Jupyter.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#! /bin/bash</span>
+
+<span class="nb">set</span> -e
+
+<span class="nb">source</span> /opt/ros/noetic/setup.bash
+<span class="nb">source</span> ../../devel/setup.bash
+roscore <span class="p">&amp;</span>
 
 <span class="nb">cd</span> /
 <span class="c1"># see https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator/issues/72</span>
@@ -288,22 +323,26 @@ Let’s suppose the workspace you’re using to install the project is <code cla
 <h3>First way - quick run<a class="headerlink" href="#first-way-quick-run" title="Permalink to this headline"></a></h3>
 <p>Let’s start both the simulation and the Jupyter Notebook containing the interface. Follow the steps below:</p>
 <ol class="arabic">
-<li><p>open a bash and run the ROS1 master: <code class="docutils literal notranslate"><span class="pre">roscore</span> <span class="pre">&amp;</span></code>. <em>Remember to source your workspace!</em></p></li>
+<li><p>open a bash and run the ROS1 master: <code class="docutils literal notranslate"><span class="pre">roscore</span> <span class="pre">&amp;</span></code>. <em>Remember to source your workspace!</em>.</p>
+<p><em>Notice that, if you use the script for running Jupyter inside the package, running the ROS master is not needed because the script itself launches the ROS1 master before starting Jupyter.</em></p>
+</li>
 <li><p>go inside the folder of the package and run Jupyter:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roscd rt2_assignment_2
+<span class="c1"># chmod +x ./run_jupyter.sh</span>
 ./run_jupyter.sh
 </pre></div>
 </div>
-<p>Note that the script must be run from inside the script folder, and the <code class="docutils literal notranslate"><span class="pre">src</span></code> folder of the workspace nust be not nested. Otherwise, consider to run manually Jupyter.</p>
-<p>If you’re opening Jupyter for the first time, the best is to set a password, so the next time it will be easier to use it.</p>
+<p>The script shall run from inside the script folder; <em>avoid nested folders in your <code class="docutils literal notranslate"><span class="pre">src</span></code> folder</em>.</p>
+<p>If you’re opening Jupyter for the first time, the best is to set an acces method with password, so the next time it will be easier to log in.</p>
 </li>
 <li><p>in another console (even directly in Jupyter Notebook) launch the project with the launch file <code class="docutils literal notranslate"><span class="pre">sim_jupyter.launch</span></code>.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>roslaunch rt2_assignment_2 sim_jupyter.launch
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># SOURCE YOUR WORKSPACE BEFORE!</span>
+roslaunch rt2_assignment_2 sim_jupyter.launch
 </pre></div>
 </div>
 </li>
 <li><p>Now everything should be running. Open the notebook you find inside the package, named <code class="docutils literal notranslate"><span class="pre">jupyter_interface_V2.ipynb</span></code> (see the folder JupyterNotebooks).</p>
-<p>I always use <em>Kernel -&gt; Restart &amp; Run All</em> to start all the blocks of the notebook.</p>
+<p>I often use to start all the blocks of the notebook with <em>Kernel -&gt; Restart &amp; Run All</em>.</p>
 </li>
 </ol>
 <p>Please refer to the infos inside the notebook. Have fun!</p>
@@ -319,11 +358,11 @@ Let’s suppose the workspace you’re using to install the project is <code cla
 <p>The project also wants to test two documentation systems:</p>
 <ul class="simple">
 <li><p><strong>Doxygen</strong> easy to use, stable, quick to use, with a handy GUI, but quite unflexible and generating a too much old style HTML documentation (welcome back to 90s!)</p></li>
-<li><p><strong>Sphinx</strong> enables to produce a nice documentation, flexible and extendable with not so much effort, but really painful to use, not stable, it has not a GUI, and uses the horrible reStructured format.</p></li>
+<li><p><strong>Sphinx</strong> enables to produce a nice documentation, flexible and extendable with not so much effort, but really painful to use, not stable, it has not a GUI, and uses the horrible reStructured format. <a class="reference external" href="https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/">Here</a> is an interesting article about Sphinx.</p></li>
 </ul>
 <div class="section" id="before-starting">
 <h2>Before starting<a class="headerlink" href="#before-starting" title="Permalink to this headline"></a></h2>
-<p>As always, in particular if you’re using the Docker image <a class="reference external" href="https://hub.docker.com/r/carms84/noetic_ros2">carms84/noetic_ros2</a>, enther Docker or Sphinx are installed. So, we have to install them. Luckily, both the frameworksa are quite easy to install: just copy andpaste some commands to the console.</p>
+<p>As always, in particular if you’re using the Docker image <a class="reference external" href="https://hub.docker.com/r/carms84/noetic_ros2">carms84/noetic_ros2</a>, either Docker or Sphinx aren’t installed. Luckily, both the frameworks are quite easy to install: just copy and paste some commands to the console.</p>
 <div class="section" id="dept-doxygen">
 <h3>DEPT – Doxygen<a class="headerlink" href="#dept-doxygen" title="Permalink to this headline"></a></h3>
 <p>Open a console and paste this command: (the command <code class="docutils literal notranslate"><span class="pre">-y</span></code> says to cautomatically confirm the installation)</p>
@@ -331,6 +370,7 @@ Let’s suppose the workspace you’re using to install the project is <code cla
 sudo apt-get install -y doxygen
 <span class="c1"># check your installation with the command </span>
 doxygen -v
+<span class="c1"># 1.8.17</span>
 
 <span class="c1"># and the GUI</span>
 sudo apt-get install -y doxygen-gui
@@ -345,21 +385,31 @@ doxywizard --help
 <p><em>THE EXTENSION ‘BREATHE’ OF SPHINX REQUIRES DOXYGEN: install it before proceed.</em></p>
 <p>Installing Sphinx s quite easy (<em>don’t trust it!</em>):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># the engine</span>
-sudo apt-get install -y python3-sphinx
+<span class="c1"># the following gives an issue (the repo is not up to date...)</span>
+<span class="c1">#    sudo apt-get install -y python3-sphinx</span>
+<span class="c1"># use this instead:</span>
+pip3 install <span class="nv">sphinx</span><span class="o">==</span><span class="m">4</span>.5.0
 
-<span class="c1"># check the installation (see troubleshooting in case of problems)</span>
+<span class="c1"># check the installation</span>
 sphinx-quickstart --version
+<span class="c1"># if it appears a Python exception like this:</span>
+<span class="c1"># ImportError: cannot import name &#39;contextfunction&#39; from &#39;jinja2&#39; (/usr/local/lib/python3.8/dist-packages/jinja2/__init__.py)</span>
+<span class="c1"># SEE THE TROUBLESHOOTING section</span>
 </pre></div>
 </div>
 <p>Let’s install also some useful extensions for Sphinx:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># breathe allows Sphinx to read the Doxygen XML documentation</span>
 pip3 install breathe
+<span class="c1"># see https://github.com/michaeljones/breathe/releases</span>
+<span class="c1"># latest is 4.33.1</span>
 
 <span class="c1"># this is a nice theme which recalls ReadTheDocs (a little bit worse than the orininal one)</span>
 pip3 install sphinx-rtd-theme
 
 <span class="c1"># this extension lets Sphinx to read the MD format</span>
 pip3 install myst-parser
+<span class="c1"># see https://myst-parser.readthedocs.io/en/latest/</span>
+<span class="c1"># latest is 0.17.2</span>
 </pre></div>
 </div>
 </div>
@@ -371,6 +421,7 @@ pip3 install myst-parser
 <li><p>go inside the package, folder <code class="docutils literal notranslate"><span class="pre">/docs</span></code>. Here’s a file labeled <code class="docutils literal notranslate"><span class="pre">Doxyfile</span></code> that is the configuration file. It is set to generate both the HTML documentation and the XML documentation inside the folder of the package <code class="docutils literal notranslate"><span class="pre">/docs/build/html</span></code>.</p></li>
 <li><p>I suggest to use <code class="docutils literal notranslate"><span class="pre">doxywizard</span></code>, open from there the configuration file and generate the documentation. Otherwise, you can simply call this from the shell:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>doxygen Doxyfile
+<span class="c1"># firefox ./build/html/index.html &amp;</span>
 </pre></div>
 </div>
 </li>
@@ -384,6 +435,7 @@ pip3 install myst-parser
 <li><p>go inside the folder <code class="docutils literal notranslate"><span class="pre">/docs</span></code> of the package</p></li>
 <li><p>launch this command in a shell:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./build_sphinx.sh
+<span class="c1"># firefox ./_build/html/index.html &amp;</span>
 </pre></div>
 </div>
 </li>
@@ -438,9 +490,28 @@ pip3 install myst-parser
 <li><p>created a folder <code class="docutils literal notranslate"><span class="pre">/docs/sphinx</span></code> which is going to collect the reST pages.</p></li>
 <li><p>Time to write some documentation! I started from the index page, which includes the README inside.</p></li>
 <li><p>As you can see in the folder <code class="docutils literal notranslate"><span class="pre">/docs/sphinx</span></code>, the documentation is divided into two main parts: the one referred to ROScpp nodes, and the other one referring to the Python scripts inside the project. Each of them have its index. The first step is to make clear the structure of the documentation, creating the reST pages.</p></li>
-<li><p>documentation of PY nodes with simple reST and autodoc</p></li>
-<li><p>documentation of C++ nodes with simple reST and breathe</p></li>
-<li><p><strong>build the documentation</strong> with a script.</p></li>
+<li><p>documentation of PY nodes with simple reST and autodoc</p>
+<p>See the pages inside <code class="docutils literal notranslate"><span class="pre">.../rts_2assignment_2/docs/sphinx/rospy-nodes</span></code>. Here the directive <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">automodule</span> <span class="pre">::</span></code> imports and generates the documentation from the Python scripts. Notice the instruction <code class="docutils literal notranslate"><span class="pre">sys.path.insert(</span> <span class="pre">0,</span> <span class="pre">os.path.abspath('./../scripts')</span> <span class="pre">)</span></code> inside the file <code class="docutils literal notranslate"><span class="pre">conf.py</span></code>: the extension <strong>Autodoc</strong> wouldn’t find the py files withut that.</p>
+</li>
+<li><p>documentation of C++ nodes with simple reST and breathe</p>
+<p>See the pages inside <code class="docutils literal notranslate"><span class="pre">.../rts_2assignment_2/docs/sphinx/roscpp-nodes</span></code>. The pages have a very simple structure: the directive <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">doxyfile</span> <span class="pre">::</span></code> reads the documentation attached to the C++ code through the XML documentation from Doxygen.</p>
+</li>
+<li><p><strong>build the documentation</strong> with a script.</p>
+<p>Notice that, since Sphinx runs from <code class="docutils literal notranslate"><span class="pre">.../rt2_assignment_2/docs</span></code> and not in the root folder of the package, due to a bug or something similar <em>Sphinx can’t see the README.md file there</em>. The scripts applies a workaround: the readme is copied inside the folder <code class="docutils literal notranslate"><span class="pre">/docs</span></code>, included in the documentation, and then deleted. Unfortunately Sphinx has some problems in catching the relative locations right now: this is a well known issue, with so many posts everywhere on the web, but no satisfying solution.</p>
+<p>Here’s the code inside the script for building the documentation with Sphinx:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#! /bin/bash</span>
+
+<span class="nb">source</span> ../../../devel/setup.bash
+
+cp ../README.md ./readme.md
+make clean
+make html
+rm readme.md
+
+<span class="c1"># firefox ./_build/html/index.html &amp;</span>
+</pre></div>
+</div>
+</li>
 </ol>
 </div>
 </div>
@@ -494,8 +565,8 @@ W: Some index files failed to download. They have been ignored, or old ones used
 sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
 
 <span class="c1"># now, update/upgrade</span>
-sudo apt-get update
-sudo apt-get upgrade
+sudo apt-get update -y
+sudo apt-get upgrade -y
 </pre></div>
 </div>
 <p>If you’re interested, here is the official post explaining this fact: <a class="reference external" href="https://discourse.ros.org/t/ros-gpg-key-expiration-incident/20669">ROS GPG Key Expiration Incident on ROS Discourse</a>. Another useful post: <a class="reference external" href="https://answers.ros.org/question/379190/apt-update-signatures-were-invalid-f42ed6fbab17c654/">apt update: signatures were invalid: F42ED6FBAB17C654 - ROS Answers: Open Source Q&amp;A Forum</a></p>
@@ -631,12 +702,12 @@ Traceback (most recent call last):
 ImportError: cannot import name &#39;contextfunction&#39; from &#39;jinja2&#39; (/usr/local/lib/python3.8/dist-packages/jinja2/__init__.py)
 </pre></div>
 </div>
-<p>As said <a class="reference external" href="https://github.com/readthedocs/readthedocs.org/issues/9037">in this post</a> sometimes happens that <code class="docutils literal notranslate"><span class="pre">pat-get</span></code> catches a old version of Sphinx, uncompatible with the current version of <em>Jinja2</em> (currently we’re at the release 3.1.1, see <a class="reference external" href="https://github.com/pallets/jinja/releases">the official page of Jinja2</a>).</p>
-<p>To solve the problem, you can easily upgrade Sphinx through <code class="docutils literal notranslate"><span class="pre">pip</span></code> as follows: (see <a class="reference external" href="https://linuxtut.com/en/304bf660468ea4a0e90e/">this page</a>)</p>
+<p>As said <a class="reference external" href="https://github.com/readthedocs/readthedocs.org/issues/9037">in this post</a> sometimes happens that <code class="docutils literal notranslate"><span class="pre">pat-get</span></code> catches a old version of Sphinx build, uncompatible with the latest version of <em>Jinja2</em> (currently the latest release is 3.1.1, see <a class="reference external" href="https://github.com/pallets/jinja/releases">the official page of Jinja2</a>).</p>
+<p>To solve the problem, you can easily upgrade Sphinx through <code class="docutils literal notranslate"><span class="pre">pip3</span></code> as follows: (see <a class="reference external" href="https://linuxtut.com/en/304bf660468ea4a0e90e/">this page</a>)</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip3 install --upgrade sphinx
 </pre></div>
 </div>
-<p>It should fix that. After that, check the installation: it should appear on the screen the version when you try to run <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code>. This:</p>
+<p>It should fix that. After, check the installation: it should appear on the screen the version when you try to run <code class="docutils literal notranslate"><span class="pre">sphinx-quickstart</span></code>. This:</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>$$ sphinx-quickstart --version
 sphinx-quickstart 1.8.5
 </pre></div>
@@ -654,8 +725,10 @@ sphinx-quickstart 1.8.5
 <h1>See also<a class="headerlink" href="#see-also" title="Permalink to this headline"></a></h1>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action">programmatoroSeduto/rt2_assignment1 on GitHub</a></p></li>
-<li><p><a class="reference external" href="https://github.com/CarmineD8/rt2_assignment1">CarmsD8/rt2_assignment1 on GitHub</a></p></li>
+<li><p><a class="reference external" href="https://github.com/CarmineD8/rt2_assignment1">CarmineD8/rt2_assignment1 on GitHub</a></p></li>
 <li><p><a class="reference external" href="https://github.com/CarmineD8/pioneer_ctrl">CarmineD8/pioneer_ctrl on GitHub</a></p></li>
+<li><p><a class="reference external" href="https://hub.docker.com/r/carms84/noetic_ros2">carms84/noetic_ros2 Docker image</a></p></li>
+<li><p><a class="reference external" href="https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/">Clear, Functional C++ Documentation with Sphinx + Breathe + Doxygen + CMake</a></p></li>
 </ul>
 </div>
 

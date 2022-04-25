@@ -13,18 +13,22 @@
 <codeline></codeline>
 <codeline><highlight class="normal">&gt;<sp/>Compatible<sp/>With:</highlight></codeline>
 <codeline><highlight class="normal">&gt;<sp/>-<sp/>ROS1<sp/>noetic</highlight></codeline>
+<codeline><highlight class="normal">&gt;<sp/></highlight></codeline>
+<codeline><highlight class="normal">&gt;<sp/>Previous<sp/>version<sp/>of<sp/>this<sp/>project:</highlight></codeline>
+<codeline><highlight class="normal">&gt;<sp/>-<sp/>[programmatoroSeduto/rt2_assignment1<sp/>on<sp/>GitHub](https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action)<sp/>branch<sp/>*action*</highlight></codeline>
+<codeline><highlight class="normal">&gt;<sp/>-<sp/>[CarmineD8/rt2_assignment1<sp/>on<sp/>GitHub](https://github.com/CarmineD8/rt2_assignment1)<sp/>the<sp/>very<sp/>first<sp/>version</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">![cover](/docs/img/cover-jup.png)</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>What<sp/>is<sp/>this?</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">This<sp/>is<sp/>another<sp/>update<sp/>of<sp/>the<sp/>project<sp/>in<sp/>this<sp/>repository:<sp/><sp/>[programmatoroSeduto/rt2_assignment1<sp/>on<sp/>GitHub](https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action),<sp/>branch<sp/>*action*.<sp/>The<sp/>main<sp/>drawback<sp/>of<sp/>the<sp/>previous<sp/>version<sp/>of<sp/>the<sp/>project<sp/>lies<sp/>in<sp/>the<sp/>complete<sp/>lack<sp/>of<sp/>a<sp/>*user<sp/>interface*<sp/>allowing<sp/>to<sp/>make<sp/>the<sp/>user<sp/>aware<sp/>of<sp/>the<sp/>status<sp/>of<sp/>the<sp/>robot,<sp/>as<sp/>well<sp/>as<sp/>to<sp/>drive<sp/>the<sp/>robot.<sp/></highlight></codeline>
+<codeline><highlight class="normal">Yet<sp/>another<sp/>&quot;upgrade&quot;<sp/>of<sp/>the<sp/>project<sp/>from:<sp/><sp/>[programmatoroSeduto/rt2_assignment1<sp/>on<sp/>GitHub](https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action);<sp/>see<sp/>the<sp/>branch<sp/>*action*.<sp/>The<sp/>main<sp/>drawback<sp/>of<sp/>that<sp/>lies<sp/>in<sp/>the<sp/>complete<sp/>lack<sp/>of<sp/>a<sp/>*user<sp/>interface*<sp/>allowing<sp/>to<sp/>make<sp/>the<sp/>user<sp/>aware<sp/>of<sp/>the<sp/>status<sp/>of<sp/>the<sp/>robot,<sp/>as<sp/>well<sp/>as<sp/>to<sp/>drive<sp/>the<sp/>robot.<sp/></highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">Here<sp/>a<sp/>user<sp/>interface<sp/>is<sp/>provided<sp/>using<sp/>Jupyter<sp/>and<sp/>MatPlotLib.<sp/>Compared<sp/>to<sp/>the<sp/>original<sp/>project,<sp/>the<sp/>code<sp/>has<sp/>been<sp/>some<sp/>little<sp/>updates:<sp/>the<sp/>most<sp/>of<sp/>the<sp/>work<sp/>has<sp/>been<sp/>done<sp/>on<sp/>the<sp/>Jupyter<sp/>notebooks.<sp/></highlight></codeline>
+<codeline><highlight class="normal">This<sp/>is<sp/>exactly<sp/>the<sp/>purpose<sp/>of<sp/>this<sp/>update:<sp/>here<sp/>a<sp/>user<sp/>interface<sp/>is<sp/>provided,<sp/>using<sp/>Jupyter<sp/>and<sp/>MatPlotLib.<sp/>The<sp/>most<sp/>of<sp/>the<sp/>work<sp/>has<sp/>been<sp/>done<sp/>on<sp/>the<sp/>Jupyter<sp/>notebooks,<sp/>with<sp/>some<sp/>small<sp/>changes<sp/>on<sp/>the<sp/>nodes<sp/>of<sp/>the<sp/>original<sp/>architecture.<sp/>See<sp/>the<sp/>Jupyter<sp/>Notebook<sp/>[jupyter_interface_V2](https://github.com/programmatoroSeduto/rt2_assignment_2/blob/main/JupyterNotebooks/jupyter_interface_V2.ipynb)<sp/>for<sp/>further<sp/>informations.<sp/></highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">###<sp/>Differences<sp/>from<sp/>the<sp/>previous<sp/>version</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">In<sp/>order<sp/>to<sp/>support<sp/>the<sp/>implementation<sp/>on<sp/>Jupyter,<sp/>some<sp/>things<sp/>have<sp/>been<sp/>changed.<sp/>See<sp/>the<sp/>Jupyter<sp/>Notebook<sp/>for<sp/>further<sp/>details.<sp/></highlight></codeline>
+<codeline><highlight class="normal">In<sp/>order<sp/>to<sp/>support<sp/>the<sp/>implementation<sp/>on<sp/>Jupyter,<sp/>some<sp/>things<sp/>have<sp/>been<sp/>changed.<sp/>Here<sp/>is<sp/>a<sp/>brief<sp/>summary<sp/>of<sp/>this<sp/>work:</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">-<sp/>no<sp/>changes<sp/>in<sp/>`position_service.cpp`</highlight></codeline>
 <codeline></codeline>
@@ -34,11 +38,11 @@
 <codeline></codeline>
 <codeline><highlight class="normal">-<sp/>the<sp/>node<sp/>`go_to_point.py`<sp/>now<sp/>publishes<sp/>the<sp/>command<sp/>twist<sp/>on<sp/>two<sp/>topics:<sp/>`/cmd_vel`<sp/>as<sp/>before,<sp/>and<sp/>`/current_cmd_vel`<sp/>read<sp/>by<sp/>the<sp/>Jupyter<sp/>notebook.<sp/>This<sp/>topic<sp/>is<sp/>needed<sp/>for<sp/>visualizing<sp/>the<sp/>commanc<sp/>currently<sp/>given<sp/>to<sp/>the<sp/>robot<sp/>in<sp/>a<sp/>graph.<sp/></highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">-<sp/>the<sp/>old<sp/>node<sp/>`user_interface.py`<sp/>were<sp/>replaced<sp/>by<sp/>the<sp/>new<sp/>implementation<sp/>`jupyter_user_interface.py`<sp/>providing<sp/>a<sp/>service<sp/>for<sp/>switching<sp/>on/off<sp/>the<sp/>random<sp/>behaviour.<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>the<sp/>old<sp/>node<sp/>`user_interface.py`<sp/>has<sp/>been<sp/>replaced<sp/>by<sp/>the<sp/>new<sp/>implementation<sp/>`jupyter_user_interface.py`<sp/>providing<sp/>a<sp/>service<sp/>for<sp/>switching<sp/>on/off<sp/>the<sp/>random<sp/>behaviour.<sp/></highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">###<sp/>Structure<sp/>of<sp/>the<sp/>repository</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">This<sp/>repository<sp/>contains<sp/>a<sp/>package<sp/>to<sp/>install<sp/>in<sp/>a<sp/>ROS1<sp/>workspace.<sp/>Here<sp/>is<sp/>the<sp/>main<sp/>elements<sp/>in<sp/>the<sp/>package:</highlight></codeline>
+<codeline><highlight class="normal">This<sp/>repository<sp/>contains<sp/>a<sp/>package<sp/>that<sp/>can<sp/>be<sp/>installed<sp/>directly<sp/>in<sp/>whatever<sp/>ROS1<sp/>workspace<sp/>you<sp/>like.<sp/>Here<sp/>is<sp/>the<sp/>main<sp/>elements<sp/>in<sp/>the<sp/>package:</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">```</highlight></codeline>
 <codeline><highlight class="normal">/rt2_assignment_2</highlight></codeline>
@@ -103,23 +107,45 @@
 <codeline></codeline>
 <codeline><highlight class="normal">```bash</highlight></codeline>
 <codeline><highlight class="normal">#<sp/>before<sp/>starting,<sp/>make<sp/>sure<sp/>everything<sp/>is<sp/>updated/upgraded</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>see<sp/>troubleshooting<sp/>if<sp/>you&apos;re<sp/>using<sp/>the<sp/>Docker<sp/>image</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/>see<sp/>troubleshooting<sp/>if<sp/>you&apos;re<sp/>using<sp/>the<sp/>Docker<sp/>image</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>sudo<sp/>apt<sp/>update<sp/>-y</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>sudo<sp/>apt<sp/>upgrade<sp/>-y</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>you<sp/>need<sp/>pip!</highlight></codeline>
 <codeline><highlight class="normal">#<sp/>sudo<sp/>apt-get<sp/>install<sp/>pip</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>--help</highlight></codeline>
+<codeline><highlight class="normal">pip3<sp/>--version</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>pip<sp/>20.0.2<sp/>from<sp/>/usr/lib/python3/dist-packages/pip<sp/>(python<sp/>3.8)</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>Jupyter<sp/>is<sp/>a<sp/>web<sp/>app,<sp/>so<sp/>a<sp/>browser<sp/>is<sp/>needed</highlight></codeline>
 <codeline><highlight class="normal">#<sp/>sudo<sp/>apt-get<sp/>install<sp/>firefox<sp/></highlight></codeline>
-<codeline><highlight class="normal">firefox<sp/>--help</highlight></codeline>
+<codeline><highlight class="normal">firefox<sp/>--version</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Mozilla<sp/>Firefox<sp/>99.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>suggested<sp/>(not<sp/>necessary)</highlight></codeline>
+<codeline><highlight class="normal">pip3<sp/>install<sp/>jinja2==3.1.1</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Successfully<sp/>installed<sp/>MarkupSafe-2.1.1<sp/>jinja2-3.1.1</highlight></codeline>
+<codeline><highlight class="normal">pip3<sp/>install<sp/>numpy<sp/>--upgrade</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Successfully<sp/>installed<sp/>numpy-1.22.3</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>Install<sp/>Jupyter<sp/>py<sp/>modules</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>traitlets</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>chec<sp/>traitlets<sp/>version<sp/>&gt;=<sp/>5.1.1</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>check<sp/>traitlets<sp/>version<sp/>&gt;=<sp/>5.1.1</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>OUTPUT:<sp/>Successfully<sp/>installed<sp/>traitlets-5.1.1</highlight></codeline>
+<codeline></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>pygments==2.4.1</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>the<sp/>Docker<sp/>image<sp/>contains<sp/>the<sp/>version<sp/>2.3.1,<sp/>which<sp/>is<sp/>lower<sp/>than<sp/>the<sp/>one<sp/>required<sp/>by<sp/>Jupyter</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>to<sp/>successfully<sp/>install<sp/>the<sp/>latest<sp/>pygments,<sp/>you<sp/>have<sp/>to<sp/>specify<sp/>the<sp/>version</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>otherwise<sp/>Pip<sp/>will<sp/>find<sp/>a<sp/>older<sp/>version<sp/>(why?)</highlight></codeline>
+<codeline></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>pyyaml</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>check<sp/>version<sp/>5.3.1</highlight></codeline>
+<codeline></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>bqplot</highlight></codeline>
-<codeline><highlight class="normal">pip3<sp/>install<sp/>ipywidgets</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>bqplot-0.12.33<sp/>(latest,<sp/>see<sp/>https://github.com/bqplot/bqplot/releases/)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">pip3<sp/>install<sp/>ipywidgets==8.0.0rc0</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>latest<sp/>is<sp/>8.0.0rc0,<sp/>see<sp/>https://ipywidgets.readthedocs.io/en/latest/</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>install<sp/>Jupyter<sp/>Notebook</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>jupyter</highlight></codeline>
@@ -129,17 +155,19 @@
 <codeline></codeline>
 <codeline><highlight class="normal">```bash</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>jupyter_contrib_nbextensions</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>jupyter-contrib-nbextensions-0.5.1</highlight></codeline>
+<codeline></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>jupyter_nbextensions_configurator</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>version<sp/>0.4.1</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">jupyter<sp/>contrib<sp/>nbextension<sp/>install</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>the<sp/>output<sp/>from<sp/>this<sp/>command<sp/>should<sp/>be<sp/>very<sp/>long,<sp/>but<sp/>with<sp/>no<sp/>errors<sp/>or<sp/>warnings</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>the<sp/>output<sp/>from<sp/>this<sp/>command<sp/>should<sp/>be<sp/>very<sp/>long<sp/>and<sp/>&quot;colorful&quot;,<sp/>but<sp/>with<sp/>no<sp/>errors<sp/>or<sp/>warnings</highlight></codeline>
 <codeline><highlight class="normal">```</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">Here<sp/>are<sp/>some<sp/>extensions<sp/>you<sp/>should<sp/>enable<sp/>for<sp/>running<sp/>the<sp/>project.<sp/>Mainly<sp/>two<sp/>extensions.<sp/>The<sp/>frist<sp/>one<sp/>is<sp/>`widgetsnbextension`:</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">```bash</highlight></codeline>
 <codeline><highlight class="normal">jupyter<sp/>nbextension<sp/>enable<sp/>--py<sp/>widgetsnbextension</highlight></codeline>
-<codeline></codeline>
 <codeline><highlight class="normal">#<sp/>the<sp/>expected<sp/>output<sp/>is:</highlight></codeline>
 <codeline><highlight class="normal">#<sp/>$$<sp/>jupyter<sp/>nbextension<sp/>enable<sp/>--py<sp/>widgetsnbextension</highlight></codeline>
 <codeline><highlight class="normal">#<sp/><sp/><sp/>Enabling<sp/>notebook<sp/>extension<sp/>jupyter-js-widgets/extension...</highlight></codeline>
@@ -153,20 +181,26 @@
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>install<sp/>jupyros</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>jupyros</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Successfully<sp/>installed<sp/>jupyros-0.3.0</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>add<sp/>Jupyros<sp/>to<sp/>Jupyter<sp/>Notebook</highlight></codeline>
 <codeline><highlight class="normal">jupyter<sp/>nbextension<sp/>enable<sp/>--py<sp/>--sys-prefix<sp/>jupyros</highlight></codeline>
-<codeline></codeline>
 <codeline><highlight class="normal">#<sp/>expected<sp/>output<sp/>from<sp/>the<sp/>last<sp/>command:</highlight></codeline>
 <codeline><highlight class="normal">#<sp/>$$<sp/>jupyter<sp/>nbextension<sp/>enable<sp/>--py<sp/>--sys-prefix<sp/>jupyros</highlight></codeline>
 <codeline><highlight class="normal">#<sp/><sp/><sp/><sp/>Enabling<sp/>notebook<sp/>extension<sp/>jupyter-ros/extension...</highlight></codeline>
 <codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>Validating:<sp/>OK</highlight></codeline>
 <codeline><highlight class="normal">```</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">Below<sp/>is<sp/>a<sp/>script<sp/>for<sp/>launching<sp/>Jupyter.<sp/>It<sp/>is<sp/>dentical<sp/>to<sp/>the<sp/>one<sp/>in<sp/>the<sp/>repository<sp/>(root<sp/>folder<sp/>of<sp/>the<sp/>pacakge.<sp/></highlight></codeline>
+<codeline><highlight class="normal">Below<sp/>is<sp/>a<sp/>script<sp/>for<sp/>launching<sp/>Jupyter,<sp/>to<sp/>run<sp/>from<sp/>inside<sp/>the<sp/>root<sp/>folder<sp/>of<sp/>the<sp/>package.<sp/>It<sp/>is<sp/>dentical<sp/>to<sp/>the<sp/>one<sp/>in<sp/>the<sp/>repository<sp/>(root<sp/>folder<sp/>of<sp/>the<sp/>pacakge).<sp/>Notice<sp/>that<sp/>the<sp/>script<sp/>als<sp/>launches<sp/>the<sp/>ROS1<sp/>master<sp/>before<sp/>launching<sp/>Jupyter.<sp/></highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">```bash</highlight></codeline>
 <codeline><highlight class="normal">#!<sp/>/bin/bash</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">set<sp/>-e</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">source<sp/>/opt/ros/noetic/setup.bash</highlight></codeline>
+<codeline><highlight class="normal">source<sp/>../../devel/setup.bash</highlight></codeline>
+<codeline><highlight class="normal">roscore<sp/>&amp;</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">cd<sp/>/</highlight></codeline>
 <codeline><highlight class="normal">#<sp/>see<sp/>https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator/issues/72</highlight></codeline>
@@ -200,28 +234,32 @@
 <codeline></codeline>
 <codeline><highlight class="normal">Let&apos;s<sp/>start<sp/>both<sp/>the<sp/>simulation<sp/>and<sp/>the<sp/>Jupyter<sp/>Notebook<sp/>containing<sp/>the<sp/>interface.<sp/>Follow<sp/>the<sp/>steps<sp/>below:</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">1.<sp/>open<sp/>a<sp/>bash<sp/>and<sp/>run<sp/>the<sp/>ROS1<sp/>master:<sp/>`roscore<sp/>&amp;`.<sp/>*Remember<sp/>to<sp/>source<sp/>your<sp/>workspace!*</highlight></codeline>
+<codeline><highlight class="normal">1.<sp/>open<sp/>a<sp/>bash<sp/>and<sp/>run<sp/>the<sp/>ROS1<sp/>master:<sp/>`roscore<sp/>&amp;`.<sp/>*Remember<sp/>to<sp/>source<sp/>your<sp/>workspace!*.<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>*Notice<sp/>that,<sp/>if<sp/>you<sp/>use<sp/>the<sp/>script<sp/>for<sp/>running<sp/>Jupyter<sp/>inside<sp/>the<sp/>package,<sp/>running<sp/>the<sp/>ROS<sp/>master<sp/>is<sp/>not<sp/>needed<sp/>because<sp/>the<sp/>script<sp/>itself<sp/>launches<sp/>the<sp/>ROS1<sp/>master<sp/>before<sp/>starting<sp/>Jupyter.*</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline><highlight class="normal">2.<sp/>go<sp/>inside<sp/>the<sp/>folder<sp/>of<sp/>the<sp/>package<sp/>and<sp/>run<sp/>Jupyter:</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>```bash</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>roscd<sp/>rt2_assignment_2</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>chmod<sp/>+x<sp/>./run_jupyter.sh</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>./run_jupyter.sh</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>```</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Note<sp/>that<sp/>the<sp/>script<sp/>must<sp/>be<sp/>run<sp/>from<sp/>inside<sp/>the<sp/>script<sp/>folder,<sp/>and<sp/>the<sp/>`src`<sp/>folder<sp/>of<sp/>the<sp/>workspace<sp/>nust<sp/>be<sp/>not<sp/>nested.<sp/>Otherwise,<sp/>consider<sp/>to<sp/>run<sp/>manually<sp/>Jupyter.<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>The<sp/>script<sp/>shall<sp/>run<sp/>from<sp/>inside<sp/>the<sp/>script<sp/>folder;<sp/>*avoid<sp/>nested<sp/>folders<sp/>in<sp/>your<sp/>`src`<sp/>folder*.<sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>If<sp/>you&apos;re<sp/>opening<sp/>Jupyter<sp/>for<sp/>the<sp/>first<sp/>time,<sp/>the<sp/>best<sp/>is<sp/>to<sp/>set<sp/>a<sp/>password,<sp/>so<sp/>the<sp/>next<sp/>time<sp/>it<sp/>will<sp/>be<sp/>easier<sp/>to<sp/>use<sp/>it.<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>If<sp/>you&apos;re<sp/>opening<sp/>Jupyter<sp/>for<sp/>the<sp/>first<sp/>time,<sp/>the<sp/>best<sp/>is<sp/>to<sp/>set<sp/>an<sp/>acces<sp/>method<sp/>with<sp/>password,<sp/>so<sp/>the<sp/>next<sp/>time<sp/>it<sp/>will<sp/>be<sp/>easier<sp/>to<sp/>log<sp/>in.<sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline><highlight class="normal">3.<sp/>in<sp/>another<sp/>console<sp/>(even<sp/>directly<sp/>in<sp/>Jupyter<sp/>Notebook)<sp/>launch<sp/>the<sp/>project<sp/>with<sp/>the<sp/>launch<sp/>file<sp/>`sim_jupyter.launch`.<sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>```bash</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>SOURCE<sp/>YOUR<sp/>WORKSPACE<sp/>BEFORE!</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>roslaunch<sp/>rt2_assignment_2<sp/>sim_jupyter.launch</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>```</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline><highlight class="normal">4.<sp/>Now<sp/>everything<sp/>should<sp/>be<sp/>running.<sp/>Open<sp/>the<sp/>notebook<sp/>you<sp/>find<sp/>inside<sp/>the<sp/>package,<sp/>named<sp/>`jupyter_interface_V2.ipynb`<sp/>(see<sp/>the<sp/>folder<sp/>JupyterNotebooks).<sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>I<sp/>always<sp/>use<sp/>*Kernel<sp/>-&gt;<sp/>Restart<sp/>&amp;<sp/>Run<sp/>All*<sp/>to<sp/>start<sp/>all<sp/>the<sp/>blocks<sp/>of<sp/>the<sp/>notebook.</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>I<sp/>often<sp/>use<sp/>to<sp/>start<sp/>all<sp/>the<sp/>blocks<sp/>of<sp/>the<sp/>notebook<sp/>with<sp/>*Kernel<sp/>-&gt;<sp/>Restart<sp/>&amp;<sp/>Run<sp/>All*.</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline><highlight class="normal">Please<sp/>refer<sp/>to<sp/>the<sp/>infos<sp/>inside<sp/>the<sp/>notebook.<sp/>Have<sp/>fun!</highlight></codeline>
 <codeline></codeline>
@@ -234,11 +272,11 @@
 <codeline><highlight class="normal">The<sp/>project<sp/>also<sp/>wants<sp/>to<sp/>test<sp/>two<sp/>documentation<sp/>systems:</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">-<sp/>**Doxygen**<sp/>easy<sp/>to<sp/>use,<sp/>stable,<sp/>quick<sp/>to<sp/>use,<sp/>with<sp/>a<sp/>handy<sp/>GUI,<sp/>but<sp/>quite<sp/>unflexible<sp/>and<sp/>generating<sp/>a<sp/>too<sp/>much<sp/>old<sp/>style<sp/>HTML<sp/>documentation<sp/>(welcome<sp/>back<sp/>to<sp/>90s!)</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>**Sphinx**<sp/>enables<sp/>to<sp/>produce<sp/>a<sp/>nice<sp/>documentation,<sp/>flexible<sp/>and<sp/>extendable<sp/>with<sp/>not<sp/>so<sp/>much<sp/>effort,<sp/>but<sp/>really<sp/>painful<sp/>to<sp/>use,<sp/>not<sp/>stable,<sp/>it<sp/>has<sp/>not<sp/>a<sp/>GUI,<sp/>and<sp/>uses<sp/>the<sp/>horrible<sp/>reStructured<sp/>format.<sp/></highlight></codeline>
+<codeline><highlight class="normal">-<sp/>**Sphinx**<sp/>enables<sp/>to<sp/>produce<sp/>a<sp/>nice<sp/>documentation,<sp/>flexible<sp/>and<sp/>extendable<sp/>with<sp/>not<sp/>so<sp/>much<sp/>effort,<sp/>but<sp/>really<sp/>painful<sp/>to<sp/>use,<sp/>not<sp/>stable,<sp/>it<sp/>has<sp/>not<sp/>a<sp/>GUI,<sp/>and<sp/>uses<sp/>the<sp/>horrible<sp/>reStructured<sp/>format.<sp/>[Here](https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/)<sp/>is<sp/>an<sp/>interesting<sp/>article<sp/>about<sp/>Sphinx.<sp/></highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>Before<sp/>starting</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">As<sp/>always,<sp/>in<sp/>particular<sp/>if<sp/>you&apos;re<sp/>using<sp/>the<sp/>Docker<sp/>image<sp/>[carms84/noetic_ros2](https://hub.docker.com/r/carms84/noetic_ros2),<sp/>enther<sp/>Docker<sp/>or<sp/>Sphinx<sp/>are<sp/>installed.<sp/>So,<sp/>we<sp/>have<sp/>to<sp/>install<sp/>them.<sp/>Luckily,<sp/>both<sp/>the<sp/>frameworksa<sp/>are<sp/>quite<sp/>easy<sp/>to<sp/>install:<sp/>just<sp/>copy<sp/>andpaste<sp/>some<sp/>commands<sp/>to<sp/>the<sp/>console.<sp/></highlight></codeline>
+<codeline><highlight class="normal">As<sp/>always,<sp/>in<sp/>particular<sp/>if<sp/>you&apos;re<sp/>using<sp/>the<sp/>Docker<sp/>image<sp/>[carms84/noetic_ros2](https://hub.docker.com/r/carms84/noetic_ros2),<sp/>either<sp/>Docker<sp/>or<sp/>Sphinx<sp/>aren&apos;t<sp/>installed.<sp/>Luckily,<sp/>both<sp/>the<sp/>frameworks<sp/>are<sp/>quite<sp/>easy<sp/>to<sp/>install:<sp/>just<sp/>copy<sp/>and<sp/>paste<sp/>some<sp/>commands<sp/>to<sp/>the<sp/>console.<sp/></highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">###<sp/>DEPT<sp/>--<sp/>Doxygen</highlight></codeline>
 <codeline></codeline>
@@ -249,6 +287,7 @@
 <codeline><highlight class="normal">sudo<sp/>apt-get<sp/>install<sp/>-y<sp/>doxygen</highlight></codeline>
 <codeline><highlight class="normal">#<sp/>check<sp/>your<sp/>installation<sp/>with<sp/>the<sp/>command<sp/></highlight></codeline>
 <codeline><highlight class="normal">doxygen<sp/>-v</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>1.8.17</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>and<sp/>the<sp/>GUI</highlight></codeline>
 <codeline><highlight class="normal">sudo<sp/>apt-get<sp/>install<sp/>-y<sp/>doxygen-gui</highlight></codeline>
@@ -265,22 +304,32 @@
 <codeline></codeline>
 <codeline><highlight class="normal">```bash</highlight></codeline>
 <codeline><highlight class="normal">#<sp/>the<sp/>engine</highlight></codeline>
-<codeline><highlight class="normal">sudo<sp/>apt-get<sp/>install<sp/>-y<sp/>python3-sphinx</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>the<sp/>following<sp/>gives<sp/>an<sp/>issue<sp/>(the<sp/>repo<sp/>is<sp/>not<sp/>up<sp/>to<sp/>date...)</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/>sudo<sp/>apt-get<sp/>install<sp/>-y<sp/>python3-sphinx</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>use<sp/>this<sp/>instead:</highlight></codeline>
+<codeline><highlight class="normal">pip3<sp/>install<sp/>sphinx==4.5.0</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">#<sp/>check<sp/>the<sp/>installation<sp/>(see<sp/>troubleshooting<sp/>in<sp/>case<sp/>of<sp/>problems)</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>check<sp/>the<sp/>installation</highlight></codeline>
 <codeline><highlight class="normal">sphinx-quickstart<sp/>--version</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>if<sp/>it<sp/>appears<sp/>a<sp/>Python<sp/>exception<sp/>like<sp/>this:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>ImportError:<sp/>cannot<sp/>import<sp/>name<sp/>&apos;contextfunction&apos;<sp/>from<sp/>&apos;jinja2&apos;<sp/>(/usr/local/lib/python3.8/dist-packages/jinja2/__init__.py)</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>SEE<sp/>THE<sp/>TROUBLESHOOTING<sp/>section</highlight></codeline>
 <codeline><highlight class="normal">```</highlight></codeline>
 <codeline><highlight class="normal">Let&apos;s<sp/>install<sp/>also<sp/>some<sp/>useful<sp/>extensions<sp/>for<sp/>Sphinx:</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">```bash</highlight></codeline>
 <codeline><highlight class="normal">#<sp/>breathe<sp/>allows<sp/>Sphinx<sp/>to<sp/>read<sp/>the<sp/>Doxygen<sp/>XML<sp/>documentation</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>breathe</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>see<sp/>https://github.com/michaeljones/breathe/releases</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>latest<sp/>is<sp/>4.33.1</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>this<sp/>is<sp/>a<sp/>nice<sp/>theme<sp/>which<sp/>recalls<sp/>ReadTheDocs<sp/>(a<sp/>little<sp/>bit<sp/>worse<sp/>than<sp/>the<sp/>orininal<sp/>one)</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>sphinx-rtd-theme</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>this<sp/>extension<sp/>lets<sp/>Sphinx<sp/>to<sp/>read<sp/>the<sp/>MD<sp/>format</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>myst-parser</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>see<sp/>https://myst-parser.readthedocs.io/en/latest/</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>latest<sp/>is<sp/>0.17.2</highlight></codeline>
 <codeline><highlight class="normal">```</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">##<sp/>How<sp/>to<sp/>generate<sp/>the<sp/>Doxygen<sp/>Documentation</highlight></codeline>
@@ -293,6 +342,7 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>```bash</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>doxygen<sp/>Doxyfile</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>firefox<sp/>./build/html/index.html<sp/>&amp;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>```</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">To<sp/>see<sp/>the<sp/>documentation,<sp/>go<sp/>inside<sp/>the<sp/>package,<sp/>sub<sp/>folder<sp/>`/docs/build/html`,<sp/>and<sp/>open<sp/>`index.html`<sp/>in<sp/>a<sp/>browser.<sp/></highlight></codeline>
@@ -307,6 +357,7 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>```bash</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>./build_sphinx.sh</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>firefox<sp/>./_build/html/index.html<sp/>&amp;</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>```</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">The<sp/>command<sp/>makes<sp/>the<sp/>documentation;<sp/>ignore<sp/>the<sp/>warnings<sp/>there.<sp/>Note<sp/>that<sp/>the<sp/>command<sp/>also<sp/>builds<sp/>the<sp/>Doxygen<sp/>documentation.<sp/></highlight></codeline>
@@ -358,7 +409,7 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Please<sp/>note<sp/>that<sp/>now<sp/>there<sp/>are<sp/>`build`<sp/>and<sp/>`_build`<sp/>inside<sp/>the<sp/>`docs`<sp/>folder.<sp/>The<sp/>first<sp/>one<sp/>will<sp/>contain<sp/>the<sp/>Doxygen<sp/>XML<sp/>documentation,<sp/>whereras<sp/>`_build`<sp/>is<sp/>going<sp/>to<sp/>host<sp/>the<sp/>Sphinx<sp/>verison<sp/>of<sp/>the<sp/>documentation.<sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline><highlight class="normal">2.<sp/>Before<sp/>starting<sp/>to<sp/>add<sp/>the<sp/>pages,<sp/>I<sp/>configured<sp/>the<sp/>builder<sp/>through<sp/>the<sp/>config<sp/>file<sp/>`config.py`.<sp/></highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline><highlight class="normal">3.<sp/>created<sp/>a<sp/>folder<sp/>`/docs/sphinx`<sp/>which<sp/>is<sp/>going<sp/>to<sp/>collect<sp/>the<sp/>reST<sp/>pages.<sp/></highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline><highlight class="normal">4.<sp/>Time<sp/>to<sp/>write<sp/>some<sp/>documentation!<sp/>I<sp/>started<sp/>from<sp/>the<sp/>index<sp/>page,<sp/>which<sp/>includes<sp/>the<sp/>README<sp/>inside.<sp/></highlight></codeline>
@@ -366,10 +417,31 @@
 <codeline><highlight class="normal">5.<sp/>As<sp/>you<sp/>can<sp/>see<sp/>in<sp/>the<sp/>folder<sp/>`/docs/sphinx`,<sp/>the<sp/>documentation<sp/>is<sp/>divided<sp/>into<sp/>two<sp/>main<sp/>parts:<sp/>the<sp/>one<sp/>referred<sp/>to<sp/>ROScpp<sp/>nodes,<sp/>and<sp/>the<sp/>other<sp/>one<sp/>referring<sp/>to<sp/>the<sp/>Python<sp/>scripts<sp/>inside<sp/>the<sp/>project.<sp/>Each<sp/>of<sp/>them<sp/>have<sp/>its<sp/>index.<sp/>The<sp/>first<sp/>step<sp/>is<sp/>to<sp/>make<sp/>clear<sp/>the<sp/>structure<sp/>of<sp/>the<sp/>documentation,<sp/>creating<sp/>the<sp/>reST<sp/>pages.<sp/></highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">6.<sp/>documentation<sp/>of<sp/>PY<sp/>nodes<sp/>with<sp/>simple<sp/>reST<sp/>and<sp/>autodoc</highlight></codeline>
-<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>See<sp/>the<sp/>pages<sp/>inside<sp/>`.../rts_2assignment_2/docs/sphinx/rospy-nodes`.<sp/>Here<sp/>the<sp/>directive<sp/>`..<sp/>automodule<sp/>::`<sp/>imports<sp/>and<sp/>generates<sp/>the<sp/>documentation<sp/>from<sp/>the<sp/>Python<sp/>scripts.<sp/>Notice<sp/>the<sp/>instruction<sp/>`sys.path.insert(<sp/>0,<sp/>os.path.abspath(&apos;./../scripts&apos;)<sp/>)`<sp/>inside<sp/>the<sp/>file<sp/>`conf.py`:<sp/>the<sp/>extension<sp/>**Autodoc**<sp/>wouldn&apos;t<sp/>find<sp/>the<sp/>py<sp/>files<sp/>withut<sp/>that.<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline><highlight class="normal">7.<sp/>documentation<sp/>of<sp/>C++<sp/>nodes<sp/>with<sp/>simple<sp/>reST<sp/>and<sp/>breathe</highlight></codeline>
-<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>See<sp/>the<sp/>pages<sp/>inside<sp/>`.../rts_2assignment_2/docs/sphinx/roscpp-nodes`.<sp/>The<sp/>pages<sp/>have<sp/>a<sp/>very<sp/>simple<sp/>structure:<sp/>the<sp/>directive<sp/>`..<sp/>doxyfile<sp/>::`<sp/>reads<sp/>the<sp/>documentation<sp/>attached<sp/>to<sp/>the<sp/>C++<sp/>code<sp/>through<sp/>the<sp/>XML<sp/>documentation<sp/>from<sp/>Doxygen.<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
 <codeline><highlight class="normal">8.<sp/>**build<sp/>the<sp/>documentation**<sp/>with<sp/>a<sp/>script.<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Notice<sp/>that,<sp/>since<sp/>Sphinx<sp/>runs<sp/>from<sp/>`.../rt2_assignment_2/docs`<sp/>and<sp/>not<sp/>in<sp/>the<sp/>root<sp/>folder<sp/>of<sp/>the<sp/>package,<sp/>due<sp/>to<sp/>a<sp/>bug<sp/>or<sp/>something<sp/>similar<sp/>*Sphinx<sp/>can&apos;t<sp/>see<sp/>the<sp/>README.md<sp/>file<sp/>there*.<sp/>The<sp/>scripts<sp/>applies<sp/>a<sp/>workaround:<sp/>the<sp/>readme<sp/>is<sp/>copied<sp/>inside<sp/>the<sp/>folder<sp/>`/docs`,<sp/>included<sp/>in<sp/>the<sp/>documentation,<sp/>and<sp/>then<sp/>deleted.<sp/>Unfortunately<sp/>Sphinx<sp/>has<sp/>some<sp/>problems<sp/>in<sp/>catching<sp/>the<sp/>relative<sp/>locations<sp/>right<sp/>now:<sp/>this<sp/>is<sp/>a<sp/>well<sp/>known<sp/>issue,<sp/>with<sp/>so<sp/>many<sp/>posts<sp/>everywhere<sp/>on<sp/>the<sp/>web,<sp/>but<sp/>no<sp/>satisfying<sp/>solution.<sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>Here&apos;s<sp/>the<sp/>code<sp/>inside<sp/>the<sp/>script<sp/>for<sp/>building<sp/>the<sp/>documentation<sp/>with<sp/>Sphinx:</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>```bash</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#!<sp/>/bin/bash</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>source<sp/>../../../devel/setup.bash</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>cp<sp/>../README.md<sp/>./readme.md</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>make<sp/>clean</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>make<sp/>html</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>rm<sp/>readme.md</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>#<sp/>firefox<sp/>./_build/html/index.html<sp/>&amp;</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>```</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>Troubleshooting</highlight></codeline>
 <codeline></codeline>
@@ -425,8 +497,8 @@
 <codeline><highlight class="normal">sudo<sp/>curl<sp/>-sSL<sp/>https://raw.githubusercontent.com/ros/rosdistro/master/ros.key<sp/>-o<sp/>/usr/share/keyrings/ros-archive-keyring.gpg</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>now,<sp/>update/upgrade</highlight></codeline>
-<codeline><highlight class="normal">sudo<sp/>apt-get<sp/>update</highlight></codeline>
-<codeline><highlight class="normal">sudo<sp/>apt-get<sp/>upgrade</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>apt-get<sp/>update<sp/>-y</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>apt-get<sp/>upgrade<sp/>-y</highlight></codeline>
 <codeline><highlight class="normal">```</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">If<sp/>you&apos;re<sp/>interested,<sp/>here<sp/>is<sp/>the<sp/>official<sp/>post<sp/>explaining<sp/>this<sp/>fact:<sp/>[ROS<sp/>GPG<sp/>Key<sp/>Expiration<sp/>Incident<sp/>on<sp/>ROS<sp/>Discourse](https://discourse.ros.org/t/ros-gpg-key-expiration-incident/20669).<sp/>Another<sp/>useful<sp/>post:<sp/>[apt<sp/>update:<sp/>signatures<sp/>were<sp/>invalid:<sp/>F42ED6FBAB17C654<sp/>-<sp/>ROS<sp/>Answers:<sp/>Open<sp/>Source<sp/>Q&amp;A<sp/>Forum](https://answers.ros.org/question/379190/apt-update-signatures-were-invalid-f42ed6fbab17c654/)</highlight></codeline>
@@ -582,15 +654,15 @@
 <codeline><highlight class="normal">ImportError:<sp/>cannot<sp/>import<sp/>name<sp/>&apos;contextfunction&apos;<sp/>from<sp/>&apos;jinja2&apos;<sp/>(/usr/local/lib/python3.8/dist-packages/jinja2/__init__.py)</highlight></codeline>
 <codeline><highlight class="normal">```</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">As<sp/>said<sp/>[in<sp/>this<sp/>post](https://github.com/readthedocs/readthedocs.org/issues/9037)<sp/>sometimes<sp/>happens<sp/>that<sp/>`pat-get`<sp/>catches<sp/>a<sp/>old<sp/>version<sp/>of<sp/>Sphinx,<sp/>uncompatible<sp/>with<sp/>the<sp/>current<sp/>version<sp/>of<sp/>*Jinja2*<sp/>(currently<sp/>we&apos;re<sp/>at<sp/>the<sp/>release<sp/>3.1.1,<sp/>see<sp/>[the<sp/>official<sp/>page<sp/>of<sp/>Jinja2](https://github.com/pallets/jinja/releases)).<sp/></highlight></codeline>
+<codeline><highlight class="normal">As<sp/>said<sp/>[in<sp/>this<sp/>post](https://github.com/readthedocs/readthedocs.org/issues/9037)<sp/>sometimes<sp/>happens<sp/>that<sp/>`pat-get`<sp/>catches<sp/>a<sp/>old<sp/>version<sp/>of<sp/>Sphinx<sp/>build,<sp/>uncompatible<sp/>with<sp/>the<sp/>latest<sp/>version<sp/>of<sp/>*Jinja2*<sp/>(currently<sp/>the<sp/>latest<sp/>release<sp/>is<sp/>3.1.1,<sp/>see<sp/>[the<sp/>official<sp/>page<sp/>of<sp/>Jinja2](https://github.com/pallets/jinja/releases)).<sp/></highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">To<sp/>solve<sp/>the<sp/>problem,<sp/>you<sp/>can<sp/>easily<sp/>upgrade<sp/>Sphinx<sp/>through<sp/>`pip`<sp/>as<sp/>follows:<sp/>(see<sp/>[this<sp/>page](https://linuxtut.com/en/304bf660468ea4a0e90e/))</highlight></codeline>
+<codeline><highlight class="normal">To<sp/>solve<sp/>the<sp/>problem,<sp/>you<sp/>can<sp/>easily<sp/>upgrade<sp/>Sphinx<sp/>through<sp/>`pip3`<sp/>as<sp/>follows:<sp/>(see<sp/>[this<sp/>page](https://linuxtut.com/en/304bf660468ea4a0e90e/))</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">```bash</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>--upgrade<sp/>sphinx</highlight></codeline>
 <codeline><highlight class="normal">````</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">It<sp/>should<sp/>fix<sp/>that.<sp/>After<sp/>that,<sp/>check<sp/>the<sp/>installation:<sp/>it<sp/>should<sp/>appear<sp/>on<sp/>the<sp/>screen<sp/>the<sp/>version<sp/>when<sp/>you<sp/>try<sp/>to<sp/>run<sp/>`sphinx-quickstart`.<sp/>This:</highlight></codeline>
+<codeline><highlight class="normal">It<sp/>should<sp/>fix<sp/>that.<sp/>After,<sp/>check<sp/>the<sp/>installation:<sp/>it<sp/>should<sp/>appear<sp/>on<sp/>the<sp/>screen<sp/>the<sp/>version<sp/>when<sp/>you<sp/>try<sp/>to<sp/>run<sp/>`sphinx-quickstart`.<sp/>This:</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">```</highlight></codeline>
 <codeline><highlight class="normal">$$<sp/>sphinx-quickstart<sp/>--version</highlight></codeline>
@@ -606,8 +678,10 @@
 <codeline><highlight class="normal">#<sp/>See<sp/>also</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">-<sp/>[programmatoroSeduto/rt2_assignment1<sp/>on<sp/>GitHub](https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action)</highlight></codeline>
-<codeline><highlight class="normal">-<sp/>[CarmsD8/rt2_assignment1<sp/>on<sp/>GitHub](https://github.com/CarmineD8/rt2_assignment1)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[CarmineD8/rt2_assignment1<sp/>on<sp/>GitHub](https://github.com/CarmineD8/rt2_assignment1)</highlight></codeline>
 <codeline><highlight class="normal">-<sp/>[CarmineD8/pioneer_ctrl<sp/>on<sp/>GitHub](https://github.com/CarmineD8/pioneer_ctrl)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[carms84/noetic_ros2<sp/>Docker<sp/>image](https://hub.docker.com/r/carms84/noetic_ros2)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[Clear,<sp/>Functional<sp/>C++<sp/>Documentation<sp/>with<sp/>Sphinx<sp/>+<sp/>Breathe<sp/>+<sp/>Doxygen<sp/>+<sp/>CMake](https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/)</highlight></codeline>
     </programlisting>
     <location file="readme.md"/>
   </compounddef>

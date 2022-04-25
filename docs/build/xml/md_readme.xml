@@ -8,7 +8,12 @@
     <detaileddescription>
 <para><emphasis>Francesco Ganci</emphasis> - 4143910 - 2021/2022</para>
 <para><blockquote><para>Compatible With:<itemizedlist>
-<listitem><para>ROS1 noetic </para>
+<listitem><para>ROS1 noetic</para>
+</listitem></itemizedlist>
+</para>
+<para>Previous version of this project:<itemizedlist>
+<listitem><para><ulink url="https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action">programmatoroSeduto/rt2_assignment1 on GitHub</ulink> branch <emphasis>action</emphasis></para>
+</listitem><listitem><para><ulink url="https://github.com/CarmineD8/rt2_assignment1">CarmineD8/rt2_assignment1 on GitHub</ulink> the very first version </para>
 </listitem></itemizedlist>
 </para>
 </blockquote></para>
@@ -16,23 +21,23 @@
 </para>
 <sect1 id="md_readme_1autotoc_md1">
 <title>What is this?</title>
-<para>This is another update of the project in this repository: <ulink url="https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action">programmatoroSeduto/rt2_assignment1 on GitHub</ulink>, branch <emphasis>action</emphasis>. The main drawback of the previous version of the project lies in the complete lack of a <emphasis>user interface</emphasis> allowing to make the user aware of the status of the robot, as well as to drive the robot.</para>
-<para>Here a user interface is provided using Jupyter and MatPlotLib. Compared to the original project, the code has been some little updates: the most of the work has been done on the Jupyter notebooks.</para>
+<para>Yet another &quot;upgrade&quot; of the project from: <ulink url="https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action">programmatoroSeduto/rt2_assignment1 on GitHub</ulink>; see the branch <emphasis>action</emphasis>. The main drawback of that lies in the complete lack of a <emphasis>user interface</emphasis> allowing to make the user aware of the status of the robot, as well as to drive the robot.</para>
+<para>This is exactly the purpose of this update: here a user interface is provided, using Jupyter and MatPlotLib. The most of the work has been done on the Jupyter notebooks, with some small changes on the nodes of the original architecture. See the Jupyter Notebook <ulink url="https://github.com/programmatoroSeduto/rt2_assignment_2/blob/main/JupyterNotebooks/jupyter_interface_V2.ipynb">jupyter_interface_V2</ulink> for further informations.</para>
 <sect2 id="md_readme_1autotoc_md2">
 <title>Differences from the previous version</title>
-<para>In order to support the implementation on Jupyter, some things have been changed. See the Jupyter Notebook for further details.</para>
+<para>In order to support the implementation on Jupyter, some things have been changed. Here is a brief summary of this work:</para>
 <para><itemizedlist>
 <listitem><para>no changes in <computeroutput><ref refid="position__service_8cpp" kindref="compound">position_service.cpp</ref></computeroutput></para>
 </listitem><listitem><para>created a new message type, <computeroutput>JupyterTargetInfo.msg</computeroutput>, containing a large set of informations about the status of the node <computeroutput><ref refid="state__machine_8cpp" kindref="compound">state_machine.cpp</ref></computeroutput></para>
 </listitem><listitem><para>the node <computeroutput><ref refid="state__machine_8cpp" kindref="compound">state_machine.cpp</ref></computeroutput> now publishes a message of type <computeroutput>JupyterTargetInfo</computeroutput> almost regularly, properly setting the fields depending on the state of the node. The message is employed by the graphical interface for the visuals.</para>
 </listitem><listitem><para>the node <computeroutput><ref refid="go__to__point_8py" kindref="compound">go_to_point.py</ref></computeroutput> now publishes the command twist on two topics: <computeroutput>/cmd_vel</computeroutput> as before, and <computeroutput>/current_cmd_vel</computeroutput> read by the Jupyter notebook. This topic is needed for visualizing the commanc currently given to the robot in a graph.</para>
-</listitem><listitem><para>the old node <computeroutput><ref refid="user__interface_8py" kindref="compound">user_interface.py</ref></computeroutput> were replaced by the new implementation <computeroutput><ref refid="jupyter__user__interface_8py" kindref="compound">jupyter_user_interface.py</ref></computeroutput> providing a service for switching on/off the random behaviour.</para>
+</listitem><listitem><para>the old node <computeroutput><ref refid="user__interface_8py" kindref="compound">user_interface.py</ref></computeroutput> has been replaced by the new implementation <computeroutput><ref refid="jupyter__user__interface_8py" kindref="compound">jupyter_user_interface.py</ref></computeroutput> providing a service for switching on/off the random behaviour.</para>
 </listitem></itemizedlist>
 </para>
 </sect2>
 <sect2 id="md_readme_1autotoc_md3">
 <title>Structure of the repository</title>
-<para>This repository contains a package to install in a ROS1 workspace. Here is the main elements in the package:</para>
+<para>This repository contains a package that can be installed directly in whatever ROS1 workspace you like. Here is the main elements in the package:</para>
 <para><programlisting><codeline><highlight class="normal">/rt2_assignment_2</highlight></codeline>
 <codeline><highlight class="normal">├──<sp/>JupyterNotebooks</highlight></codeline>
 <codeline><highlight class="normal">│  <sp/>└──<sp/>jupyter_interface_V2.ipynb<sp/><sp/>&lt;&gt;<sp/>the<sp/>user<sp/>interface</highlight></codeline>
@@ -81,37 +86,61 @@
 <title>DEPT – Jupyter Notebook and extensions</title>
 <para>Installing Jupyter Notebook is needed for running the user interface along with the ROS1 package. Here are the script to install it. <bold>Don&apos;t ignore the errors</bold>: I did put here some notes about the most common errors; in case you ignore the errors during the installation, the program won&apos;t work.</para>
 <para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>before<sp/>starting,<sp/>make<sp/>sure<sp/>everything<sp/>is<sp/>updated/upgraded</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>see<sp/>troubleshooting<sp/>if<sp/>you&apos;re<sp/>using<sp/>the<sp/>Docker<sp/>image</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/>see<sp/>troubleshooting<sp/>if<sp/>you&apos;re<sp/>using<sp/>the<sp/>Docker<sp/>image</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>sudo<sp/>apt<sp/>update<sp/>-y</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>sudo<sp/>apt<sp/>upgrade<sp/>-y</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>you<sp/>need<sp/>pip!</highlight></codeline>
 <codeline><highlight class="normal">#<sp/>sudo<sp/>apt-get<sp/>install<sp/>pip</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>--help</highlight></codeline>
+<codeline><highlight class="normal">pip3<sp/>--version</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>pip<sp/>20.0.2<sp/>from<sp/>/usr/lib/python3/dist-packages/pip<sp/>(python<sp/>3.8)</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>Jupyter<sp/>is<sp/>a<sp/>web<sp/>app,<sp/>so<sp/>a<sp/>browser<sp/>is<sp/>needed</highlight></codeline>
 <codeline><highlight class="normal">#<sp/>sudo<sp/>apt-get<sp/>install<sp/>firefox<sp/></highlight></codeline>
-<codeline><highlight class="normal">firefox<sp/>--help</highlight></codeline>
+<codeline><highlight class="normal">firefox<sp/>--version</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Mozilla<sp/>Firefox<sp/>99.0</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">#<sp/>suggested<sp/>(not<sp/>necessary)</highlight></codeline>
+<codeline><highlight class="normal">pip3<sp/>install<sp/>jinja2==3.1.1</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Successfully<sp/>installed<sp/>MarkupSafe-2.1.1<sp/>jinja2-3.1.1</highlight></codeline>
+<codeline><highlight class="normal">pip3<sp/>install<sp/>numpy<sp/>--upgrade</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Successfully<sp/>installed<sp/>numpy-1.22.3</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>Install<sp/>Jupyter<sp/>py<sp/>modules</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>traitlets</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>chec<sp/>traitlets<sp/>version<sp/>&gt;=<sp/>5.1.1</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>check<sp/>traitlets<sp/>version<sp/>&gt;=<sp/>5.1.1</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>OUTPUT:<sp/>Successfully<sp/>installed<sp/>traitlets-5.1.1</highlight></codeline>
+<codeline></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>pygments==2.4.1</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>the<sp/>Docker<sp/>image<sp/>contains<sp/>the<sp/>version<sp/>2.3.1,<sp/>which<sp/>is<sp/>lower<sp/>than<sp/>the<sp/>one<sp/>required<sp/>by<sp/>Jupyter</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>to<sp/>successfully<sp/>install<sp/>the<sp/>latest<sp/>pygments,<sp/>you<sp/>have<sp/>to<sp/>specify<sp/>the<sp/>version</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>otherwise<sp/>Pip<sp/>will<sp/>find<sp/>a<sp/>older<sp/>version<sp/>(why?)</highlight></codeline>
+<codeline></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>pyyaml</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>check<sp/>version<sp/>5.3.1</highlight></codeline>
+<codeline></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>bqplot</highlight></codeline>
-<codeline><highlight class="normal">pip3<sp/>install<sp/>ipywidgets</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>bqplot-0.12.33<sp/>(latest,<sp/>see<sp/>https://github.com/bqplot/bqplot/releases/)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">pip3<sp/>install<sp/>ipywidgets==8.0.0rc0</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>latest<sp/>is<sp/>8.0.0rc0,<sp/>see<sp/>https://ipywidgets.readthedocs.io/en/latest/</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>install<sp/>Jupyter<sp/>Notebook</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>jupyter</highlight></codeline>
 </programlisting></para>
 <para>The project also requires some extensions, so Jupyter should be enabled for using them. What you need now is <computeroutput>nbextensions</computeroutput>, a ... extension that enables to install other extensions (wooooooooooooooooooooooooow...):</para>
 <para><programlisting filename=".bash"><codeline><highlight class="normal">pip3<sp/>install<sp/>jupyter_contrib_nbextensions</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>jupyter-contrib-nbextensions-0.5.1</highlight></codeline>
+<codeline></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>jupyter_nbextensions_configurator</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>version<sp/>0.4.1</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">jupyter<sp/>contrib<sp/>nbextension<sp/>install</highlight></codeline>
-<codeline><highlight class="normal">#<sp/>the<sp/>output<sp/>from<sp/>this<sp/>command<sp/>should<sp/>be<sp/>very<sp/>long,<sp/>but<sp/>with<sp/>no<sp/>errors<sp/>or<sp/>warnings</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>the<sp/>output<sp/>from<sp/>this<sp/>command<sp/>should<sp/>be<sp/>very<sp/>long<sp/>and<sp/>&quot;colorful&quot;,<sp/>but<sp/>with<sp/>no<sp/>errors<sp/>or<sp/>warnings</highlight></codeline>
 </programlisting></para>
 <para>Here are some extensions you should enable for running the project. Mainly two extensions. The frist one is <computeroutput>widgetsnbextension</computeroutput>:</para>
 <para><programlisting filename=".bash"><codeline><highlight class="normal">jupyter<sp/>nbextension<sp/>enable<sp/>--py<sp/>widgetsnbextension</highlight></codeline>
-<codeline></codeline>
 <codeline><highlight class="normal">#<sp/>the<sp/>expected<sp/>output<sp/>is:</highlight></codeline>
 <codeline><highlight class="normal">#<sp/>$$<sp/>jupyter<sp/>nbextension<sp/>enable<sp/>--py<sp/>widgetsnbextension</highlight></codeline>
 <codeline><highlight class="normal">#<sp/><sp/><sp/>Enabling<sp/>notebook<sp/>extension<sp/>jupyter-js-widgets/extension...</highlight></codeline>
@@ -122,17 +151,23 @@
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>install<sp/>jupyros</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>jupyros</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>Successfully<sp/>installed<sp/>jupyros-0.3.0</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>add<sp/>Jupyros<sp/>to<sp/>Jupyter<sp/>Notebook</highlight></codeline>
 <codeline><highlight class="normal">jupyter<sp/>nbextension<sp/>enable<sp/>--py<sp/>--sys-prefix<sp/>jupyros</highlight></codeline>
-<codeline></codeline>
 <codeline><highlight class="normal">#<sp/>expected<sp/>output<sp/>from<sp/>the<sp/>last<sp/>command:</highlight></codeline>
 <codeline><highlight class="normal">#<sp/>$$<sp/>jupyter<sp/>nbextension<sp/>enable<sp/>--py<sp/>--sys-prefix<sp/>jupyros</highlight></codeline>
 <codeline><highlight class="normal">#<sp/><sp/><sp/><sp/>Enabling<sp/>notebook<sp/>extension<sp/>jupyter-ros/extension...</highlight></codeline>
 <codeline><highlight class="normal">#<sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>Validating:<sp/>OK</highlight></codeline>
 </programlisting></para>
-<para>Below is a script for launching Jupyter. It is dentical to the one in the repository (root folder of the pacakge.</para>
+<para>Below is a script for launching Jupyter, to run from inside the root folder of the package. It is dentical to the one in the repository (root folder of the pacakge). Notice that the script als launches the ROS1 master before launching Jupyter.</para>
 <para><programlisting filename=".bash"><codeline><highlight class="normal">#!<sp/>/bin/bash</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">set<sp/>-e</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">source<sp/>/opt/ros/noetic/setup.bash</highlight></codeline>
+<codeline><highlight class="normal">source<sp/>../../devel/setup.bash</highlight></codeline>
+<codeline><highlight class="normal">roscore<sp/>&amp;</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">cd<sp/>/</highlight></codeline>
 <codeline><highlight class="normal">#<sp/>see<sp/>https://github.com/Jupyter-contrib/jupyter_nbextensions_configurator/issues/72</highlight></codeline>
@@ -161,43 +196,59 @@
 <title>First way - quick run</title>
 <para>Let&apos;s start both the simulation and the Jupyter Notebook containing the interface. Follow the steps below:</para>
 <para><orderedlist>
-<listitem><para>open a bash and run the ROS1 master: <computeroutput>roscore &amp;</computeroutput>. <emphasis>Remember to source your workspace!</emphasis></para>
+<listitem><para>open a bash and run the ROS1 master: <computeroutput>roscore &amp;</computeroutput>. <emphasis>Remember to source your workspace!</emphasis>.</para>
+<para><emphasis>Notice that, if you use the script for running Jupyter inside the package, running the ROS master is not needed because the script itself launches the ROS1 master before starting Jupyter.</emphasis></para>
 </listitem><listitem><para>go inside the folder of the package and run Jupyter:</para>
-<para>```bash roscd rt2_assignment_2 ./run_jupyter.sh ```</para>
-<para>Note that the script must be run from inside the script folder, and the <computeroutput>src</computeroutput> folder of the workspace nust be not nested. Otherwise, consider to run manually Jupyter.</para>
-<para>If you&apos;re opening Jupyter for the first time, the best is to set a password, so the next time it will be easier to use it.</para>
-</listitem><listitem><para>in another console (even directly in Jupyter Notebook) launch the project with the launch file <computeroutput>sim_jupyter.launch</computeroutput>.</para>
-<para>```bash roslaunch rt2_assignment_2 sim_jupyter.launch ```</para>
-</listitem><listitem><para>Now everything should be running. Open the notebook you find inside the package, named <computeroutput>jupyter_interface_V2.ipynb</computeroutput> (see the folder JupyterNotebooks).</para>
-<para>I always use <emphasis>Kernel -&gt; Restart &amp; Run All</emphasis> to start all the blocks of the notebook.</para>
+<para>```bash roscd rt2_assignment_2 </para>
 </listitem></orderedlist>
 </para>
-<para>Please refer to the infos inside the notebook. Have fun!</para>
-</sect3>
-<sect3 id="md_readme_1autotoc_md11">
-<title>Second way - node by node</title>
-<para>The way to launch the project is quite similar to the one shown in the readme of the previous verson of the project (link here: <ulink url="https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action">programmatoroSeduto/rt2_assignment1 on GitHub</ulink>) but launching the node <computeroutput><ref refid="jupyter__user__interface_8py" kindref="compound">jupyter_user_interface.py</ref></computeroutput> instead of <computeroutput><ref refid="user__interface_8py" kindref="compound">user_interface.py</ref></computeroutput>.</para>
 </sect3>
 </sect2>
 </sect1>
+<sect1 id="md_readme_1autotoc_md11">
+<title>chmod +x ./run_jupyter.sh</title>
+<para>./run_jupyter.sh ```</para>
+<para>The script shall run from inside the script folder; <emphasis>avoid nested folders in your <computeroutput>src</computeroutput> folder</emphasis>.</para>
+<para>If you&apos;re opening Jupyter for the first time, the best is to set an acces method with password, so the next time it will be easier to log in.</para>
+<para><orderedlist>
+<listitem><para>in another console (even directly in Jupyter Notebook) launch the project with the launch file <computeroutput>sim_jupyter.launch</computeroutput>.</para>
+<para>```bash </para>
+</listitem></orderedlist>
+</para>
+</sect1>
 <sect1 id="md_readme_1autotoc_md12">
+<title>SOURCE YOUR WORKSPACE BEFORE!</title>
+<para>roslaunch rt2_assignment_2 sim_jupyter.launch ```</para>
+<para><orderedlist>
+<listitem><para>Now everything should be running. Open the notebook you find inside the package, named <computeroutput>jupyter_interface_V2.ipynb</computeroutput> (see the folder JupyterNotebooks).</para>
+<para>I often use to start all the blocks of the notebook with <emphasis>Kernel -&gt; Restart &amp; Run All</emphasis>.</para>
+</listitem></orderedlist>
+</para>
+<para>Please refer to the infos inside the notebook. Have fun!</para>
+<sect3 id="md_readme_1autotoc_md13">
+<title>Second way - node by node</title>
+<para>The way to launch the project is quite similar to the one shown in the readme of the previous verson of the project (link here: <ulink url="https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action">programmatoroSeduto/rt2_assignment1 on GitHub</ulink>) but launching the node <computeroutput><ref refid="jupyter__user__interface_8py" kindref="compound">jupyter_user_interface.py</ref></computeroutput> instead of <computeroutput><ref refid="user__interface_8py" kindref="compound">user_interface.py</ref></computeroutput>.</para>
+</sect3>
+</sect1>
+<sect1 id="md_readme_1autotoc_md14">
 <title>Documentation</title>
 <para>The project also wants to test two documentation systems:</para>
 <para><itemizedlist>
 <listitem><para><bold>Doxygen</bold> easy to use, stable, quick to use, with a handy GUI, but quite unflexible and generating a too much old style HTML documentation (welcome back to 90s!)</para>
-</listitem><listitem><para><bold>Sphinx</bold> enables to produce a nice documentation, flexible and extendable with not so much effort, but really painful to use, not stable, it has not a GUI, and uses the horrible reStructured format.</para>
+</listitem><listitem><para><bold>Sphinx</bold> enables to produce a nice documentation, flexible and extendable with not so much effort, but really painful to use, not stable, it has not a GUI, and uses the horrible reStructured format. <ulink url="https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/">Here</ulink> is an interesting article about Sphinx.</para>
 </listitem></itemizedlist>
 </para>
-<sect2 id="md_readme_1autotoc_md13">
+<sect2 id="md_readme_1autotoc_md15">
 <title>Before starting</title>
-<para>As always, in particular if you&apos;re using the Docker image <ulink url="https://hub.docker.com/r/carms84/noetic_ros2">carms84/noetic_ros2</ulink>, enther Docker or Sphinx are installed. So, we have to install them. Luckily, both the frameworksa are quite easy to install: just copy andpaste some commands to the console.</para>
-<sect3 id="md_readme_1autotoc_md14">
+<para>As always, in particular if you&apos;re using the Docker image <ulink url="https://hub.docker.com/r/carms84/noetic_ros2">carms84/noetic_ros2</ulink>, either Docker or Sphinx aren&apos;t installed. Luckily, both the frameworks are quite easy to install: just copy and paste some commands to the console.</para>
+<sect3 id="md_readme_1autotoc_md16">
 <title>DEPT – Doxygen</title>
 <para>Open a console and paste this command: (the command <computeroutput>-y</computeroutput> says to cautomatically confirm the installation)</para>
 <para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>the<sp/>engine</highlight></codeline>
 <codeline><highlight class="normal">sudo<sp/>apt-get<sp/>install<sp/>-y<sp/>doxygen</highlight></codeline>
 <codeline><highlight class="normal">#<sp/>check<sp/>your<sp/>installation<sp/>with<sp/>the<sp/>command<sp/></highlight></codeline>
 <codeline><highlight class="normal">doxygen<sp/>-v</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>1.8.17</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>and<sp/>the<sp/>GUI</highlight></codeline>
 <codeline><highlight class="normal">sudo<sp/>apt-get<sp/>install<sp/>-y<sp/>doxygen-gui</highlight></codeline>
@@ -206,50 +257,69 @@
 </programlisting></para>
 <para>That&apos;s all for the Doxygen setup. You can run the GUI using typing the command <computeroutput>doxywizard</computeroutput> in the shell.</para>
 </sect3>
-<sect3 id="md_readme_1autotoc_md15">
+<sect3 id="md_readme_1autotoc_md17">
 <title>DEPT – Sphinx</title>
 <para><emphasis>THE EXTENSION &apos;BREATHE&apos; OF SPHINX REQUIRES DOXYGEN: install it before proceed.</emphasis></para>
 <para>Installing Sphinx s quite easy (<emphasis>don&apos;t trust it!</emphasis>):</para>
 <para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>the<sp/>engine</highlight></codeline>
-<codeline><highlight class="normal">sudo<sp/>apt-get<sp/>install<sp/>-y<sp/>python3-sphinx</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>the<sp/>following<sp/>gives<sp/>an<sp/>issue<sp/>(the<sp/>repo<sp/>is<sp/>not<sp/>up<sp/>to<sp/>date...)</highlight></codeline>
+<codeline><highlight class="normal">#<sp/><sp/><sp/><sp/>sudo<sp/>apt-get<sp/>install<sp/>-y<sp/>python3-sphinx</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>use<sp/>this<sp/>instead:</highlight></codeline>
+<codeline><highlight class="normal">pip3<sp/>install<sp/>sphinx==4.5.0</highlight></codeline>
 <codeline></codeline>
-<codeline><highlight class="normal">#<sp/>check<sp/>the<sp/>installation<sp/>(see<sp/>troubleshooting<sp/>in<sp/>case<sp/>of<sp/>problems)</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>check<sp/>the<sp/>installation</highlight></codeline>
 <codeline><highlight class="normal">sphinx-quickstart<sp/>--version</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>if<sp/>it<sp/>appears<sp/>a<sp/>Python<sp/>exception<sp/>like<sp/>this:</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>ImportError:<sp/>cannot<sp/>import<sp/>name<sp/>&apos;contextfunction&apos;<sp/>from<sp/>&apos;jinja2&apos;<sp/>(/usr/local/lib/python3.8/dist-packages/jinja2/__init__.py)</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>SEE<sp/>THE<sp/>TROUBLESHOOTING<sp/>section</highlight></codeline>
 </programlisting></para>
 <para>Let&apos;s install also some useful extensions for Sphinx:</para>
 <para><programlisting filename=".bash"><codeline><highlight class="normal">#<sp/>breathe<sp/>allows<sp/>Sphinx<sp/>to<sp/>read<sp/>the<sp/>Doxygen<sp/>XML<sp/>documentation</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>breathe</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>see<sp/>https://github.com/michaeljones/breathe/releases</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>latest<sp/>is<sp/>4.33.1</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>this<sp/>is<sp/>a<sp/>nice<sp/>theme<sp/>which<sp/>recalls<sp/>ReadTheDocs<sp/>(a<sp/>little<sp/>bit<sp/>worse<sp/>than<sp/>the<sp/>orininal<sp/>one)</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>sphinx-rtd-theme</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>this<sp/>extension<sp/>lets<sp/>Sphinx<sp/>to<sp/>read<sp/>the<sp/>MD<sp/>format</highlight></codeline>
 <codeline><highlight class="normal">pip3<sp/>install<sp/>myst-parser</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>see<sp/>https://myst-parser.readthedocs.io/en/latest/</highlight></codeline>
+<codeline><highlight class="normal">#<sp/>latest<sp/>is<sp/>0.17.2</highlight></codeline>
 </programlisting></para>
 </sect3>
 </sect2>
-<sect2 id="md_readme_1autotoc_md16">
+<sect2 id="md_readme_1autotoc_md18">
 <title>How to generate the Doxygen Documentation</title>
 <para>Very simple, because the configuration file is already in the package and ready to use. Follow these steps:</para>
 <para><orderedlist>
 <listitem><para>go inside the package, folder <computeroutput>/docs</computeroutput>. Here&apos;s a file labeled <computeroutput>Doxyfile</computeroutput> that is the configuration file. It is set to generate both the HTML documentation and the XML documentation inside the folder of the package <computeroutput>/docs/build/html</computeroutput>.</para>
 </listitem><listitem><para>I suggest to use <computeroutput>doxywizard</computeroutput>, open from there the configuration file and generate the documentation. Otherwise, you can simply call this from the shell:</para>
-<para>```bash doxygen Doxyfile ```</para>
+<para>```bash doxygen Doxyfile </para>
 </listitem></orderedlist>
 </para>
-<para>To see the documentation, go inside the package, sub folder <computeroutput>/docs/build/html</computeroutput>, and open <computeroutput>index.html</computeroutput> in a browser.</para>
 </sect2>
-<sect2 id="md_readme_1autotoc_md17">
+</sect1>
+<sect1 id="md_readme_1autotoc_md19">
+<title>firefox ./build/html/index.html &amp;</title>
+<para>```</para>
+<para>To see the documentation, go inside the package, sub folder <computeroutput>/docs/build/html</computeroutput>, and open <computeroutput>index.html</computeroutput> in a browser.</para>
+<sect2 id="md_readme_1autotoc_md20">
 <title>How to generate the Sphinx documentation</title>
 <para>As before, the package contains everything you need in order to build the documentation with Sphinx. Here is the steps for generating the docs:</para>
 <para><orderedlist>
 <listitem><para>go inside the folder <computeroutput>/docs</computeroutput> of the package</para>
 </listitem><listitem><para>launch this command in a shell:</para>
-<para>```bash ./build_sphinx.sh ```</para>
+<para>```bash ./build_sphinx.sh </para>
 </listitem></orderedlist>
 </para>
+</sect2>
+</sect1>
+<sect1 id="md_readme_1autotoc_md21">
+<title>firefox ./_build/html/index.html &amp;</title>
+<para>```</para>
 <para>The command makes the documentation; ignore the warnings there. Note that the command also builds the Doxygen documentation.</para>
-<sect3 id="md_readme_1autotoc_md18">
+<sect3 id="md_readme_1autotoc_md22">
 <title>How I set up Sphinx for the project</title>
 <para><orderedlist>
 <listitem><para>in the folder <computeroutput>/docs</computeroutput> of the package I launched <computeroutput>sphinx-quickstart</computeroutput> Here&apos;s the output:</para>
@@ -269,17 +339,27 @@
 </listitem><listitem><para>Time to write some documentation! I started from the index page, which includes the README inside.</para>
 </listitem><listitem><para>As you can see in the folder <computeroutput>/docs/sphinx</computeroutput>, the documentation is divided into two main parts: the one referred to ROScpp nodes, and the other one referring to the Python scripts inside the project. Each of them have its index. The first step is to make clear the structure of the documentation, creating the reST pages.</para>
 </listitem><listitem><para>documentation of PY nodes with simple reST and autodoc</para>
+<para>See the pages inside <computeroutput>.../rts_2assignment_2/docs/sphinx/rospy-nodes</computeroutput>. Here the directive <computeroutput>.. automodule ::</computeroutput> imports and generates the documentation from the Python scripts. Notice the instruction <lsquo/>sys.path.insert( 0, os.path.abspath(<rsquo/>./../scripts&apos;) )<computeroutput>inside the file</computeroutput><ref refid="conf_8py" kindref="compound">conf.py</ref>`: the extension <bold>Autodoc</bold> wouldn&apos;t find the py files withut that.</para>
 </listitem><listitem><para>documentation of C++ nodes with simple reST and breathe</para>
+<para>See the pages inside <computeroutput>.../rts_2assignment_2/docs/sphinx/roscpp-nodes</computeroutput>. The pages have a very simple structure: the directive <computeroutput>.. doxyfile ::</computeroutput> reads the documentation attached to the C++ code through the XML documentation from Doxygen.</para>
 </listitem><listitem><para><bold>build the documentation</bold> with a script.</para>
+<para>Notice that, since Sphinx runs from <computeroutput>.../rt2_assignment_2/docs</computeroutput> and not in the root folder of the package, due to a bug or something similar <emphasis>Sphinx can&apos;t see the README.md file there</emphasis>. The scripts applies a workaround: the readme is copied inside the folder <computeroutput>/docs</computeroutput>, included in the documentation, and then deleted. Unfortunately Sphinx has some problems in catching the relative locations right now: this is a well known issue, with so many posts everywhere on the web, but no satisfying solution.</para>
+<para>Here&apos;s the code inside the script for building the documentation with Sphinx:</para>
+<para>```bash #! /bin/bash</para>
+<para>source ../../../devel/setup.bash</para>
+<para>cp ../README.md ./readme.md make clean make html rm readme.md</para>
 </listitem></orderedlist>
 </para>
 </sect3>
-</sect2>
 </sect1>
-<sect1 id="md_readme_1autotoc_md19">
+<sect1 id="md_readme_1autotoc_md23">
+<title>firefox ./_build/html/index.html &amp;</title>
+<para>```</para>
+</sect1>
+<sect1 id="md_readme_1autotoc_md24">
 <title>Troubleshooting</title>
 <para>Here are some well-known problems that can occur trying to run the project.</para>
-<sect2 id="md_readme_1autotoc_md20">
+<sect2 id="md_readme_1autotoc_md25">
 <title>Docker - Update/Upgrade ROS</title>
 <para>Especially when you use the Docker image <ulink url="https://hub.docker.com/r/carms84/noetic_ros2">carms84/noetic_ros2</ulink>, the first time you launch the command <computeroutput>sudo apt-get update</computeroutput>, an error message is print; the output is similar to this one:</para>
 <para><programlisting><codeline><highlight class="normal">$$<sp/>sudo<sp/>apt-get<sp/>update</highlight></codeline>
@@ -324,12 +404,12 @@
 <codeline><highlight class="normal">sudo<sp/>curl<sp/>-sSL<sp/>https://raw.githubusercontent.com/ros/rosdistro/master/ros.key<sp/>-o<sp/>/usr/share/keyrings/ros-archive-keyring.gpg</highlight></codeline>
 <codeline></codeline>
 <codeline><highlight class="normal">#<sp/>now,<sp/>update/upgrade</highlight></codeline>
-<codeline><highlight class="normal">sudo<sp/>apt-get<sp/>update</highlight></codeline>
-<codeline><highlight class="normal">sudo<sp/>apt-get<sp/>upgrade</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>apt-get<sp/>update<sp/>-y</highlight></codeline>
+<codeline><highlight class="normal">sudo<sp/>apt-get<sp/>upgrade<sp/>-y</highlight></codeline>
 </programlisting></para>
 <para>If you&apos;re interested, here is the official post explaining this fact: <ulink url="https://discourse.ros.org/t/ros-gpg-key-expiration-incident/20669">ROS GPG Key Expiration Incident on ROS Discourse</ulink>. Another useful post: <ulink url="https://answers.ros.org/question/379190/apt-update-signatures-were-invalid-f42ed6fbab17c654/">apt update: signatures were invalid: F42ED6FBAB17C654 - ROS Answers: Open Source Q&amp;A Forum</ulink></para>
 </sect2>
-<sect2 id="md_readme_1autotoc_md21">
+<sect2 id="md_readme_1autotoc_md26">
 <title>Jupyter Notebook Installation - errors during the installation of &lt;em&gt;pyyaml&lt;/em&gt;</title>
 <para>The command generating the error:</para>
 <para><programlisting filename=".bash"><codeline><highlight class="normal">pip3<sp/>install<sp/>pyyaml</highlight></codeline>
@@ -350,7 +430,7 @@
 <codeline><highlight class="normal">pip3<sp/>install<sp/>pyyaml</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md_readme_1autotoc_md22">
+<sect2 id="md_readme_1autotoc_md27">
 <title>catkin_make - Unable to find either executable &apos;empy&apos; or Python module &apos;em&apos;</title>
 <para>There could be an error when also Anaconda is installed in the same system. The error procudes this output on the screen:</para>
 <para><programlisting><codeline><highlight class="normal">--<sp/>Found<sp/>PythonInterp:<sp/>/root/anaconda3/bin/python3<sp/>(found<sp/>suitable<sp/>version<sp/>&quot;3.9.7&quot;,<sp/>minimum<sp/>required<sp/>is<sp/>&quot;3&quot;)<sp/></highlight></codeline>
@@ -375,7 +455,7 @@
 </programlisting></para>
 <para>See <ulink url="https://answers.ros.org/question/353111/following-installation-instructions-catkin_make-generates-a-cmake-error/">this post</ulink>.</para>
 </sect2>
-<sect2 id="md_readme_1autotoc_md23">
+<sect2 id="md_readme_1autotoc_md28">
 <title>Jupyter Notebook installation - strange errors from pip3</title>
 <para>Sometimes there are some errors with <computeroutput>pip3</computeroutput> during the installation of the packages for Jupyter Notebook. The error could be this for example:</para>
 <para><programlisting><codeline><highlight class="normal">ERROR:<sp/>ipython<sp/>8.2.0<sp/>has<sp/>requirement<sp/>pygments&gt;=2.4.0,<sp/>but<sp/>you&apos;ll<sp/>have<sp/>pygments<sp/>2.3.1<sp/>which<sp/>is<sp/>incompatible.</highlight></codeline>
@@ -395,7 +475,7 @@
 <codeline><highlight class="normal">#<sp/>the<sp/>error<sp/>should<sp/>disappear.</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md_readme_1autotoc_md24">
+<sect2 id="md_readme_1autotoc_md29">
 <title>Jupyter notebook installation - jinja2</title>
 <para>The packahe Jinja typically gives some problem; unfortunately it is required during the installation og Jupyter notebook, otherwise, as you try to run <computeroutput>jupyter contrib nbextension install</computeroutput>, it wll appear a very unintellegible Python error.</para>
 <para>In order to avoid this boring error, uninstall and install again this component:</para>
@@ -404,11 +484,11 @@
 </programlisting></para>
 <para>See this post, not directly related with this situation: <ulink url="https://github.com/zero-os-no-longer-used/0-robot/issues/139">ContextualVersionConflict when starting 0-robot #139 on HitHub</ulink></para>
 </sect2>
-<sect2 id="md_readme_1autotoc_md25">
+<sect2 id="md_readme_1autotoc_md30">
 <title>roscd - ROSCD NOT WORKING (package not found)</title>
 <para>That&apos;s because you forgot to source the workspace, or maybe you didn&apos;t run <computeroutput>catkin_make</computeroutput> on it. So, <computeroutput>catkin_make</computeroutput> and <computeroutput>source</computeroutput> it before using <computeroutput>roscd</computeroutput>.</para>
 </sect2>
-<sect2 id="md_readme_1autotoc_md26">
+<sect2 id="md_readme_1autotoc_md31">
 <title>No module named ROSpy</title>
 <para>The message appears in the Jupyter Notebook, and resembles this:</para>
 <para><programlisting><codeline><highlight class="normal">The<sp/>rospy<sp/>package<sp/>is<sp/>not<sp/>found<sp/>in<sp/>your<sp/>$PYTHONPATH.<sp/>Subscribe<sp/>and<sp/>publish<sp/>are<sp/>not<sp/>going<sp/>to<sp/>work.</highlight></codeline>
@@ -426,7 +506,7 @@
 </programlisting></para>
 <para>Remember to source your ROS1 environment and to launch te ROS1 master before executing the Jupyter notebook!</para>
 </sect2>
-<sect2 id="md_readme_1autotoc_md27">
+<sect2 id="md_readme_1autotoc_md32">
 <title>Sphinx installation - cannot import &apos;contextfunction&apos; from jinja2</title>
 <para>Unfortunately, this error could happen when you try to launch the command <computeroutput>sphinx-quickstart</computeroutput>, whereas <computeroutput>pshinx-build --help</computeroutput> works fine. Here&apos;s the &quot;arabic&quot; error:</para>
 <para><programlisting><codeline><highlight class="normal">$$<sp/>sphinx-quickstart</highlight></codeline>
@@ -449,16 +529,16 @@
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/>from<sp/>jinja2<sp/>import<sp/>FileSystemLoader,<sp/>BaseLoader,<sp/>TemplateNotFound,<sp/>\</highlight></codeline>
 <codeline><highlight class="normal">ImportError:<sp/>cannot<sp/>import<sp/>name<sp/>&apos;contextfunction&apos;<sp/>from<sp/>&apos;jinja2&apos;<sp/>(/usr/local/lib/python3.8/dist-packages/jinja2/__init__.py)</highlight></codeline>
 </programlisting></para>
-<para>As said <ulink url="https://github.com/readthedocs/readthedocs.org/issues/9037">in this post</ulink> sometimes happens that <computeroutput>pat-get</computeroutput> catches a old version of Sphinx, uncompatible with the current version of <emphasis>Jinja2</emphasis> (currently we&apos;re at the release 3.1.1, see <ulink url="https://github.com/pallets/jinja/releases">the official page of Jinja2</ulink>).</para>
-<para>To solve the problem, you can easily upgrade Sphinx through <computeroutput>pip</computeroutput> as follows: (see <ulink url="https://linuxtut.com/en/304bf660468ea4a0e90e/">this page</ulink>)</para>
+<para>As said <ulink url="https://github.com/readthedocs/readthedocs.org/issues/9037">in this post</ulink> sometimes happens that <computeroutput>pat-get</computeroutput> catches a old version of Sphinx build, uncompatible with the latest version of <emphasis>Jinja2</emphasis> (currently the latest release is 3.1.1, see <ulink url="https://github.com/pallets/jinja/releases">the official page of Jinja2</ulink>).</para>
+<para>To solve the problem, you can easily upgrade Sphinx through <computeroutput>pip3</computeroutput> as follows: (see <ulink url="https://linuxtut.com/en/304bf660468ea4a0e90e/">this page</ulink>)</para>
 <para>```bash pip3 install <ndash/>upgrade sphinx ````</para>
-<para>It should fix that. After that, check the installation: it should appear on the screen the version when you try to run <computeroutput>sphinx-quickstart</computeroutput>. This:</para>
+<para>It should fix that. After, check the installation: it should appear on the screen the version when you try to run <computeroutput>sphinx-quickstart</computeroutput>. This:</para>
 <para><programlisting><codeline><highlight class="normal">$$<sp/>sphinx-quickstart<sp/>--version</highlight></codeline>
 <codeline><highlight class="normal">sphinx-quickstart<sp/>1.8.5</highlight></codeline>
 </programlisting></para>
 </sect2>
 </sect1>
-<sect1 id="md_readme_1autotoc_md28">
+<sect1 id="md_readme_1autotoc_md33">
 <title>Author and Contacts</title>
 <para>A project by <emphasis>Francesco Ganci</emphasis>, S4143910, upon a code by <ulink url="https://github.com/CarmineD8">CarmineD8</ulink>.</para>
 <para><itemizedlist>
@@ -466,12 +546,14 @@
 </listitem></itemizedlist>
 </para>
 </sect1>
-<sect1 id="md_readme_1autotoc_md29">
+<sect1 id="md_readme_1autotoc_md34">
 <title>See also</title>
 <para><itemizedlist>
 <listitem><para><ulink url="https://github.com/programmatoroSeduto/rt2_assignment_1/tree/action">programmatoroSeduto/rt2_assignment1 on GitHub</ulink></para>
-</listitem><listitem><para><ulink url="https://github.com/CarmineD8/rt2_assignment1">CarmsD8/rt2_assignment1 on GitHub</ulink></para>
-</listitem><listitem><para><ulink url="https://github.com/CarmineD8/pioneer_ctrl">CarmineD8/pioneer_ctrl on GitHub</ulink> </para>
+</listitem><listitem><para><ulink url="https://github.com/CarmineD8/rt2_assignment1">CarmineD8/rt2_assignment1 on GitHub</ulink></para>
+</listitem><listitem><para><ulink url="https://github.com/CarmineD8/pioneer_ctrl">CarmineD8/pioneer_ctrl on GitHub</ulink></para>
+</listitem><listitem><para><ulink url="https://hub.docker.com/r/carms84/noetic_ros2">carms84/noetic_ros2 Docker image</ulink></para>
+</listitem><listitem><para><ulink url="https://devblogs.microsoft.com/cppblog/clear-functional-c-documentation-with-sphinx-breathe-doxygen-cmake/">Clear, Functional C++ Documentation with Sphinx + Breathe + Doxygen + CMake</ulink> </para>
 </listitem></itemizedlist>
 </para>
 </sect1>
